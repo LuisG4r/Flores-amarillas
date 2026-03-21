@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para ti 💛</title>
 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #c3b091; /* caqui */
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+    }
+
+    /* 🌻 FLOR */
+    .flor-container {
+      position: relative;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    /* tallo */
+    .tallo {
+      width: 4px;
+      height: 0;
+      background: #2e7d32;
+      animation: crecerTallo 2s ease forwards;
+    }
+
+    @keyframes crecerTallo {
+      to {
+        height: 80px;
+      }
+    }
+
+    /* flor */
+    .flor {
+      width: 40px;
+      height: 40px;
+      background: #fdd835;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 70px;
+      transform: scale(0);
+      animation: florecer 1.5s ease forwards;
+      animation-delay: 2s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    @keyframes florecer {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    /* contador */
+    .contador {
+      margin-top: 20px;
+      font-size: 18px;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 3.5s;
+    }
+
+    /* mensaje */
+    .mensaje {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 5s;
+    }
+
+    /* botón */
+    .btn {
+      margin-top: 25px;
+      padding: 10px 20px;
+      background: #fff;
+      color: #333;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 6.5s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- 🌻 Animación -->
+    <div class="flor-container">
+      <div class="tallo"></div>
+      <div class="flor"></div>
+    </div>
+
+    <!-- 💛 Contador -->
+    <div class="contador" id="contador"></div>
+
+    <!-- ✨ Mensaje -->
+    <div class="mensaje">
+      Hoy no puedo regalarte flores amarillas...<br><br>
+      pero quería darte algo que dure más 💛<br>
+      algo que puedas abrir cuando quieras<br>
+      y recordar todo lo que hemos construido juntos.
+    </div>
+
+    <!-- 👉 Botón -->
+    <button class="btn" onclick="siguiente()">Ver más</button>
+
+  </div>
+
+  <script>
+    // 🔥 CAMBIA ESTA FECHA
+    const fechaInicio = new Date("2024-04-14");
+
+    const hoy = new Date();
+    const diferencia = hoy - fechaInicio;
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+    document.getElementById("contador").innerText =
+      "Llevamos " + dias + " días juntos 💛";
+
+    function siguiente() {
+      alert("Aquí vamos a poner sus fotos 📸✨");
+    }
+  </script>
+
+</body>
+</html>
