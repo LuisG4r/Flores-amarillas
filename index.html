@@ -2,40 +2,39 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para ti 💛</title>
 
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #c3b091; /* caqui */
+      background: #c3b091;
       font-family: Arial, sans-serif;
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
       text-align: center;
     }
 
     .container {
-      max-width: 400px;
+      max-width: 90%;
       padding: 20px;
     }
 
-    /* 🌻 FLOR */
+    /* 🌻 GIRASOL */
     .flor-container {
       position: relative;
-      height: 120px;
+      height: 150px;
       display: flex;
       justify-content: center;
       align-items: flex-end;
     }
 
-    /* tallo */
     .tallo {
-      width: 4px;
+      width: 5px;
       height: 0;
       background: #2e7d32;
       animation: crecerTallo 2s ease forwards;
@@ -43,23 +42,47 @@
 
     @keyframes crecerTallo {
       to {
-        height: 80px;
+        height: 90px;
       }
     }
 
-    /* flor */
     .flor {
-      width: 40px;
-      height: 40px;
-      background: #fdd835;
-      border-radius: 50%;
       position: absolute;
-      bottom: 70px;
+      bottom: 80px;
+      width: 60px;
+      height: 60px;
       transform: scale(0);
       animation: florecer 1.5s ease forwards;
       animation-delay: 2s;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
+    /* pétalos */
+    .petalo {
+      width: 20px;
+      height: 20px;
+      background: #fdd835;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .centro {
+      width: 25px;
+      height: 25px;
+      background: #5d4037;
+      border-radius: 50%;
+      position: absolute;
+      top: 17px;
+      left: 17px;
+      z-index: 2;
+    }
+
+    /* posiciones de pétalos */
+    .p1 { top: 0; left: 20px; }
+    .p2 { top: 10px; left: 40px; }
+    .p3 { top: 30px; left: 40px; }
+    .p4 { top: 40px; left: 20px; }
+    .p5 { top: 30px; left: 0; }
+    .p6 { top: 10px; left: 0; }
 
     @keyframes florecer {
       to {
@@ -69,8 +92,9 @@
 
     /* contador */
     .contador {
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 25px;
+      font-size: 22px;
+      font-weight: bold;
       opacity: 0;
       animation: fadeIn 2s ease forwards;
       animation-delay: 3.5s;
@@ -78,22 +102,22 @@
 
     /* mensaje */
     .mensaje {
-      margin-top: 20px;
-      font-size: 16px;
-      line-height: 1.5;
+      margin-top: 25px;
+      font-size: 18px;
+      line-height: 1.6;
       opacity: 0;
       animation: fadeIn 2s ease forwards;
       animation-delay: 5s;
     }
 
-    /* botón */
     .btn {
-      margin-top: 25px;
-      padding: 10px 20px;
+      margin-top: 30px;
+      padding: 12px 25px;
       background: #fff;
       color: #333;
       border: none;
-      border-radius: 20px;
+      border-radius: 25px;
+      font-size: 16px;
       cursor: pointer;
       opacity: 0;
       animation: fadeIn 2s ease forwards;
@@ -112,16 +136,25 @@
 
   <div class="container">
 
-    <!-- 🌻 Animación -->
+    <!-- 🌻 GIRASOL -->
     <div class="flor-container">
       <div class="tallo"></div>
-      <div class="flor"></div>
+
+      <div class="flor">
+        <div class="petalo p1"></div>
+        <div class="petalo p2"></div>
+        <div class="petalo p3"></div>
+        <div class="petalo p4"></div>
+        <div class="petalo p5"></div>
+        <div class="petalo p6"></div>
+        <div class="centro"></div>
+      </div>
     </div>
 
-    <!-- 💛 Contador -->
+    <!-- ⏱ CONTADOR -->
     <div class="contador" id="contador"></div>
 
-    <!-- ✨ Mensaje -->
+    <!-- 💛 MENSAJE -->
     <div class="mensaje">
       Hoy no puedo regalarte flores amarillas...<br><br>
       pero quería darte algo que dure más 💛<br>
@@ -129,21 +162,28 @@
       y recordar todo lo que hemos construido juntos.
     </div>
 
-    <!-- 👉 Botón -->
     <button class="btn" onclick="siguiente()">Ver más</button>
 
   </div>
 
   <script>
-    // 🔥 CAMBIA ESTA FECHA
-    const fechaInicio = new Date("2024-04-14");
+    // 🔥 CAMBIA TU FECHA AQUÍ
+    const fechaInicio = new Date("2024-04-14T19:00:00");
 
-    const hoy = new Date();
-    const diferencia = hoy - fechaInicio;
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    function actualizarContador() {
+      const ahora = new Date();
+      let diferencia = ahora - fechaInicio;
 
-    document.getElementById("contador").innerText =
-      "Llevamos " + dias + " días juntos 💛";
+      let dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      let meses = Math.floor(dias / 30);
+      let horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+
+      document.getElementById("contador").innerText =
+        meses + " meses, " + dias + " días y " + horas + " horas juntos 💛";
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
 
     function siguiente() {
       alert("Aquí vamos a poner sus fotos 📸✨");
