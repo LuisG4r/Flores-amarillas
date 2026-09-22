@@ -2,14 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 <title>Para ti 🌻</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -29,10 +26,9 @@ body{
   inset:0;
 }
 
-
-/* =====================================================
+/* =========================
    PANTALLA INICIAL
-===================================================== */
+========================= */
 
 #intro{
   position:fixed;
@@ -57,10 +53,7 @@ body{
   transform:scale(.92);
 }
 
-
-/* PÉTALOS EXCLUSIVOS DEL GIRASOL INICIAL */
-
-.intro-sunflower .intro-petal{
+.intro-sunflower .petal{
   position:absolute;
   width:52px;
   height:82px;
@@ -73,37 +66,14 @@ body{
   transform-origin:50% 100%;
 }
 
-.intro-sunflower .intro-petal:nth-child(1){
-  transform:rotate(0deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(2){
-  transform:rotate(45deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(3){
-  transform:rotate(90deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(4){
-  transform:rotate(135deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(5){
-  transform:rotate(180deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(6){
-  transform:rotate(225deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(7){
-  transform:rotate(270deg) translateY(-35px);
-}
-
-.intro-sunflower .intro-petal:nth-child(8){
-  transform:rotate(315deg) translateY(-35px);
-}
+.intro-sunflower .petal:nth-child(1){transform:rotate(0deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(2){transform:rotate(45deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(3){transform:rotate(90deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(4){transform:rotate(135deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(5){transform:rotate(180deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(6){transform:rotate(225deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(7){transform:rotate(270deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(8){transform:rotate(315deg) translateY(-35px);}
 
 .intro-sunflower .center{
   position:absolute;
@@ -124,9 +94,6 @@ body{
   font-style:italic;
 }
 
-
-/* SEMILLA */
-
 .seed{
   position:fixed;
   left:50%;
@@ -142,29 +109,22 @@ body{
 }
 
 @keyframes seedDrop{
-
   0%{
     top:-30px;
     opacity:0;
     transform:rotate(0deg);
   }
-
-  15%{
-    opacity:1;
-  }
-
+  15%{opacity:1;}
   100%{
     top:68%;
     opacity:0;
     transform:rotate(360deg);
   }
-
 }
 
-
-/* =====================================================
+/* =========================
    FRASES
-===================================================== */
+========================= */
 
 #phrases{
   position:fixed;
@@ -192,29 +152,21 @@ body{
   opacity:1;
 }
 
-
-/* =====================================================
+/* =========================
    JARDÍN
-===================================================== */
+========================= */
 
 #garden{
   position:fixed;
   inset:0;
   display:none;
   overflow:hidden;
-
-  background:linear-gradient(
-    to bottom,
-    #bfe3f2 0%,
-    #d8edf4 49%,
-    #b4d77b 50%,
-    #82b95e 65%,
-    #4f963f 100%
-  );
+  background:linear-gradient(to bottom,
+    #bfe3f2 0%, #d8edf4 49%,
+    #b4d77b 50%, #82b95e 65%, #4f963f 100%);
 }
 
-
-/* SOL */
+/* sol */
 
 .sun{
   position:absolute;
@@ -227,10 +179,7 @@ body{
   box-shadow:0 0 35px rgba(255,220,90,.35);
 }
 
-
-/* =====================================================
-   TENDEDERO
-===================================================== */
+/* tendedero */
 
 .clothesline-post{
   position:absolute;
@@ -270,10 +219,9 @@ body{
   z-index:4;
 }
 
-
-/* =====================================================
-   FLORES DEL JARDÍN
-===================================================== */
+/* =========================
+   FLORES
+========================= */
 
 .field{
   position:absolute;
@@ -285,19 +233,14 @@ body{
   position:absolute;
   width:120px;
   height:120px;
-
   left:var(--left);
   top:var(--top);
-
   transform:
     translate(-50%,-50%)
     scale(var(--scale))
     rotate(var(--rotate));
-
   transform-origin:center center;
-
   z-index:var(--depth);
-
   pointer-events:none;
 }
 
@@ -307,89 +250,47 @@ body{
   height:76px;
   left:50%;
   top:50%;
-
   transform:
     translate(-50%,-50%)
     translateY(var(--head-offset));
-
   transform-origin:center center;
 }
 
-
-/* PÉTALOS EXCLUSIVOS DEL JARDÍN */
-
-.field-flower .garden-petal{
+.petal{
   position:absolute;
-
   width:30px;
   height:43px;
-
   left:50%;
   top:50%;
-
   margin-left:-15px;
   margin-top:-21px;
-
   background:#f7c62c;
-
   border-radius:50% 50% 45% 45%;
-
   transform-origin:50% 100%;
 }
 
-.field-flower .garden-petal:nth-child(1){
-  transform:rotate(0deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(2){
-  transform:rotate(45deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(3){
-  transform:rotate(90deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(4){
-  transform:rotate(135deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(5){
-  transform:rotate(180deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(6){
-  transform:rotate(225deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(7){
-  transform:rotate(270deg) translateY(-25px);
-}
-
-.field-flower .garden-petal:nth-child(8){
-  transform:rotate(315deg) translateY(-25px);
-}
+.petal:nth-child(1){transform:rotate(0deg) translateY(-25px);}
+.petal:nth-child(2){transform:rotate(45deg) translateY(-25px);}
+.petal:nth-child(3){transform:rotate(90deg) translateY(-25px);}
+.petal:nth-child(4){transform:rotate(135deg) translateY(-25px);}
+.petal:nth-child(5){transform:rotate(180deg) translateY(-25px);}
+.petal:nth-child(6){transform:rotate(225deg) translateY(-25px);}
+.petal:nth-child(7){transform:rotate(270deg) translateY(-25px);}
+.petal:nth-child(8){transform:rotate(315deg) translateY(-25px);}
 
 .flower-center{
   position:absolute;
   width:34px;
   height:34px;
-
   left:50%;
   top:50%;
-
   transform:translate(-50%,-50%);
-
   border-radius:50%;
-
   background:#75421f;
-
   box-shadow:inset 0 0 0 5px #8c5427;
 }
 
-
-/* =====================================================
-   VIENTO
-===================================================== */
+/* viento */
 
 .wind-active .field-flower{
   animation:flowerWind 3.2s ease-in-out;
@@ -400,56 +301,38 @@ body{
 }
 
 @keyframes flowerWind{
-
   0%,100%{
     margin-left:0;
-
     transform:
       translate(-50%,-50%)
       scale(var(--scale))
       rotate(var(--rotate));
   }
-
   35%{
     margin-left:5px;
-
     transform:
       translate(-50%,-50%)
       scale(var(--scale))
       rotate(calc(var(--rotate) + 2deg));
   }
-
   70%{
     margin-left:-4px;
-
     transform:
       translate(-50%,-50%)
       scale(var(--scale))
       rotate(calc(var(--rotate) - 1.5deg));
   }
-
 }
 
 @keyframes photoWind{
-
-  0%,100%{
-    transform:rotate(var(--rotation));
-  }
-
-  35%{
-    transform:rotate(calc(var(--rotation) + 2deg));
-  }
-
-  70%{
-    transform:rotate(calc(var(--rotation) - 1.5deg));
-  }
-
+  0%,100%{transform:rotate(var(--rotation));}
+  35%{transform:rotate(calc(var(--rotation) + 2deg));}
+  70%{transform:rotate(calc(var(--rotation) - 1.5deg));}
 }
 
-
-/* =====================================================
-   INTERACCIÓN
-===================================================== */
+/* =========================
+   ZONAS INTERACTIVAS
+========================= */
 
 #interactionLayer{
   position:fixed;
@@ -460,260 +343,170 @@ body{
 
 .global-hit{
   position:absolute;
-
   transform:translate(-50%,-50%);
-
   border-radius:50%;
-
   pointer-events:auto;
-
   cursor:pointer;
-
   background:transparent;
 }
 
-
-/* =====================================================
+/* =========================
    MENSAJES
-===================================================== */
+========================= */
 
 #messageBox{
   position:fixed;
-
   left:50%;
   top:50%;
-
   transform:translate(-50%,-50%);
-
   width:min(86vw,620px);
-
   padding:30px;
-
   background:rgba(255,253,247,.96);
-
   border:1px solid #dfcfb4;
-
   border-radius:18px;
-
   box-shadow:0 15px 45px rgba(0,0,0,.25);
-
   text-align:center;
-
   z-index:15000;
-
   display:none;
 }
 
 #messageBox p{
   margin:0;
-
   color:#634b32;
-
   font-size:clamp(20px,3vw,30px);
-
   line-height:1.4;
-
   font-style:italic;
 }
 
 #messageClose{
   margin-top:22px;
-
   border:none;
-
   background:#dcae38;
-
   color:#fff;
-
   padding:10px 22px;
-
   border-radius:20px;
-
   font-size:16px;
-
   cursor:pointer;
 }
 
-
-/* =====================================================
+/* =========================
    VISOR DE FOTOS
-===================================================== */
+========================= */
 
 #photoViewer{
   position:fixed;
   inset:0;
-
   background:rgba(35,25,15,.82);
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   z-index:20000;
-
   padding:25px;
 }
 
 .photo-viewer-inner{
   position:relative;
-
   max-width:92vw;
   max-height:90vh;
-
   background:#fffdf7;
-
   padding:12px 12px 30px;
-
   box-shadow:0 20px 60px rgba(0,0,0,.4);
-
   transform:rotate(-1deg);
 }
 
 #viewerImage{
   display:block;
-
   max-width:88vw;
   max-height:78vh;
-
   object-fit:contain;
 }
 
 #photoClose{
   position:absolute;
-
   right:-13px;
   top:-15px;
-
   width:35px;
   height:35px;
-
   border:none;
-
   border-radius:50%;
-
   background:#fff;
-
   box-shadow:0 4px 12px rgba(0,0,0,.3);
-
   font-size:20px;
-
   cursor:pointer;
 }
 
-
-/* =====================================================
+/* =========================
    POLAROIDS
-===================================================== */
+========================= */
 
 .polaroid{
   position:absolute;
-
   top:8%;
-
   width:105px;
-
   padding:7px 7px 22px;
-
   background:#fffdf7;
-
   box-shadow:0 5px 16px rgba(0,0,0,.25);
-
   z-index:7000;
-
   transform:rotate(var(--rotation));
-
   animation:polaroidAppear .7s ease-out;
 }
 
 .polaroid img{
   display:block;
-
   width:100%;
-
   aspect-ratio:1/1;
-
   object-fit:cover;
 }
 
 .peg{
   position:absolute;
-
   top:-10px;
   left:50%;
-
   transform:translateX(-50%);
-
   width:18px;
   height:30px;
-
   background:#9a6b3c;
-
   border-radius:3px;
-
   box-shadow:0 2px 4px rgba(0,0,0,.3);
 }
 
 @keyframes polaroidAppear{
-
   from{
     opacity:0;
-
-    transform:
-      translateY(-40px)
-      rotate(var(--rotation));
+    transform:translateY(-40px) rotate(var(--rotation));
   }
-
   to{
     opacity:1;
-
-    transform:
-      translateY(0)
-      rotate(var(--rotation));
+    transform:translateY(0) rotate(var(--rotation));
   }
-
 }
 
-
-/* =====================================================
+/* =========================
    CARTA VOLANDO
-===================================================== */
+========================= */
 
 #flyingLetter{
   position:fixed;
-
   left:-180px;
   top:20%;
-
   width:135px;
   height:95px;
-
   background:#fffdf7;
-
   border:1px solid #d8c7a8;
-
   box-shadow:0 8px 25px rgba(0,0,0,.25);
-
   z-index:22000;
-
   display:none;
-
   cursor:pointer;
-
   transform:rotate(-8deg);
 }
 
 #flyingLetter::before{
   content:"";
-
   position:absolute;
-
   left:0;
   top:0;
-
   width:0;
   height:0;
-
   border-left:67px solid transparent;
   border-right:67px solid transparent;
   border-top:48px solid #eee1ca;
@@ -721,92 +514,62 @@ body{
 
 #flyingLetter.fly{
   display:block;
-
   animation:letterFly 2.8s ease-in-out forwards;
 }
 
 @keyframes letterFly{
-
   0%{
     left:-180px;
     top:75%;
-
-    transform:
-      rotate(-15deg)
-      scale(.7);
+    transform:rotate(-15deg) scale(.7);
   }
-
   100%{
     left:50%;
     top:22%;
-
-    transform:
-      translateX(-50%)
-      rotate(4deg)
-      scale(1);
+    transform:translateX(-50%) rotate(4deg) scale(1);
   }
-
 }
 
-
-/* =====================================================
+/* =========================
    GIRAR TELÉFONO
-===================================================== */
+========================= */
 
 #rotateScreen{
   position:fixed;
-
   inset:0;
-
   background:#f6efdf;
-
   z-index:30000;
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
   padding:30px;
 }
 
 .rotate-content{
   color:#654d34;
-
   font-size:28px;
-
   font-style:italic;
-
   line-height:1.4;
 }
 
 .rotate-icon{
   font-size:60px;
-
   margin-bottom:20px;
 }
 
-
-/* =====================================================
+/* =========================
    CARTA
-===================================================== */
+========================= */
 
 #letterReader{
   position:fixed;
-
   inset:0;
-
   z-index:28000;
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   background:rgba(35,25,15,.38);
-
   padding:25px;
 }
 
@@ -816,37 +579,23 @@ body{
 
 .letter-paper{
   width:min(720px,92vw);
-
   max-height:90vh;
-
   overflow-y:auto;
-
   padding:45px 42px;
-
   background:#fffdf5;
-
   color:#5d4933;
-
   border:1px solid #dfcfb1;
-
   box-shadow:0 20px 70px rgba(0,0,0,.3);
-
   border-radius:3px;
-
   line-height:1.7;
-
   font-size:19px;
 }
 
 .letter-title{
   text-align:center;
-
   font-size:32px;
-
   font-style:italic;
-
   margin-bottom:28px;
-
   color:#674c2e;
 }
 
@@ -856,50 +605,31 @@ body{
 
 .letter-paper .letter-sign{
   text-align:center;
-
   font-size:22px;
-
   font-style:italic;
-
   margin-top:30px;
 }
 
-
-/* =====================================================
+/* =========================
    SOBRE
-===================================================== */
+========================= */
 
 #letterEnvelope{
   position:fixed;
-
   left:2%;
   bottom:3%;
-
   width:78px;
   height:56px;
-
   z-index:26000;
-
   display:none;
-
   background:#fffdf7;
-
   border:1px solid #ddcdb1;
-
   border-radius:5px;
-
   box-shadow:0 5px 14px rgba(0,0,0,.22);
-
   cursor:pointer;
-
   opacity:.82;
-
   transform:rotate(-4deg);
-
-  transition:
-    transform .25s ease,
-    opacity .25s ease;
-
+  transition:transform .25s ease, opacity .25s ease;
   pointer-events:auto;
 }
 
@@ -909,57 +639,39 @@ body{
 
 #letterEnvelope:hover{
   opacity:1;
-
-  transform:
-    rotate(-4deg)
-    scale(1.05);
+  transform:rotate(-4deg) scale(1.05);
 }
 
 #letterEnvelope::before{
   content:"";
-
   position:absolute;
-
   left:0;
   top:0;
-
   width:0;
   height:0;
-
   border-left:38px solid transparent;
   border-right:38px solid transparent;
   border-top:27px solid #efe3ce;
-
   z-index:2;
-
   pointer-events:none;
 }
 
 #letterEnvelope::after{
   content:"💌";
-
   position:absolute;
-
   inset:0;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   padding-top:8px;
-
   font-size:24px;
-
   z-index:3;
-
   pointer-events:none;
 }
 
-
-/* =====================================================
+/* =========================
    RESPONSIVE
-===================================================== */
+========================= */
 
 @media(max-width:700px){
 
@@ -973,10 +685,9 @@ body{
     height:120px;
   }
 
-  .intro-sunflower .intro-petal{
+  .intro-sunflower .petal{
     width:43px;
     height:68px;
-
     margin-left:-21px;
     margin-top:-34px;
   }
@@ -992,9 +703,7 @@ body{
 
   .polaroid{
     width:72px;
-
-    padding:
-      5px 5px 15px;
+    padding:5px 5px 15px;
   }
 
   .peg{
@@ -1005,7 +714,6 @@ body{
   #letterEnvelope{
     width:70px;
     height:50px;
-
     left:2%;
     bottom:3%;
   }
@@ -1022,13 +730,9 @@ body{
 
   .letter-paper{
     width:92vw;
-
     max-height:90vh;
-
     padding:30px 25px;
-
     font-size:17px;
-
     line-height:1.65;
   }
 
@@ -1039,34 +743,28 @@ body{
   .letter-paper .letter-sign{
     font-size:20px;
   }
-
 }
-
 </style>
 </head>
 
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      INTRO
-===================================================== -->
+========================= -->
 
 <div id="intro">
 
-  <div
-    class="intro-sunflower"
-    id="introSunflower"
-  >
+  <div class="intro-sunflower" id="introSunflower">
 
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
-    <div class="intro-petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
 
     <div class="center"></div>
 
@@ -1078,116 +776,86 @@ body{
 
 </div>
 
-
-<div
-  class="seed"
-  id="seed"
->
-  🌻
-</div>
+<div class="seed" id="seed">🌻</div>
 
 
-<!-- =====================================================
+<!-- =========================
      FRASES
-===================================================== -->
+========================= -->
 
 <div id="phrases">
-
-  <div
-    class="phrase"
-    id="phraseText"
-  ></div>
-
+  <div class="phrase" id="phraseText"></div>
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      JARDÍN
-===================================================== -->
+========================= -->
 
 <div id="garden">
 
   <div class="sun"></div>
 
   <div class="clothesline-post left"></div>
-
   <div class="clothesline-post right"></div>
-
   <div class="clothesline"></div>
-
   <div class="clothesline-sag"></div>
 
-  <div
-    class="field"
-    id="field"
-  ></div>
+  <div class="field" id="field"></div>
 
 </div>
 
 
-<!-- =====================================================
-     INTERACCIÓN
-===================================================== -->
+<!-- =========================
+     CAPA INTERACTIVA
+========================= -->
 
 <div id="interactionLayer"></div>
 
 
-<!-- =====================================================
+<!-- =========================
      MENSAJE
-===================================================== -->
+========================= -->
 
 <div id="messageBox">
-
   <p id="messageText"></p>
-
-  <button id="messageClose">
-    Cerrar ❤️
-  </button>
-
+  <button id="messageClose">Cerrar ❤️</button>
 </div>
 
 
-<!-- =====================================================
-     FOTO
-===================================================== -->
+<!-- =========================
+     VISOR DE FOTO
+========================= -->
 
 <div id="photoViewer">
 
   <div class="photo-viewer-inner">
 
-    <button id="photoClose">
-      ×
-    </button>
+    <button id="photoClose">×</button>
 
-    <img
-      id="viewerImage"
-      src=""
-      alt="Foto"
-    >
+    <img id="viewerImage" src="" alt="Foto">
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      CARTA VOLANDO
-===================================================== -->
+========================= -->
 
 <div id="flyingLetter"></div>
 
 
-<!-- =====================================================
+<!-- =========================
      GIRAR TELÉFONO
-===================================================== -->
+========================= -->
 
 <div id="rotateScreen">
 
   <div class="rotate-content">
 
-    <div class="rotate-icon">
-      📱↻
-    </div>
+    <div class="rotate-icon">📱↻</div>
 
     Gira el teléfono
 
@@ -1196,9 +864,9 @@ body{
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      CARTA
-===================================================== -->
+========================= -->
 
 <div id="letterReader">
 
@@ -1208,34 +876,22 @@ body{
       Para ti 🌻
     </div>
 
-
     <p>
       Sé que te he prometido muchas cosas y que no todas las he podido cumplir,
-      pero quiero que sepas algo:
-      <strong>
-        cada día despierto con un solo objetivo,
-        que es seguir trabajando para cumplir cada una de mis promesas.
-      </strong>
-      ❤️
+      pero quiero que sepas algo: <strong>cada día despierto con un solo objetivo,
+      que es seguir trabajando para cumplir cada una de mis promesas.</strong> ❤️
     </p>
-
 
     <p>
       Y ahora mismo estoy cumpliendo una de ellas:
-      <strong>
-        querer estar a tu lado por el resto de mi vida.
-      </strong>
-      🥹
+      <strong>querer estar a tu lado por el resto de mi vida.</strong> 🥹
     </p>
-
 
     <p>
       Vamos poco a poco, paso a paso, pero estoy feliz de que sea contigo.
-      Porque eres mi motor para seguir creciendo,
-      para seguir mejorando y para seguir dando todo de mí.
-      ❤️‍🩹
+      Porque eres mi motor para seguir creciendo, para seguir mejorando
+      y para seguir dando todo de mí. ❤️‍🩹
     </p>
-
 
     <p>
       Esta vez no pude regalarte tus flores amarillas como hubiera querido 🌻,
@@ -1245,65 +901,36 @@ body{
       para llegar a donde quiero y poder cumplir mis promesas.
     </p>
 
-
     <p>
       Y no pienso dejar de crecer.
       Quiero seguir convirtiéndome en una mejor persona para ti,
-      para mí y para nuestro futuro,
-      para algún día poder darte
-      <strong>
-        todo lo que te he prometido y todavía un poquito más.
-      </strong>
-      ❤️
+      para mí y para nuestro futuro, para algún día poder darte
+      <strong>todo lo que te he prometido y todavía un poquito más.</strong> ❤️
     </p>
-
 
     <p>
       Porque eres y siempre serás
-      <strong>
-        el amor de mi vida,
-        mi lugar seguro,
-        mi mejor amiga,
-        mi novia,
-        mi futura esposa,
-        mi meta,
-        mi inspiración,
-        mi modelo a seguir
-      </strong>
-      y, lo más importante,
-      la persona con quien quiero compartir mi vida.
-      🫶🏻
+      <strong>el amor de mi vida, mi lugar seguro, mi mejor amiga,
+      mi novia, mi futura esposa, mi meta, mi inspiración,
+      mi modelo a seguir</strong> y, lo más importante,
+      la persona con quien quiero compartir mi vida. 🫶🏻
     </p>
-
 
     <p>
-      Quiero vivir muchas cosas contigo,
-      cumplir nuestros sueños,
-      superar los momentos difíciles,
-      celebrar los buenos
-      y seguir construyendo nuestra historia
-      poquito a poquito.
-      ❤️
+      Quiero vivir muchas cosas contigo, cumplir nuestros sueños,
+      superar los momentos difíciles, celebrar los buenos
+      y seguir construyendo nuestra historia poquito a poquito. ❤️
     </p>
 
-
     <p class="letter-sign">
-
-      <strong>
-        Te amo muchísimo, popo. ❤️
-      </strong>
-
+      <strong>Te amo muchísimo, popo. ❤️</strong>
     </p>
 
-
     <p class="letter-sign">
-
       Y espero que cada vez que vuelvas a ver estas flores recuerdes
       que, detrás de ellas, hay alguien que te ama muchísimo
-      y que todos los días está intentando ser mejor
-      para poder construir contigo todo lo que soñamos.
-      🌻🥹
-
+      y que todos los días está intentando ser mejor para poder construir
+      contigo todo lo que soñamos. 🌻🥹
     </p>
 
   </div>
@@ -1311,76 +938,42 @@ body{
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      SOBRE
-===================================================== -->
+========================= -->
 
-<div
-  id="letterEnvelope"
-  title="Abrir carta"
-></div>
+<div id="letterEnvelope" title="Abrir carta"></div>
 
 
 <script>
-
 
 /* =====================================================
    ELEMENTOS
 ===================================================== */
 
-const intro =
-  document.getElementById("intro");
+const intro = document.getElementById("intro");
+const introSunflower = document.getElementById("introSunflower");
+const seed = document.getElementById("seed");
 
-const introSunflower =
-  document.getElementById("introSunflower");
+const phrases = document.getElementById("phrases");
+const phraseText = document.getElementById("phraseText");
 
-const seed =
-  document.getElementById("seed");
+const garden = document.getElementById("garden");
+const field = document.getElementById("field");
+const interactionLayer = document.getElementById("interactionLayer");
 
-const phrases =
-  document.getElementById("phrases");
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const messageClose = document.getElementById("messageClose");
 
-const phraseText =
-  document.getElementById("phraseText");
+const photoViewer = document.getElementById("photoViewer");
+const viewerImage = document.getElementById("viewerImage");
+const photoClose = document.getElementById("photoClose");
 
-const garden =
-  document.getElementById("garden");
-
-const field =
-  document.getElementById("field");
-
-const interactionLayer =
-  document.getElementById("interactionLayer");
-
-const messageBox =
-  document.getElementById("messageBox");
-
-const messageText =
-  document.getElementById("messageText");
-
-const messageClose =
-  document.getElementById("messageClose");
-
-const photoViewer =
-  document.getElementById("photoViewer");
-
-const viewerImage =
-  document.getElementById("viewerImage");
-
-const photoClose =
-  document.getElementById("photoClose");
-
-const flyingLetter =
-  document.getElementById("flyingLetter");
-
-const rotateScreen =
-  document.getElementById("rotateScreen");
-
-const letterReader =
-  document.getElementById("letterReader");
-
-const letterEnvelope =
-  document.getElementById("letterEnvelope");
+const flyingLetter = document.getElementById("flyingLetter");
+const rotateScreen = document.getElementById("rotateScreen");
+const letterReader = document.getElementById("letterReader");
+const letterEnvelope = document.getElementById("letterEnvelope");
 
 
 /* =====================================================
@@ -1388,13 +981,9 @@ const letterEnvelope =
 ===================================================== */
 
 const initialPhrases = [
-
   "A veces no puedo darte todo lo que quisiera...",
-
   "Pero siempre voy a encontrar una manera de recordarte lo mucho que te quiero.",
-
   "Y esta vez, hice un pequeño lugar solamente para ti. 🌻"
-
 ];
 
 
@@ -1494,22 +1083,16 @@ const flowers = [
 ===================================================== */
 
 const photoBase =
-  "https://raw.githubusercontent.com/LuisG4r/Flores-amarillas/main/";
+"https://raw.githubusercontent.com/LuisG4r/Flores-amarillas/main/";
 
 const photos = [
 
   photoBase + "foto1.jpeg",
-
   photoBase + "foto2.jpeg",
-
   photoBase + "foto3.jpeg",
-
   photoBase + "foto4.jpeg",
-
   photoBase + "foto5.jpeg",
-
   photoBase + "foto6.jpeg",
-
   photoBase + "foto7.jpeg"
 
 ];
@@ -1517,17 +1100,11 @@ const photos = [
 const photoSlots = [
 
   {left:"5%", rotation:"-5deg"},
-
   {left:"19%", rotation:"4deg"},
-
   {left:"33%", rotation:"-3deg"},
-
   {left:"47%", rotation:"5deg"},
-
   {left:"61%", rotation:"-4deg"},
-
   {left:"75%", rotation:"3deg"},
-
   {left:"88%", rotation:"-5deg"}
 
 ];
@@ -1564,47 +1141,13 @@ let finalSequenceStarted = false;
 
 let letterState = "none";
 
-
 /*
-  none
-  flying
-  waiting
-  reading
-  closed
+  none     = todavía no aparece la carta
+  flying   = carta volando
+  waiting  = esperando que gire el teléfono
+  reading  = leyendo carta
+  closed   = regresó al jardín
 */
-
-
-/* =====================================================
-   ORIENTACIÓN
-===================================================== */
-
-/*
-  Usamos screen.orientation cuando existe.
-  Si no existe, usamos las dimensiones de la ventana.
-*/
-
-function isLandscape(){
-
-  if(
-    screen.orientation &&
-    typeof screen.orientation.type === "string"
-  ){
-
-    return (
-      screen.orientation.type.includes("landscape")
-    );
-
-  }
-
-  return window.innerWidth > window.innerHeight;
-
-}
-
-function isPortrait(){
-
-  return !isLandscape();
-
-}
 
 
 /* =====================================================
@@ -1613,89 +1156,46 @@ function isPortrait(){
 
 flowers.forEach((flower,index)=>{
 
-  const flowerEl =
-    document.createElement("div");
+  const flowerEl = document.createElement("div");
 
-  flowerEl.className =
-    "field-flower";
+  flowerEl.className = "field-flower";
 
-  flowerEl.style.setProperty(
-    "--left",
-    flower.left
-  );
+  flowerEl.style.setProperty("--left",flower.left);
+  flowerEl.style.setProperty("--top",flower.top);
+  flowerEl.style.setProperty("--scale",flower.scale);
+  flowerEl.style.setProperty("--rotate",flower.rotate);
+  flowerEl.style.setProperty("--head-offset",flower.headOffset);
 
-  flowerEl.style.setProperty(
-    "--top",
-    flower.top
-  );
-
-  flowerEl.style.setProperty(
-    "--scale",
-    flower.scale
-  );
-
-  flowerEl.style.setProperty(
-    "--rotate",
-    flower.rotate
-  );
-
-  flowerEl.style.setProperty(
-    "--head-offset",
-    flower.headOffset
-  );
-
+  /*
+    profundidad visual
+  */
 
   const scale = flower.scale;
 
   let depth = 100;
 
-  if(scale >= .75){
+  if(scale >= .75) depth = 400;
+  else if(scale >= .55) depth = 250;
 
-    depth = 400;
+  flowerEl.style.setProperty("--depth",depth);
 
-  }else if(scale >= .55){
+  const head = document.createElement("div");
 
-    depth = 250;
-
-  }
-
-  flowerEl.style.setProperty(
-    "--depth",
-    depth
-  );
-
-
-  const head =
-    document.createElement("div");
-
-  head.className =
-    "flower-head";
-
-
-  /*
-    IMPORTANTE:
-    Los pétalos del jardín tienen
-    su propia clase.
-  */
+  head.className = "flower-head";
 
   for(let i=0;i<8;i++){
 
-    const petal =
-      document.createElement("div");
+    const petal = document.createElement("div");
 
-    petal.className =
-      "garden-petal";
+    petal.className = "petal";
 
     head.appendChild(petal);
 
   }
 
+  const center = document.createElement("div");
 
-  const center =
-    document.createElement("div");
-
-  center.className =
-    "flower-center";
+  center.className = "flower-center";
 
   head.appendChild(center);
 
@@ -1704,80 +1204,59 @@ flowers.forEach((flower,index)=>{
   field.appendChild(flowerEl);
 
 
-  /* ZONA INVISIBLE */
+  /*
+    zona invisible de interacción
+  */
 
-  const hit =
-    document.createElement("div");
+  const hit = document.createElement("div");
 
-  hit.className =
-    "global-hit";
+  hit.className = "global-hit";
 
-  hit.style.left =
-    flower.left;
+  hit.style.left = flower.left;
+  hit.style.top = flower.top;
 
-  hit.style.top =
-    flower.top;
+  const hitSize = Math.max(65,110 * flower.scale);
 
-  const hitSize =
-    Math.max(
-      65,
-      110 * flower.scale
-    );
+  hit.style.width = hitSize + "px";
+  hit.style.height = hitSize + "px";
 
-  hit.style.width =
-    hitSize + "px";
-
-  hit.style.height =
-    hitSize + "px";
-
-  hit.dataset.index =
-    index;
+  hit.dataset.index = index;
 
   interactionLayer.appendChild(hit);
 
 
-  hit.addEventListener(
-    "click",
-    ()=>{
+  hit.addEventListener("click",()=>{
 
-      /*
-        FOTO
-      */
+    /*
+      FOTO
+    */
 
-      if(
-        photoFlowerMap[index] !== undefined
-      ){
+    if(photoFlowerMap[index] !== undefined){
 
-        const photoIndex =
-          photoFlowerMap[index];
+      const photoIndex = photoFlowerMap[index];
 
-        if(
-          !foundPhotos.has(photoIndex)
-        ){
+      if(!foundPhotos.has(photoIndex)){
 
-          openPhoto(photoIndex);
+        openPhoto(photoIndex);
 
-          return;
-
-        }
-
-      }
-
-
-      /*
-        MENSAJE
-      */
-
-      if(flower.message){
-
-        openMessage(
-          flower.message
-        );
+        return;
 
       }
 
     }
-  );
+
+
+    /*
+      MENSAJE
+    */
+
+    if(flower.message){
+
+      openMessage(flower.message);
+
+    }
+
+  });
 
 });
 
@@ -1786,71 +1265,39 @@ flowers.forEach((flower,index)=>{
    INTRO
 ===================================================== */
 
-introSunflower.addEventListener(
-  "click",
-  ()=>{
+introSunflower.addEventListener("click",()=>{
 
-    /*
-      Efecto de presión
-    */
+  /*
+    efecto de presión
+  */
 
-    introSunflower.style.transform =
-      "scale(.88)";
+  introSunflower.style.transform = "scale(.88)";
 
+  setTimeout(()=>{
 
-    /*
-      Desaparece el girasol
-    */
+    introSunflower.style.opacity = "0";
 
-    setTimeout(
-      ()=>{
-
-        introSunflower.style.opacity =
-          "0";
-
-      },
-      250
-    );
+  },250);
 
 
-    /*
-      Después de desaparecer:
-      cae la semilla.
-    */
+  setTimeout(()=>{
 
-    setTimeout(
-      ()=>{
+    introSunflower.style.display = "none";
 
-        introSunflower.style.display =
-          "none";
+    seed.classList.add("drop");
 
-        seed.classList.add(
-          "drop"
-        );
-
-      },
-      700
-    );
+  },700);
 
 
-    /*
-      Después empiezan las frases.
-    */
+  setTimeout(()=>{
 
-    setTimeout(
-      ()=>{
+    intro.style.display = "none";
 
-        intro.style.display =
-          "none";
+    startPhrases();
 
-        startPhrases();
+  },2300);
 
-      },
-      2300
-    );
-
-  }
-);
+});
 
 
 /* =====================================================
@@ -1859,71 +1306,46 @@ introSunflower.addEventListener(
 
 function startPhrases(){
 
-  phrases.style.display =
-    "flex";
+  phrases.style.display = "flex";
 
   let index = 0;
 
-
   function showNext(){
 
-    if(
-      index >= initialPhrases.length
-    ){
+    if(index >= initialPhrases.length){
 
-      phrases.style.display =
-        "none";
+      phrases.style.display = "none";
 
-      garden.style.display =
-        "block";
+      garden.style.display = "block";
 
       return;
 
     }
 
+    phraseText.textContent = initialPhrases[index];
 
-    phraseText.textContent =
-      initialPhrases[index];
+    phraseText.classList.remove("show");
 
-    phraseText.classList.remove(
-      "show"
-    );
+    setTimeout(()=>{
 
+      phraseText.classList.add("show");
 
-    setTimeout(
-      ()=>{
-
-        phraseText.classList.add(
-          "show"
-        );
-
-      },
-      100
-    );
+    },100);
 
 
-    setTimeout(
-      ()=>{
+    setTimeout(()=>{
 
-        phraseText.classList.remove(
-          "show"
-        );
+      phraseText.classList.remove("show");
 
+      setTimeout(()=>{
 
-        setTimeout(
-          ()=>{
+        index++;
 
-            index++;
+        showNext();
 
-            showNext();
+      },900);
 
-          },
-          900
-        );
-
-      },
-      3000
-    );
+    },3000);
 
   }
 
@@ -1938,23 +1360,17 @@ function startPhrases(){
 
 function openMessage(text){
 
-  messageText.textContent =
-    text;
+  messageText.textContent = text;
 
-  messageBox.style.display =
-    "block";
+  messageBox.style.display = "block";
 
 }
 
-messageClose.addEventListener(
-  "click",
-  ()=>{
+messageClose.addEventListener("click",()=>{
 
-    messageBox.style.display =
-      "none";
+  messageBox.style.display = "none";
 
-  }
-);
+});
 
 
 /* =====================================================
@@ -1963,82 +1379,54 @@ messageClose.addEventListener(
 
 function openPhoto(index){
 
-  if(
-    foundPhotos.has(index)
-  ){
+  if(foundPhotos.has(index)) return;
 
-    return;
+  currentPhotoIndex = index;
 
-  }
+  viewerImage.src = photos[index];
 
-  currentPhotoIndex =
-    index;
-
-  viewerImage.src =
-    photos[index];
-
-  photoViewer.style.display =
-    "flex";
+  photoViewer.style.display = "flex";
 
 }
 
 
-photoClose.addEventListener(
-  "click",
-  closeCurrentPhoto
-);
+photoClose.addEventListener("click",()=>{
+
+  closeCurrentPhoto();
+
+});
 
 
-photoViewer.addEventListener(
-  "click",
-  (event)=>{
+photoViewer.addEventListener("click",(event)=>{
 
-    if(
-      event.target === photoViewer
-    ){
+  if(event.target === photoViewer){
 
-      closeCurrentPhoto();
-
-    }
+    closeCurrentPhoto();
 
   }
-);
+
+});
 
 
 function closeCurrentPhoto(){
 
-  if(
-    currentPhotoIndex === null
-  ){
+  if(currentPhotoIndex === null) return;
 
-    return;
+  const index = currentPhotoIndex;
 
-  }
+  photoViewer.style.display = "none";
 
-  const index =
-    currentPhotoIndex;
+  currentPhotoIndex = null;
 
-  photoViewer.style.display =
-    "none";
-
-  currentPhotoIndex =
-    null;
-
-
-  if(
-    !foundPhotos.has(index)
-  ){
+  if(!foundPhotos.has(index)){
 
     foundPhotos.add(index);
 
-    setTimeout(
-      ()=>{
+    setTimeout(()=>{
 
-        sendPhotoToLine(index);
+      sendPhotoToLine(index);
 
-      },
-      350
-    );
+    },350);
 
   }
 
@@ -2046,72 +1434,47 @@ function closeCurrentPhoto(){
 
 
 /* =====================================================
-   FOTO AL TENDEDERO
+   MANDAR FOTO AL TENDEDERO
 ===================================================== */
 
 function sendPhotoToLine(index){
 
-  const slot =
-    photoSlots[totalHung];
+  const slot = photoSlots[totalHung];
 
-  if(!slot){
+  if(!slot) return;
 
-    return;
+  const polaroid = document.createElement("div");
 
-  }
+  polaroid.className = "polaroid";
 
+  polaroid.style.left = slot.left;
 
-  const polaroid =
-    document.createElement("div");
+  polaroid.style.setProperty("--rotation",slot.rotation);
 
-  polaroid.className =
-    "polaroid";
+  const peg = document.createElement("div");
 
-  polaroid.style.left =
-    slot.left;
+  peg.className = "peg";
 
-  polaroid.style.setProperty(
-    "--rotation",
-    slot.rotation
-  );
+  const img = document.createElement("img");
 
+  img.src = photos[index];
 
-  const peg =
-    document.createElement("div");
+  img.alt = "Recuerdo";
 
-  peg.className =
-    "peg";
+  polaroid.appendChild(peg);
 
+  polaroid.appendChild(img);
 
-  const img =
-    document.createElement("img");
-
-  img.src =
-    photos[index];
-
-  img.alt =
-    "Recuerdo";
-
-
-  polaroid.appendChild(
-    peg
-  );
-
-  polaroid.appendChild(
-    img
-  );
-
-  garden.appendChild(
-    polaroid
-  );
-
+  garden.appendChild(polaroid);
 
   totalHung++;
 
 
-  if(
-    totalHung === 7
-  ){
+  /*
+    cuando estén las 7
+  */
+
+  if(totalHung === 7){
 
     startFinalSequence();
 
@@ -2126,62 +1489,28 @@ function sendPhotoToLine(index){
 
 function startFinalSequence(){
 
-  if(
-    finalSequenceStarted
-  ){
+  if(finalSequenceStarted) return;
 
-    return;
+  finalSequenceStarted = true;
 
-  }
+  setTimeout(()=>{
 
-  finalSequenceStarted =
-    true;
+    garden.classList.add("wind-active");
 
-
-  /*
-    Espera antes del viento.
-  */
-
-  setTimeout(
-    ()=>{
-
-      garden.classList.add(
-        "wind-active"
-      );
-
-    },
-    4500
-  );
+  },4500);
 
 
-  /*
-    Después del viento:
-    aparece la carta.
-  */
+  setTimeout(()=>{
 
-  setTimeout(
-    ()=>{
+    garden.classList.remove("wind-active");
 
-      garden.classList.remove(
-        "wind-active"
-      );
+    flyingLetter.style.display = "block";
 
-      flyingLetter.style.display =
-        "block";
+    flyingLetter.classList.add("fly");
 
-      flyingLetter.style.pointerEvents =
-        "auto";
+    letterState = "flying";
 
-      flyingLetter.classList.add(
-        "fly"
-      );
-
-      letterState =
-        "flying";
-
-    },
-    7700
-  );
+  },7700);
 
 }
 
@@ -2190,68 +1519,43 @@ function startFinalSequence(){
    CARTA VOLANDO
 ===================================================== */
 
-flyingLetter.addEventListener(
-  "click",
-  ()=>{
+flyingLetter.addEventListener("click",()=>{
 
-    openLetter();
+  openLetter();
 
-  }
-);
+});
 
-
-/* =====================================================
-   GIRAR TELÉFONO
-===================================================== */
 
 function showRotateScreen(){
 
-  rotateScreen.style.display =
-    "flex";
+  rotateScreen.style.display = "flex";
 
 }
+
 
 function hideRotateScreen(){
 
-  rotateScreen.style.display =
-    "none";
+  rotateScreen.style.display = "none";
 
 }
 
 
-/* =====================================================
-   ABRIR CARTA
-===================================================== */
-
 function openLetter(){
 
-  if(
-    !finalSequenceStarted
-  ){
+  if(!finalSequenceStarted) return;
 
-    return;
+  flyingLetter.style.display = "none";
 
-  }
-
-
-  flyingLetter.style.display =
-    "none";
-
-  flyingLetter.style.pointerEvents =
-    "none";
+  flyingLetter.style.pointerEvents = "none";
 
 
   /*
-    SI ESTÁ HORIZONTAL:
-    mostrar "Gira el teléfono".
+    horizontal
   */
 
-  if(
-    isLandscape()
-  ){
+  if(window.innerHeight <= window.innerWidth){
 
-    letterState =
-      "waiting";
+    letterState = "waiting";
 
     hideLetterReader();
 
@@ -2262,64 +1566,36 @@ function openLetter(){
   }
 
 
-  /*
-    SI ESTÁ VERTICAL:
-    abrir directamente.
-  */
-
   openLetterReader();
 
 }
 
 
-/* =====================================================
-   ABRIR LECTOR
-===================================================== */
-
 function openLetterReader(){
 
-  letterState =
-    "reading";
+  letterState = "reading";
+
+  document.body.classList.add("reading-letter");
+
+  letterReader.classList.add("show");
 
   hideRotateScreen();
 
-  garden.style.display =
-    "block";
+  garden.style.display = "block";
 
-  garden.style.visibility =
-    "visible";
-
-  document.body.classList.add(
-    "reading-letter"
-  );
-
-  letterReader.classList.add(
-    "show"
-  );
+  garden.style.visibility = "visible";
 
 }
 
-
-/* =====================================================
-   OCULTAR LECTOR
-===================================================== */
 
 function hideLetterReader(){
 
-  letterReader.classList.remove(
-    "show"
-  );
+  letterReader.classList.remove("show");
 
-  document.body.classList.remove(
-    "reading-letter"
-  );
+  document.body.classList.remove("reading-letter");
 
 }
 
-
-/* =====================================================
-   TERMINAR CARTA
-===================================================== */
 
 function finishLetterReading(){
 
@@ -2327,18 +1603,13 @@ function finishLetterReading(){
 
   hideRotateScreen();
 
-  letterState =
-    "closed";
+  letterState = "closed";
 
-  garden.style.display =
-    "block";
+  letterEnvelope.classList.add("show");
 
-  garden.style.visibility =
-    "visible";
+  garden.style.display = "block";
 
-  letterEnvelope.classList.add(
-    "show"
-  );
+  garden.style.visibility = "visible";
 
 }
 
@@ -2349,26 +1620,12 @@ function finishLetterReading(){
 
 function openLetterFromEnvelope(){
 
-  if(
-    !finalSequenceStarted
-  ){
-
-    return;
-
-  }
+  if(!finalSequenceStarted) return;
 
 
-  /*
-    Horizontal:
-    mostrar pantalla de giro.
-  */
+  if(window.innerHeight <= window.innerWidth){
 
-  if(
-    isLandscape()
-  ){
-
-    letterState =
-      "waiting";
+    letterState = "waiting";
 
     hideLetterReader();
 
@@ -2379,24 +1636,16 @@ function openLetterFromEnvelope(){
   }
 
 
-  /*
-    Vertical:
-    abrir carta.
-  */
-
   openLetterReader();
 
 }
 
 
-letterEnvelope.addEventListener(
-  "click",
-  ()=>{
+letterEnvelope.addEventListener("click",()=>{
 
-    openLetterFromEnvelope();
+  openLetterFromEnvelope();
 
-  }
-);
+});
 
 
 /* =====================================================
@@ -2405,18 +1654,35 @@ letterEnvelope.addEventListener(
 
 function checkLetterOrientation(){
 
+  const portrait =
+    window.innerHeight > window.innerWidth;
+
+
   /*
-    SI ESTÁ ESPERANDO QUE GIRE:
-    vertical = abrir carta.
+    Si está leyendo y vuelve horizontal:
+    cerramos la carta y regresamos al jardín.
   */
 
-  if(
-    letterState === "waiting"
-  ){
+  if(letterState === "reading"){
 
-    if(
-      isPortrait()
-    ){
+    if(!portrait){
+
+      finishLetterReading();
+
+    }
+
+    return;
+
+  }
+
+
+  /*
+    Si estaba esperando que girara:
+  */
+
+  if(letterState === "waiting"){
+
+    if(portrait){
 
       openLetterReader();
 
@@ -2432,130 +1698,46 @@ function checkLetterOrientation(){
 
 
   /*
-    SI ESTÁ LEYENDO:
-    horizontal = cerrar y volver al jardín.
+    closed o none:
+    no hacer nada.
   */
 
-  if(
-    letterState === "reading"
-  ){
+}
 
-    if(
-      isLandscape()
-    ){
+
+window.addEventListener("resize",checkLetterOrientation);
+
+window.addEventListener(
+  "orientationchange",
+  ()=>{
+    setTimeout(checkLetterOrientation,300);
+  }
+);
+
+
+/* =====================================================
+   CERRAR CARTA AL TOCAR FUERA
+===================================================== */
+
+letterReader.addEventListener("click",(event)=>{
+
+  if(event.target === letterReader){
+
+    /*
+      Solo se cierra si está en vertical.
+      Al volver horizontal se completa
+      automáticamente el estado.
+    */
+
+    if(window.innerHeight > window.innerWidth){
 
       finishLetterReading();
 
     }
 
-    return;
-
   }
 
-}
-
-
-/* =====================================================
-   EVENTOS DE ORIENTACIÓN
-===================================================== */
-
-window.addEventListener(
-  "resize",
-  ()=>{
-
-    setTimeout(
-      checkLetterOrientation,
-      150
-    );
-
-  }
-);
-
-
-window.addEventListener(
-  "orientationchange",
-  ()=>{
-
-    setTimeout(
-      checkLetterOrientation,
-      350
-    );
-
-  }
-);
-
-
-if(
-  screen.orientation
-){
-
-  screen.orientation.addEventListener(
-    "change",
-    ()=>{
-
-      setTimeout(
-        checkLetterOrientation,
-        200
-      );
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   VISIBILIDAD
-===================================================== */
-
-document.addEventListener(
-  "visibilitychange",
-  ()=>{
-
-    if(
-      !document.hidden
-    ){
-
-      setTimeout(
-        checkLetterOrientation,
-        200
-      );
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   CERRAR CARTA TOCANDO AFUERA
-===================================================== */
-
-letterReader.addEventListener(
-  "click",
-  (event)=>{
-
-    if(
-      event.target === letterReader
-    ){
-
-      /*
-        Solo puede cerrarse tocando afuera
-        cuando está vertical.
-      */
-
-      if(
-        isPortrait()
-      ){
-
-        finishLetterReading();
-
-      }
-
-    }
-
-  }
-);
+});
 
 </script>
 
