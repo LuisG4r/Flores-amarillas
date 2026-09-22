@@ -1,1155 +1,948 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Para ti 🌻">
-
-<meta name="theme-color" content="#f8f1df">
-
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Para ti 🌻</title>
 
 <style>
-
-/* =====================================================
-   BASE
-===================================================== */
-
 *{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html,
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Georgia,"Times New Roman",serif;
+  background:#f6efdf;
+}
+
 body{
-    width:100%;
-    height:100%;
-    margin:0;
-    overflow:hidden;
+  position:fixed;
+  inset:0;
 }
 
-body{
-    font-family:Georgia,"Times New Roman",serif;
-    background:#f8f1df;
-    touch-action:manipulation;
-}
-
-
-/* =====================================================
-   ROTACIÓN
-===================================================== */
-
-#rotateScreen{
-    position:fixed;
-    inset:0;
-    z-index:30000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    text-align:center;
-    background:#f8f1df;
-    color:#624d32;
-}
-
-.rotate-phone{
-    font-size:70px;
-    margin-bottom:20px;
-    animation:rotatePhone 2s infinite ease-in-out;
-}
-
-#rotateScreen p{
-    margin:0;
-    font-size:25px;
-    font-style:italic;
-}
-
-@keyframes rotatePhone{
-    0%,100%{transform:rotate(0deg);}
-    45%,65%{transform:rotate(90deg);}
-}
-
-
-/* =====================================================
-   INTRO
-===================================================== */
+/* =========================
+   PANTALLA INICIAL
+========================= */
 
 #intro{
-    position:fixed;
-    inset:0;
-    z-index:9000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    background:#f8f1df;
-    touch-action:manipulation;
+  position:fixed;
+  inset:0;
+  background:#f6efdf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:50000;
 }
 
-#introFlower{
-    position:relative;
-    width:125px;
-    height:125px;
-    cursor:pointer;
-    animation:floatFlower 3s ease-in-out infinite;
+.intro-sunflower{
+  width:145px;
+  height:145px;
+  position:relative;
+  cursor:pointer;
+  transition:transform .35s ease,opacity .5s ease;
 }
 
-#introFlower.pressing{
-    animation:flowerPress .65s ease forwards;
+.intro-sunflower:active{
+  transform:scale(.92);
 }
 
-#introFlower.pressing::after{
-    content:"";
-    position:absolute;
-    width:125px;
-    height:125px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%) scale(.75);
-    border:2px solid rgba(217,155,37,.55);
-    border-radius:50%;
-    animation:flowerRipple .65s ease-out forwards;
-    pointer-events:none;
+.intro-sunflower .petal{
+  position:absolute;
+  width:52px;
+  height:82px;
+  left:50%;
+  top:50%;
+  margin-left:-26px;
+  margin-top:-41px;
+  background:#f5c62d;
+  border-radius:50% 50% 45% 45%;
+  transform-origin:50% 100%;
 }
 
-#introFlower.disappear{
-    animation:flowerDisappear .7s ease forwards !important;
+.intro-sunflower .petal:nth-child(1){transform:rotate(0deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(2){transform:rotate(45deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(3){transform:rotate(90deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(4){transform:rotate(135deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(5){transform:rotate(180deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(6){transform:rotate(225deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(7){transform:rotate(270deg) translateY(-35px);}
+.intro-sunflower .petal:nth-child(8){transform:rotate(315deg) translateY(-35px);}
+
+.intro-sunflower .center{
+  position:absolute;
+  width:62px;
+  height:62px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:#71401e;
+  border-radius:50%;
+  box-shadow:inset 0 0 0 7px #8d5427;
 }
 
-@keyframes flowerPress{
-    0%{transform:scale(1);}
-    25%{transform:scale(.86);}
-    48%{transform:scale(1.08);}
-    70%{transform:scale(.97);}
-    100%{transform:scale(1);}
+.intro-text{
+  margin-top:28px;
+  color:#795f3b;
+  font-size:21px;
+  font-style:italic;
 }
 
-@keyframes flowerRipple{
-    0%{
-        opacity:.8;
-        transform:translate(-50%,-50%) scale(.75);
-    }
-    100%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(1.7);
-    }
+.seed{
+  position:fixed;
+  left:50%;
+  top:-30px;
+  font-size:23px;
+  opacity:0;
+  z-index:49000;
+  pointer-events:none;
 }
 
-@keyframes flowerDisappear{
-    0%{
-        opacity:1;
-        transform:scale(1);
-    }
-    100%{
-        opacity:0;
-        transform:scale(.08);
-    }
+.seed.drop{
+  animation:seedDrop 1.6s ease-in forwards;
 }
 
-.introPetal{
-    position:absolute;
-    width:48px;
-    height:75px;
-    left:50%;
-    top:50%;
-    transform-origin:50% 85%;
-    border-radius:50% 50% 45% 45%;
-    background:#f4c51d;
+@keyframes seedDrop{
+  0%{
+    top:-30px;
+    opacity:0;
+    transform:rotate(0deg);
+  }
+  15%{opacity:1;}
+  100%{
+    top:68%;
+    opacity:0;
+    transform:rotate(360deg);
+  }
 }
 
-.introPetal:nth-child(1){transform:translate(-50%,-85%) rotate(0deg);}
-.introPetal:nth-child(2){transform:translate(-50%,-85%) rotate(45deg);}
-.introPetal:nth-child(3){transform:translate(-50%,-85%) rotate(90deg);}
-.introPetal:nth-child(4){transform:translate(-50%,-85%) rotate(135deg);}
-.introPetal:nth-child(5){transform:translate(-50%,-85%) rotate(180deg);}
-.introPetal:nth-child(6){transform:translate(-50%,-85%) rotate(225deg);}
-.introPetal:nth-child(7){transform:translate(-50%,-85%) rotate(270deg);}
-.introPetal:nth-child(8){transform:translate(-50%,-85%) rotate(315deg);}
-
-.introCenter{
-    position:absolute;
-    width:45px;
-    height:45px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:#75491e;
-    z-index:3;
-}
-
-#pressText{
-    margin-top:30px;
-    font-size:23px;
-    font-style:italic;
-    color:#624d32;
-    pointer-events:none;
-    transition:opacity .5s ease;
-}
-
-@keyframes floatFlower{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-9px);}
-}
-
-
-/* =====================================================
+/* =========================
    FRASES
-===================================================== */
+========================= */
 
 #phrases{
-    position:fixed;
-    inset:0;
-    z-index:8000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:30px;
-    text-align:center;
-    background:#f8f1df;
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+  background:#f6efdf;
+  z-index:40000;
 }
 
 .phrase{
-    position:absolute;
-    max-width:90%;
-    opacity:0;
-    color:#59452d;
-    font-size:27px;
-    line-height:1.45;
-    font-style:italic;
-    transition:opacity 1.3s ease;
+  max-width:850px;
+  color:#624a32;
+  font-size:clamp(25px,4vw,42px);
+  line-height:1.35;
+  font-style:italic;
+  opacity:0;
+  transition:opacity 1s ease;
 }
 
 .phrase.show{
-    opacity:1;
+  opacity:1;
 }
 
-
-/* =====================================================
+/* =========================
    JARDÍN
-===================================================== */
+========================= */
 
 #garden{
-    position:fixed;
-    inset:0;
-    display:none;
-    overflow:hidden;
-    background:
-        linear-gradient(
-            to bottom,
-            #bfe3f2 0%,
-            #d8edf4 49%,
-            #b4d77b 50%,
-            #82b95e 65%,
-            #4f963f 100%
-        );
+  position:fixed;
+  inset:0;
+  display:none;
+  overflow:hidden;
+  background:linear-gradient(to bottom,
+    #bfe3f2 0%, #d8edf4 49%,
+    #b4d77b 50%, #82b95e 65%, #4f963f 100%);
 }
 
-
-/* =====================================================
-   SOL
-===================================================== */
+/* sol */
 
 .sun{
-    position:absolute;
-    width:105px;
-    height:105px;
-    right:8%;
-    top:7%;
-    border-radius:50%;
-    background:#ffd45c;
-    box-shadow:0 0 45px rgba(255,211,80,.55);
-    z-index:2;
+  position:absolute;
+  width:105px;
+  height:105px;
+  right:8%;
+  top:7%;
+  background:#ffd84a;
+  border-radius:50%;
+  box-shadow:0 0 35px rgba(255,220,90,.35);
 }
 
-
-/* =====================================================
-   TENDEDERO
-===================================================== */
+/* tendedero */
 
 .clothesline-post{
-    position:absolute;
-    top:0;
-    width:14px;
-    height:45%;
-    border-radius:8px;
-    background:#8b5e34;
-    z-index:5;
-    pointer-events:none;
+  position:absolute;
+  top:0;
+  width:14px;
+  height:45%;
+  background:#8b5e34;
+  z-index:5;
 }
 
-.clothesline-post.left{left:2%;}
-.clothesline-post.right{right:2%;}
+.clothesline-post.left{
+  left:2%;
+}
+
+.clothesline-post.right{
+  right:2%;
+}
 
 .clothesline{
-    position:absolute;
-    left:2%;
-    right:2%;
-    top:8%;
-    height:3px;
-    background:#765738;
-    z-index:5;
-    pointer-events:none;
+  position:absolute;
+  left:2%;
+  right:2%;
+  top:8%;
+  height:3px;
+  background:#765738;
+  z-index:5;
 }
 
 .clothesline-sag{
-    position:absolute;
-    left:2%;
-    right:2%;
-    top:8%;
-    height:35px;
-    border-bottom:3px solid #765738;
-    border-radius:0 0 50% 50%;
-    z-index:4;
-    pointer-events:none;
+  position:absolute;
+  left:2%;
+  right:2%;
+  top:8%;
+  height:35px;
+  border-bottom:3px solid #765738;
+  border-radius:50%;
+  z-index:4;
 }
 
-
-/* =====================================================
-   CAMPO
-===================================================== */
+/* =========================
+   FLORES
+========================= */
 
 .field{
-    position:absolute;
-    inset:0;
-    z-index:10;
-    pointer-events:none;
+  position:absolute;
+  inset:0;
+  z-index:10;
 }
 
-
-/* =====================================================
-   GIRASOLES
-===================================================== */
-
 .field-flower{
-    position:absolute;
-    width:120px;
-    height:120px;
-    left:var(--left);
-    top:var(--top);
-    transform:
-        translate(-50%,-50%)
-        scale(var(--scale))
-        rotate(var(--rotate));
-    transform-origin:center center;
-    z-index:var(--depth);
-    pointer-events:none;
+  position:absolute;
+  width:120px;
+  height:120px;
+  left:var(--left);
+  top:var(--top);
+  transform:
+    translate(-50%,-50%)
+    scale(var(--scale))
+    rotate(var(--rotate));
+  transform-origin:center center;
+  z-index:var(--depth);
+  pointer-events:none;
 }
 
 .flower-head{
-    position:absolute;
-    width:76px;
-    height:76px;
-    left:50%;
-    top:50%;
-    transform:
-        translate(-50%,-50%)
-        translateY(var(--head-offset));
-    transform-origin:center center;
+  position:absolute;
+  width:76px;
+  height:76px;
+  left:50%;
+  top:50%;
+  transform:
+    translate(-50%,-50%)
+    translateY(var(--head-offset));
+  transform-origin:center center;
 }
 
 .petal{
-    position:absolute;
-    width:32px;
-    height:58px;
-    left:50%;
-    top:50%;
-    transform-origin:50% 90%;
-    border-radius:50% 50% 45% 45%;
-    background:#f5c719;
+  position:absolute;
+  width:30px;
+  height:43px;
+  left:50%;
+  top:50%;
+  margin-left:-15px;
+  margin-top:-21px;
+  background:#f7c62c;
+  border-radius:50% 50% 45% 45%;
+  transform-origin:50% 100%;
 }
 
-.petal:nth-child(1){transform:translate(-50%,-90%) rotate(0deg);}
-.petal:nth-child(2){transform:translate(-50%,-90%) rotate(45deg);}
-.petal:nth-child(3){transform:translate(-50%,-90%) rotate(90deg);}
-.petal:nth-child(4){transform:translate(-50%,-90%) rotate(135deg);}
-.petal:nth-child(5){transform:translate(-50%,-90%) rotate(180deg);}
-.petal:nth-child(6){transform:translate(-50%,-90%) rotate(225deg);}
-.petal:nth-child(7){transform:translate(-50%,-90%) rotate(270deg);}
-.petal:nth-child(8){transform:translate(-50%,-90%) rotate(315deg);}
+.petal:nth-child(1){transform:rotate(0deg) translateY(-25px);}
+.petal:nth-child(2){transform:rotate(45deg) translateY(-25px);}
+.petal:nth-child(3){transform:rotate(90deg) translateY(-25px);}
+.petal:nth-child(4){transform:rotate(135deg) translateY(-25px);}
+.petal:nth-child(5){transform:rotate(180deg) translateY(-25px);}
+.petal:nth-child(6){transform:rotate(225deg) translateY(-25px);}
+.petal:nth-child(7){transform:rotate(270deg) translateY(-25px);}
+.petal:nth-child(8){transform:rotate(315deg) translateY(-25px);}
 
 .flower-center{
-    position:absolute;
-    width:35px;
-    height:35px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:#74481f;
-    z-index:4;
+  position:absolute;
+  width:34px;
+  height:34px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#75421f;
+  box-shadow:inset 0 0 0 5px #8c5427;
 }
 
-
-/* =====================================================
-   INTERACCIÓN
-===================================================== */
-
-#interactionLayer{
-    position:absolute;
-    inset:0;
-    z-index:10000;
-    pointer-events:none;
-}
-
-.global-hit{
-    position:absolute;
-    left:var(--hit-left);
-    top:var(--hit-top);
-    width:var(--hit-size);
-    height:var(--hit-size);
-    transform:
-        translate(-50%,-50%)
-        translateY(var(--hit-offset));
-    border-radius:50%;
-    background:transparent;
-    pointer-events:auto;
-    cursor:pointer;
-    touch-action:manipulation;
-}
-
-
-/* =====================================================
-   VISOR DE FOTOS
-===================================================== */
-
-#photoViewer{
-    position:fixed;
-    inset:0;
-    z-index:20000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
-    background:rgba(30,22,12,.84);
-    backdrop-filter:blur(5px);
-}
-
-#photoViewer.show{
-    display:flex;
-}
-
-#bigPhoto{
-    max-width:92vw;
-    max-height:82vh;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    border:10px solid #fffdf7;
-    box-shadow:0 15px 45px rgba(0,0,0,.4);
-    animation:photoAppear .5s ease;
-}
-
-#closePhoto{
-    position:absolute;
-    top:18px;
-    right:20px;
-    width:48px;
-    height:48px;
-    border:0;
-    border-radius:50%;
-    background:#fffdf7;
-    color:#4b3824;
-    font-family:Arial,sans-serif;
-    font-size:30px;
-    line-height:48px;
-    padding:0;
-    cursor:pointer;
-    z-index:20001;
-}
-
-@keyframes photoAppear{
-    from{
-        opacity:0;
-        transform:scale(.75);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-
-/* =====================================================
-   FOTOS COLGADAS
-===================================================== */
-
-.photo-line{
-    position:absolute;
-    left:0;
-    right:0;
-    top:9%;
-    height:1px;
-    z-index:30;
-    pointer-events:none;
-}
-
-.photo-polaroid{
-    position:absolute;
-    width:105px;
-    padding:7px 7px 25px;
-    background:#fffdf8;
-    box-shadow:0 5px 15px rgba(0,0,0,.25);
-    transform-origin:top center;
-    animation:hangPhoto .7s ease forwards;
-}
-
-.photo-polaroid img{
-    display:block;
-    width:100%;
-    height:95px;
-    object-fit:cover;
-}
-
-.peg{
-    position:absolute;
-    width:14px;
-    height:34px;
-    left:50%;
-    top:-14px;
-    transform:translateX(-50%);
-    background:
-        linear-gradient(
-            90deg,
-            #9b6a38 0 42%,
-            #6f4726 42% 58%,
-            #b77d43 58% 100%
-        );
-    border-radius:3px 3px 6px 6px;
-    box-shadow:1px 2px 3px rgba(0,0,0,.25);
-}
-
-@keyframes hangPhoto{
-    from{
-        opacity:0;
-        transform:
-            translateY(-30px)
-            rotate(0deg)
-            scale(.7);
-    }
-    to{
-        opacity:1;
-        transform:
-            translateY(0)
-            rotate(var(--rotation))
-            scale(1);
-    }
-}
-
-
-/* =====================================================
-   MENSAJES
-===================================================== */
-
-#messageBox{
-    position:fixed;
-    inset:0;
-    z-index:15000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
-    background:rgba(40,25,10,.42);
-}
-
-#messageBox.show{
-    display:flex;
-}
-
-.message-card{
-    width:min(88vw,500px);
-    padding:35px 28px;
-    border-radius:20px;
-    background:#fff9ea;
-    box-shadow:0 15px 45px rgba(0,0,0,.3);
-    text-align:center;
-    animation:messageAppear .45s ease;
-}
-
-.message-card p{
-    margin:0;
-    color:#62482d;
-    font-size:25px;
-    line-height:1.5;
-    font-style:italic;
-}
-
-.message-card button{
-    margin-top:25px;
-    border:0;
-    padding:11px 25px;
-    border-radius:30px;
-    background:#d99b25;
-    color:white;
-    font-family:inherit;
-    font-size:17px;
-}
-
-@keyframes messageAppear{
-    from{
-        opacity:0;
-        transform:scale(.8);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-
-/* =====================================================
-   SEMILLA
-===================================================== */
-
-.seed{
-    position:fixed;
-    width:12px;
-    height:18px;
-    left:50%;
-    top:35%;
-    transform:translateX(-50%);
-    border-radius:50%;
-    background:#69421d;
-    z-index:9500;
-    animation:seedFall 1.7s ease-in forwards;
-    pointer-events:none;
-}
-
-@keyframes seedFall{
-    0%{
-        opacity:0;
-        transform:translate(-50%,-80px) rotate(0);
-    }
-    20%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-        transform:translate(-50%,60vh) rotate(300deg);
-    }
-}
-
-
-/* =====================================================
-   VIENTO
-===================================================== */
+/* viento */
 
 .wind-active .field-flower{
-    animation:flowerWind 2.7s ease-in-out infinite alternate;
+  animation:flowerWind 3.2s ease-in-out;
+}
+
+.wind-active .polaroid{
+  animation:photoWind 3.2s ease-in-out;
 }
 
 @keyframes flowerWind{
-    0%{margin-left:0;}
-    50%{margin-left:3px;}
-    100%{margin-left:-3px;}
-}
-
-.wind-active .photo-polaroid{
-    animation:photoWind 2.7s ease-in-out infinite alternate;
+  0%,100%{
+    margin-left:0;
+    transform:
+      translate(-50%,-50%)
+      scale(var(--scale))
+      rotate(var(--rotate));
+  }
+  35%{
+    margin-left:5px;
+    transform:
+      translate(-50%,-50%)
+      scale(var(--scale))
+      rotate(calc(var(--rotate) + 2deg));
+  }
+  70%{
+    margin-left:-4px;
+    transform:
+      translate(-50%,-50%)
+      scale(var(--scale))
+      rotate(calc(var(--rotate) - 1.5deg));
+  }
 }
 
 @keyframes photoWind{
-    0%{margin-left:0;}
-    50%{margin-left:4px;}
-    100%{margin-left:-3px;}
+  0%,100%{transform:rotate(var(--rotation));}
+  35%{transform:rotate(calc(var(--rotation) + 2deg));}
+  70%{transform:rotate(calc(var(--rotation) - 1.5deg));}
 }
 
+/* =========================
+   ZONAS INTERACTIVAS
+========================= */
 
-/* =====================================================
+#interactionLayer{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  pointer-events:none;
+}
+
+.global-hit{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  pointer-events:auto;
+  cursor:pointer;
+  background:transparent;
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+#messageBox{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(86vw,620px);
+  padding:30px;
+  background:rgba(255,253,247,.96);
+  border:1px solid #dfcfb4;
+  border-radius:18px;
+  box-shadow:0 15px 45px rgba(0,0,0,.25);
+  text-align:center;
+  z-index:15000;
+  display:none;
+}
+
+#messageBox p{
+  margin:0;
+  color:#634b32;
+  font-size:clamp(20px,3vw,30px);
+  line-height:1.4;
+  font-style:italic;
+}
+
+#messageClose{
+  margin-top:22px;
+  border:none;
+  background:#dcae38;
+  color:#fff;
+  padding:10px 22px;
+  border-radius:20px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* =========================
+   VISOR DE FOTOS
+========================= */
+
+#photoViewer{
+  position:fixed;
+  inset:0;
+  background:rgba(35,25,15,.82);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:20000;
+  padding:25px;
+}
+
+.photo-viewer-inner{
+  position:relative;
+  max-width:92vw;
+  max-height:90vh;
+  background:#fffdf7;
+  padding:12px 12px 30px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  transform:rotate(-1deg);
+}
+
+#viewerImage{
+  display:block;
+  max-width:88vw;
+  max-height:78vh;
+  object-fit:contain;
+}
+
+#photoClose{
+  position:absolute;
+  right:-13px;
+  top:-15px;
+  width:35px;
+  height:35px;
+  border:none;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* =========================
+   POLAROIDS
+========================= */
+
+.polaroid{
+  position:absolute;
+  top:8%;
+  width:105px;
+  padding:7px 7px 22px;
+  background:#fffdf7;
+  box-shadow:0 5px 16px rgba(0,0,0,.25);
+  z-index:7000;
+  transform:rotate(var(--rotation));
+  animation:polaroidAppear .7s ease-out;
+}
+
+.polaroid img{
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+
+.peg{
+  position:absolute;
+  top:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:18px;
+  height:30px;
+  background:#9a6b3c;
+  border-radius:3px;
+  box-shadow:0 2px 4px rgba(0,0,0,.3);
+}
+
+@keyframes polaroidAppear{
+  from{
+    opacity:0;
+    transform:translateY(-40px) rotate(var(--rotation));
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) rotate(var(--rotation));
+  }
+}
+
+/* =========================
    CARTA VOLANDO
-===================================================== */
+========================= */
 
 #flyingLetter{
-    position:fixed;
-    width:125px;
-    height:90px;
-    left:-160px;
-    top:32%;
-    z-index:25000;
-    background:#fffdf7;
-    border:1px solid #eadfc9;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    transform:rotate(-8deg);
-    cursor:pointer;
-    opacity:0;
-    pointer-events:none;
-}
-
-#flyingLetter.show{
-    pointer-events:auto;
-    animation:
-        letterFly 4s cubic-bezier(.2,.8,.2,1)
-        forwards;
+  position:fixed;
+  left:-180px;
+  top:20%;
+  width:135px;
+  height:95px;
+  background:#fffdf7;
+  border:1px solid #d8c7a8;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  z-index:22000;
+  display:none;
+  cursor:pointer;
+  transform:rotate(-8deg);
 }
 
 #flyingLetter::before{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    top:0;
-    margin:auto;
-    width:0;
-    height:0;
-    border-left:62px solid transparent;
-    border-right:62px solid transparent;
-    border-top:43px solid #efe5d2;
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:0;
+  height:0;
+  border-left:67px solid transparent;
+  border-right:67px solid transparent;
+  border-top:48px solid #eee1ca;
 }
 
-#flyingLetter::after{
-    content:"💌";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
+#flyingLetter.fly{
+  display:block;
+  animation:letterFly 2.8s ease-in-out forwards;
 }
 
 @keyframes letterFly{
-    0%{
-        opacity:0;
-        left:-160px;
-        top:40%;
-        transform:rotate(-12deg) scale(.8);
-    }
-
-    15%{
-        opacity:1;
-    }
-
-    55%{
-        left:45%;
-        top:23%;
-        transform:rotate(8deg) scale(1);
-    }
-
-    75%{
-        left:62%;
-        top:34%;
-        transform:rotate(-5deg);
-    }
-
-    100%{
-        opacity:1;
-        left:50%;
-        top:30%;
-        transform:translateX(-50%) rotate(3deg) scale(1);
-    }
+  0%{
+    left:-180px;
+    top:75%;
+    transform:rotate(-15deg) scale(.7);
+  }
+  100%{
+    left:50%;
+    top:22%;
+    transform:translateX(-50%) rotate(4deg) scale(1);
+  }
 }
 
+/* =========================
+   GIRAR TELÉFONO
+========================= */
 
-/* =====================================================
-   SOBRE PERMANENTE
-===================================================== */
-
-#letterEnvelope{
-    position:fixed;
-    left:2%;
-    bottom:3%;
-    width:78px;
-    height:56px;
-    z-index:26000;
-    display:none;
-    background:#fffdf7;
-    border:1px solid #ddcdb1;
-    border-radius:5px;
-    box-shadow:0 5px 14px rgba(0,0,0,.22);
-    cursor:pointer;
-    opacity:.82;
-    transform:rotate(-4deg);
-    transition:
-        transform .25s ease,
-        opacity .25s ease;
-    pointer-events:auto;
+#rotateScreen{
+  position:fixed;
+  inset:0;
+  background:#f6efdf;
+  z-index:30000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
 }
 
-#letterEnvelope.show{
-    display:block;
+.rotate-content{
+  color:#654d34;
+  font-size:28px;
+  font-style:italic;
+  line-height:1.4;
 }
 
-#letterEnvelope:hover{
-    opacity:1;
-    transform:rotate(-4deg) scale(1.05);
+.rotate-icon{
+  font-size:60px;
+  margin-bottom:20px;
 }
 
-#letterEnvelope::before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:0;
-    height:0;
-    border-left:38px solid transparent;
-    border-right:38px solid transparent;
-    border-top:27px solid #efe3ce;
-    z-index:2;
-    pointer-events:none;
-}
-
-#letterEnvelope::after{
-    content:"💌";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding-top:8px;
-    font-size:24px;
-    z-index:3;
-    pointer-events:none;
-}
-
-
-/* =====================================================
-   LECTOR DE CARTA
-===================================================== */
+/* =========================
+   CARTA
+========================= */
 
 #letterReader{
-    position:fixed;
-    inset:0;
-    z-index:29000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:4vh 6vw;
-    background:rgba(35,25,15,.20);
+  position:fixed;
+  inset:0;
+  z-index:28000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(35,25,15,.38);
+  padding:25px;
 }
 
 #letterReader.show{
-    display:flex;
+  display:flex;
 }
 
 .letter-paper{
-    position:relative;
-    width:min(760px,86vw);
-    max-height:88vh;
-    overflow-y:auto;
-    padding:55px 60px 65px;
-    background:#fffdf7;
-    border:1px solid #e5d9c3;
-    box-shadow:0 20px 60px rgba(0,0,0,.30);
-    color:#624833;
-    font-size:22px;
-    line-height:1.8;
-    font-style:italic;
-    text-align:left;
-    scrollbar-width:none;
-}
-
-.letter-paper::-webkit-scrollbar{
-    display:none;
+  width:min(720px,92vw);
+  max-height:90vh;
+  overflow-y:auto;
+  padding:45px 42px;
+  background:#fffdf5;
+  color:#5d4933;
+  border:1px solid #dfcfb1;
+  box-shadow:0 20px 70px rgba(0,0,0,.3);
+  border-radius:3px;
+  line-height:1.7;
+  font-size:19px;
 }
 
 .letter-title{
-    text-align:center;
-    font-size:34px;
-    margin-bottom:35px;
+  text-align:center;
+  font-size:32px;
+  font-style:italic;
+  margin-bottom:28px;
+  color:#674c2e;
 }
 
-.letter-sign{
-    margin-top:40px;
-    text-align:right;
-    font-size:25px;
+.letter-paper p{
+  margin:0 0 20px;
 }
 
-
-/* =====================================================
-   PORTRAIT
-===================================================== */
-
-@media (orientation:portrait){
-
-    body:not(.reading-letter) #rotateScreen{
-        display:flex;
-    }
-
-    body:not(.reading-letter) #intro,
-    body:not(.reading-letter) #phrases,
-    body:not(.reading-letter) #garden,
-    body:not(.reading-letter) #photoViewer,
-    body:not(.reading-letter) #messageBox{
-        visibility:hidden;
-    }
-
-    body.reading-letter #rotateScreen{
-        display:none !important;
-    }
-
-    body.reading-letter #garden{
-        visibility:visible;
-        display:block;
-    }
-
-    body.reading-letter #letterReader{
-        display:flex;
-    }
+.letter-paper .letter-sign{
+  text-align:center;
+  font-size:22px;
+  font-style:italic;
+  margin-top:30px;
 }
 
+/* =========================
+   SOBRE
+========================= */
 
-/* =====================================================
-   HORIZONTAL
-===================================================== */
-
-@media (orientation:landscape){
-
-    body.reading-letter #letterReader{
-        display:none !important;
-    }
+#letterEnvelope{
+  position:fixed;
+  left:2%;
+  bottom:3%;
+  width:78px;
+  height:56px;
+  z-index:26000;
+  display:none;
+  background:#fffdf7;
+  border:1px solid #ddcdb1;
+  border-radius:5px;
+  box-shadow:0 5px 14px rgba(0,0,0,.22);
+  cursor:pointer;
+  opacity:.82;
+  transform:rotate(-4deg);
+  transition:transform .25s ease, opacity .25s ease;
+  pointer-events:auto;
 }
 
+#letterEnvelope.show{
+  display:block;
+}
 
-/* =====================================================
-   CELULAR
-===================================================== */
+#letterEnvelope:hover{
+  opacity:1;
+  transform:rotate(-4deg) scale(1.05);
+}
+
+#letterEnvelope::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:0;
+  height:0;
+  border-left:38px solid transparent;
+  border-right:38px solid transparent;
+  border-top:27px solid #efe3ce;
+  z-index:2;
+  pointer-events:none;
+}
+
+#letterEnvelope::after{
+  content:"💌";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:8px;
+  font-size:24px;
+  z-index:3;
+  pointer-events:none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:700px){
 
-    .phrase{
-        font-size:23px;
-    }
+  .sun{
+    width:75px;
+    height:75px;
+  }
 
-    .message-card p{
-        font-size:22px;
-    }
+  .intro-sunflower{
+    width:120px;
+    height:120px;
+  }
 
-    .photo-polaroid{
-        width:82px;
-        padding:5px 5px 18px;
-    }
+  .intro-sunflower .petal{
+    width:43px;
+    height:68px;
+    margin-left:-21px;
+    margin-top:-34px;
+  }
 
-    .photo-polaroid img{
-        height:70px;
-    }
+  .intro-sunflower .center{
+    width:52px;
+    height:52px;
+  }
 
-    .letter-paper{
-        width:90vw;
-        max-height:90vh;
-        padding:38px 28px 45px;
-        font-size:19px;
-        line-height:1.7;
-    }
+  .intro-text{
+    font-size:18px;
+  }
 
-    .letter-title{
-        font-size:29px;
-    }
+  .polaroid{
+    width:72px;
+    padding:5px 5px 15px;
+  }
 
-    #letterEnvelope{
-        width:70px;
-        height:50px;
-        left:2%;
-        bottom:3%;
-    }
+  .peg{
+    width:14px;
+    height:24px;
+  }
 
-    #letterEnvelope::before{
-        border-left-width:34px;
-        border-right-width:34px;
-        border-top-width:24px;
-    }
+  #letterEnvelope{
+    width:70px;
+    height:50px;
+    left:2%;
+    bottom:3%;
+  }
 
-    #letterEnvelope::after{
-        font-size:21px;
-    }
+  #letterEnvelope::before{
+    border-left-width:34px;
+    border-right-width:34px;
+    border-top-width:24px;
+  }
+
+  #letterEnvelope::after{
+    font-size:21px;
+  }
+
+  .letter-paper{
+    width:92vw;
+    max-height:90vh;
+    padding:30px 25px;
+    font-size:17px;
+    line-height:1.65;
+  }
+
+  .letter-title{
+    font-size:28px;
+  }
+
+  .letter-paper .letter-sign{
+    font-size:20px;
+  }
 }
-
-
-/* =====================================================
-   IPHONE
-===================================================== */
-
-@supports (-webkit-touch-callout:none){
-
-    body{
-        padding-bottom:env(safe-area-inset-bottom);
-    }
-}
-
 </style>
 </head>
 
-
 <body>
 
+<!-- =========================
+     INTRO
+========================= -->
 
-<!-- =====================================================
-     ROTACIÓN
-===================================================== -->
+<div id="intro">
 
-<div id="rotateScreen">
+  <div class="intro-sunflower" id="introSunflower">
 
-    <div class="rotate-phone">
-        📱
-    </div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
 
-    <p>
-        Gira el teléfono
-    </p>
+    <div class="center"></div>
+
+  </div>
+
+  <div class="intro-text">
+    Presiona aquí 🌻
+  </div>
+
+</div>
+
+<div class="seed" id="seed">🌻</div>
+
+
+<!-- =========================
+     FRASES
+========================= -->
+
+<div id="phrases">
+  <div class="phrase" id="phraseText"></div>
+</div>
+
+
+<!-- =========================
+     JARDÍN
+========================= -->
+
+<div id="garden">
+
+  <div class="sun"></div>
+
+  <div class="clothesline-post left"></div>
+  <div class="clothesline-post right"></div>
+  <div class="clothesline"></div>
+  <div class="clothesline-sag"></div>
+
+  <div class="field" id="field"></div>
 
 </div>
 
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+<!-- =========================
+     CAPA INTERACTIVA
+========================= -->
 
-<section id="intro">
-
-    <div id="introFlower">
-
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-        <div class="introPetal"></div>
-
-        <div class="introCenter"></div>
-
-    </div>
-
-    <div id="pressText">
-        Presiona aquí
-    </div>
-
-</section>
+<div id="interactionLayer"></div>
 
 
-<!-- =====================================================
-     FRASES
-===================================================== -->
+<!-- =========================
+     MENSAJE
+========================= -->
 
-<section id="phrases">
-
-    <div class="phrase">
-        A veces no puedo darte todo lo que quisiera...
-    </div>
-
-    <div class="phrase">
-        Pero siempre voy a encontrar una manera de recordarte lo mucho que te quiero.
-    </div>
-
-    <div class="phrase">
-        Y esta vez, hice un pequeño lugar solamente para ti. 🌻
-    </div>
-
-</section>
+<div id="messageBox">
+  <p id="messageText"></p>
+  <button id="messageClose">Cerrar ❤️</button>
+</div>
 
 
-<!-- =====================================================
-     JARDÍN
-===================================================== -->
-
-<section id="garden">
-
-    <div class="sun"></div>
-
-    <div class="clothesline-post left"></div>
-    <div class="clothesline-post right"></div>
-
-    <div class="clothesline-sag"></div>
-    <div class="clothesline"></div>
-
-    <div id="photoLine" class="photo-line"></div>
-
-    <div id="field" class="field"></div>
-
-    <div id="interactionLayer"></div>
-
-    <div id="flyingLetter"></div>
-
-    <div id="letterEnvelope"
-         aria-label="Volver a leer la carta">
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     VISOR
-===================================================== -->
+<!-- =========================
+     VISOR DE FOTO
+========================= -->
 
 <div id="photoViewer">
 
-    <button id="closePhoto" type="button">
-        ×
-    </button>
+  <div class="photo-viewer-inner">
 
-    <img
-        id="bigPhoto"
-        src=""
-        alt="Nuestro recuerdo">
+    <button id="photoClose">×</button>
 
-</div>
+    <img id="viewerImage" src="" alt="Foto">
 
-
-<!-- =====================================================
-     MENSAJES
-===================================================== -->
-
-<div id="messageBox">
-
-    <div class="message-card">
-
-        <p id="messageText"></p>
-
-        <button id="closeMessage" type="button">
-            Cerrar
-        </button>
-
-    </div>
+  </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
+     CARTA VOLANDO
+========================= -->
+
+<div id="flyingLetter"></div>
+
+
+<!-- =========================
+     GIRAR TELÉFONO
+========================= -->
+
+<div id="rotateScreen">
+
+  <div class="rotate-content">
+
+    <div class="rotate-icon">📱↻</div>
+
+    Gira el teléfono
+
+  </div>
+
+</div>
+
+
+<!-- =========================
      CARTA
-===================================================== -->
+========================= -->
 
 <div id="letterReader">
 
-    <div class="letter-paper">
+  <div class="letter-paper">
 
-        <div class="letter-title">
-            Para ti 🌻
-        </div>
-
-        <p>
-            Quiero que sepas que cada pequeño detalle de este lugar
-            fue pensado para ti.
-        </p>
-
-        <p>
-            Tal vez por ahora estas palabras solamente sean un pequeño
-            espacio reservado para todo lo que algún día quiero decirte.
-        </p>
-
-        <p>
-            Pero mientras tanto, quiero que recuerdes algo:
-            me hace muy feliz poder compartir esta aventura contigo.
-        </p>
-
-        <p>
-            Y si alguna vez vuelves a entrar aquí, espero que encuentres
-            un pedacito de todo lo bonito que siento por ti.
-        </p>
-
-        <p class="letter-sign">
-            Con cariño,<br>
-            Daniel ❤️
-        </p>
-
+    <div class="letter-title">
+      Para ti 🌻
     </div>
 
+    <p>
+      Sé que te he prometido muchas cosas y que no todas las he podido cumplir,
+      pero quiero que sepas algo: <strong>cada día despierto con un solo objetivo,
+      que es seguir trabajando para cumplir cada una de mis promesas.</strong> ❤️
+    </p>
+
+    <p>
+      Y ahora mismo estoy cumpliendo una de ellas:
+      <strong>querer estar a tu lado por el resto de mi vida.</strong> 🥹
+    </p>
+
+    <p>
+      Vamos poco a poco, paso a paso, pero estoy feliz de que sea contigo.
+      Porque eres mi motor para seguir creciendo, para seguir mejorando
+      y para seguir dando todo de mí. ❤️‍🩹
+    </p>
+
+    <p>
+      Esta vez no pude regalarte tus flores amarillas como hubiera querido 🌻,
+      pero quería darte, al menos, un pequeño detalle.
+      Sé que no es lo mismo y sé que tú prefieres las flores como tal,
+      pero te prometo que lo que queda de este año voy a seguir esforzándome
+      para llegar a donde quiero y poder cumplir mis promesas.
+    </p>
+
+    <p>
+      Y no pienso dejar de crecer.
+      Quiero seguir convirtiéndome en una mejor persona para ti,
+      para mí y para nuestro futuro, para algún día poder darte
+      <strong>todo lo que te he prometido y todavía un poquito más.</strong> ❤️
+    </p>
+
+    <p>
+      Porque eres y siempre serás
+      <strong>el amor de mi vida, mi lugar seguro, mi mejor amiga,
+      mi novia, mi futura esposa, mi meta, mi inspiración,
+      mi modelo a seguir</strong> y, lo más importante,
+      la persona con quien quiero compartir mi vida. 🫶🏻
+    </p>
+
+    <p>
+      Quiero vivir muchas cosas contigo, cumplir nuestros sueños,
+      superar los momentos difíciles, celebrar los buenos
+      y seguir construyendo nuestra historia poquito a poquito. ❤️
+    </p>
+
+    <p class="letter-sign">
+      <strong>Te amo muchísimo, popo. ❤️</strong>
+    </p>
+
+    <p class="letter-sign">
+      Y espero que cada vez que vuelvas a ver estas flores recuerdes
+      que, detrás de ellas, hay alguien que te ama muchísimo
+      y que todos los días está intentando ser mejor para poder construir
+      contigo todo lo que soñamos. 🌻🥹
+    </p>
+
+  </div>
+
 </div>
+
+
+<!-- =========================
+     SOBRE
+========================= -->
+
+<div id="letterEnvelope" title="Abrir carta"></div>
 
 
 <script>
@@ -1158,92 +951,131 @@ body{
    ELEMENTOS
 ===================================================== */
 
-const intro =
-    document.getElementById("intro");
+const intro = document.getElementById("intro");
+const introSunflower = document.getElementById("introSunflower");
+const seed = document.getElementById("seed");
 
-const introFlower =
-    document.getElementById("introFlower");
+const phrases = document.getElementById("phrases");
+const phraseText = document.getElementById("phraseText");
 
-const pressText =
-    document.getElementById("pressText");
+const garden = document.getElementById("garden");
+const field = document.getElementById("field");
+const interactionLayer = document.getElementById("interactionLayer");
 
-const phrases =
-    document.getElementById("phrases");
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const messageClose = document.getElementById("messageClose");
 
-const phraseElements =
-    document.querySelectorAll(".phrase");
+const photoViewer = document.getElementById("photoViewer");
+const viewerImage = document.getElementById("viewerImage");
+const photoClose = document.getElementById("photoClose");
 
-const garden =
-    document.getElementById("garden");
-
-const field =
-    document.getElementById("field");
-
-const interactionLayer =
-    document.getElementById("interactionLayer");
-
-const photoViewer =
-    document.getElementById("photoViewer");
-
-const bigPhoto =
-    document.getElementById("bigPhoto");
-
-const closePhoto =
-    document.getElementById("closePhoto");
-
-const photoLine =
-    document.getElementById("photoLine");
-
-const messageBox =
-    document.getElementById("messageBox");
-
-const messageText =
-    document.getElementById("messageText");
-
-const closeMessage =
-    document.getElementById("closeMessage");
-
-const flyingLetter =
-    document.getElementById("flyingLetter");
-
-const letterEnvelope =
-    document.getElementById("letterEnvelope");
-
-const letterReader =
-    document.getElementById("letterReader");
-
-const rotateScreen =
-    document.getElementById("rotateScreen");
+const flyingLetter = document.getElementById("flyingLetter");
+const rotateScreen = document.getElementById("rotateScreen");
+const letterReader = document.getElementById("letterReader");
+const letterEnvelope = document.getElementById("letterEnvelope");
 
 
 /* =====================================================
-   ESTADO
+   FRASES INICIALES
 ===================================================== */
 
-let introStarted = false;
-
-let currentPhoto = null;
-
-let currentPhotoIndex = null;
-
-let foundPhotos = new Set();
-
-let totalHung = 0;
-
-let finalSequenceStarted = false;
+const initialPhrases = [
+  "A veces no puedo darte todo lo que quisiera...",
+  "Pero siempre voy a encontrar una manera de recordarte lo mucho que te quiero.",
+  "Y esta vez, hice un pequeño lugar solamente para ti. 🌻"
+];
 
 
-/*
-   Estados de la carta:
+/* =====================================================
+   FLORES
+===================================================== */
 
-   "none"       = todavía no aparece
-   "flying"     = carta volando
-   "waiting"    = esperando que gire
-   "reading"    = leyendo
-   "closed"     = regresó al jardín
-*/
+const flowers = [
 
-let letterState = "none";
+  {left:"5%", top:"57%", scale:.40, rotate:"-4deg", headOffset:"0px"},
+
+  {left:"16%", top:"53%", scale:.43, rotate:"2deg", headOffset:"-4px"},
+
+  {left:"28%", top:"59%", scale:.39, rotate:"-2deg", headOffset:"3px"},
+
+  {left:"40%", top:"54%", scale:.45, rotate:"3deg", headOffset:"-3px"},
+
+  {
+    left:"53%",
+    top:"57%",
+    scale:.42,
+    rotate:"-3deg",
+    headOffset:"3px",
+    message:"Eres mi vida y por ello quiero estar a tu lado mil y un vidas"
+  },
+
+  {left:"66%", top:"53%", scale:.44, rotate:"2deg", headOffset:"-4px"},
+
+  {left:"79%", top:"58%", scale:.40, rotate:"-2deg", headOffset:"3px"},
+
+  {left:"93%", top:"54%", scale:.46, rotate:"3deg", headOffset:"-3px"},
+
+  {left:"10%", top:"67%", scale:.55, rotate:"-3deg", headOffset:"4px"},
+
+  {left:"22%", top:"72%", scale:.49, rotate:"2deg", headOffset:"-4px"},
+
+  {
+    left:"34%",
+    top:"65%",
+    scale:.58,
+    rotate:"-1deg",
+    headOffset:"3px",
+    message:"Eres mi modelo a seguir y por ello te admiro mucho, amor."
+  },
+
+  {left:"46%", top:"72%", scale:.52, rotate:"2deg", headOffset:"-4px"},
+
+  {left:"58%", top:"66%", scale:.57, rotate:"-2deg", headOffset:"4px"},
+
+  {
+    left:"70%",
+    top:"73%",
+    scale:.55,
+    rotate:"1deg",
+    headOffset:"-4px",
+    message:"Esta aventura que estamos emprendiendo me alegra de que sea a tu lado"
+  },
+
+  {left:"83%", top:"66%", scale:.57, rotate:"-1deg", headOffset:"3px"},
+
+  {left:"95%", top:"72%", scale:.55, rotate:"2deg", headOffset:"-4px"},
+
+  {left:"4%", top:"82%", scale:.78, rotate:"-2deg", headOffset:"-3px"},
+
+  {
+    left:"16%",
+    top:"87%",
+    scale:.84,
+    rotate:"2deg",
+    headOffset:"-5px",
+    message:"Si pudieras verte desde mis ojos, sé que te asombrarías de la mujer que eres."
+  },
+
+  {left:"29%", top:"81%", scale:.76, rotate:"-1deg", headOffset:"3px"},
+
+  {left:"42%", top:"89%", scale:.88, rotate:"1deg", headOffset:"-5px"},
+
+  {left:"55%", top:"81%", scale:.80, rotate:"-2deg", headOffset:"2px"},
+
+  {left:"68%", top:"88%", scale:.87, rotate:"2deg", headOffset:"-4px"},
+
+  {left:"81%", top:"81%", scale:.79, rotate:"-2deg", headOffset:"3px"},
+
+  {left:"94%", top:"87%", scale:.84, rotate:"2deg", headOffset:"-4px"},
+
+  {left:"9%", top:"76%", scale:.63, rotate:"-2deg", headOffset:"2px"},
+
+  {left:"37%", top:"77%", scale:.65, rotate:"2deg", headOffset:"-3px"},
+
+  {left:"61%", top:"76%", scale:.62, rotate:"-2deg", headOffset:"2px"}
+
+];
 
 
 /* =====================================================
@@ -1251,705 +1083,273 @@ let letterState = "none";
 ===================================================== */
 
 const photoBase =
-    "https://raw.githubusercontent.com/LuisG4r/Flores-amarillas/main/";
+"https://raw.githubusercontent.com/LuisG4r/Flores-amarillas/main/";
 
 const photos = [
 
-    photoBase + "foto1.jpeg",
-    photoBase + "foto2.jpeg",
-    photoBase + "foto3.jpeg",
-    photoBase + "foto4.jpeg",
-    photoBase + "foto5.jpeg",
-    photoBase + "foto6.jpeg",
-    photoBase + "foto7.jpeg"
+  photoBase + "foto1.jpeg",
+  photoBase + "foto2.jpeg",
+  photoBase + "foto3.jpeg",
+  photoBase + "foto4.jpeg",
+  photoBase + "foto5.jpeg",
+  photoBase + "foto6.jpeg",
+  photoBase + "foto7.jpeg"
 
 ];
-
 
 const photoSlots = [
 
-    {left:"5%",rotation:"-5deg"},
-    {left:"19%",rotation:"4deg"},
-    {left:"33%",rotation:"-3deg"},
-    {left:"47%",rotation:"5deg"},
-    {left:"61%",rotation:"-4deg"},
-    {left:"75%",rotation:"3deg"},
-    {left:"88%",rotation:"-5deg"}
+  {left:"5%", rotation:"-5deg"},
+  {left:"19%", rotation:"4deg"},
+  {left:"33%", rotation:"-3deg"},
+  {left:"47%", rotation:"5deg"},
+  {left:"61%", rotation:"-4deg"},
+  {left:"75%", rotation:"3deg"},
+  {left:"88%", rotation:"-5deg"}
 
 ];
 
 
 /* =====================================================
-   FLORES
-   BASE ORIGINAL
-===================================================== */
-
-const flowers = [
-
-    {left:"5%",top:"57%",scale:.40,rotate:"-4deg",headOffset:"0px"},
-
-    {left:"16%",top:"53%",scale:.43,rotate:"2deg",headOffset:"-4px"},
-
-    {left:"28%",top:"59%",scale:.39,rotate:"-2deg",headOffset:"3px"},
-
-    {left:"40%",top:"54%",scale:.45,rotate:"3deg",headOffset:"-3px"},
-
-    {
-        left:"53%",
-        top:"57%",
-        scale:.42,
-        rotate:"-3deg",
-        headOffset:"3px",
-        message:
-        "Eres mi vida y por ello quiero estar a tu lado mil y un vidas"
-    },
-
-    {left:"66%",top:"53%",scale:.44,rotate:"2deg",headOffset:"-4px"},
-
-    {left:"79%",top:"58%",scale:.40,rotate:"-2deg",headOffset:"3px"},
-
-    {left:"93%",top:"54%",scale:.46,rotate:"3deg",headOffset:"-3px"},
-
-    {left:"10%",top:"67%",scale:.55,rotate:"-3deg",headOffset:"4px"},
-
-    {left:"22%",top:"72%",scale:.49,rotate:"2deg",headOffset:"-4px"},
-
-    {
-        left:"34%",
-        top:"65%",
-        scale:.58,
-        rotate:"-1deg",
-        headOffset:"3px",
-        message:
-        "Eres mi modelo a seguir y por ello te admiro mucho, amor."
-    },
-
-    {left:"46%",top:"72%",scale:.52,rotate:"2deg",headOffset:"-4px"},
-
-    {left:"58%",top:"66%",scale:.57,rotate:"-2deg",headOffset:"4px"},
-
-    {
-        left:"70%",
-        top:"73%",
-        scale:.55,
-        rotate:"1deg",
-        headOffset:"-4px",
-        message:
-        "Esta aventura que estamos emprendiendo me alegra de que sea a tu lado"
-    },
-
-    {left:"83%",top:"66%",scale:.57,rotate:"-1deg",headOffset:"3px"},
-
-    {left:"95%",top:"72%",scale:.55,rotate:"2deg",headOffset:"-4px"},
-
-    {left:"4%",top:"82%",scale:.78,rotate:"-2deg",headOffset:"-3px"},
-
-    {
-        left:"16%",
-        top:"87%",
-        scale:.84,
-        rotate:"2deg",
-        headOffset:"-5px",
-        message:
-        "Si pudieras verte desde mis ojos, sé que te asombrarías de la mujer que eres."
-    },
-
-    {left:"29%",top:"81%",scale:.76,rotate:"-1deg",headOffset:"3px"},
-
-    {left:"42%",top:"89%",scale:.88,rotate:"1deg",headOffset:"-5px"},
-
-    {left:"55%",top:"81%",scale:.80,rotate:"-2deg",headOffset:"2px"},
-
-    {left:"68%",top:"88%",scale:.87,rotate:"2deg",headOffset:"-4px"},
-
-    {left:"81%",top:"81%",scale:.79,rotate:"-2deg",headOffset:"3px"},
-
-    {left:"94%",top:"87%",scale:.84,rotate:"2deg",headOffset:"-4px"},
-
-    {left:"9%",top:"76%",scale:.63,rotate:"-2deg",headOffset:"2px"},
-
-    {left:"37%",top:"77%",scale:.65,rotate:"2deg",headOffset:"-3px"},
-
-    {left:"61%",top:"76%",scale:.62,rotate:"-2deg",headOffset:"2px"}
-
-];
-
-
-/* =====================================================
-   MAPA DE FOTOS
+   MAPA FLOR → FOTO
 ===================================================== */
 
 const photoFlowerMap = {
 
-    0:0,
-    1:1,
-    2:2,
-    3:3,
-    5:4,
-    6:5,
-    7:6
+  0:0,
+  1:1,
+  2:2,
+  3:3,
+  5:4,
+  6:5,
+  7:6
 
 };
+
+
+/* =====================================================
+   ESTADOS
+===================================================== */
+
+let foundPhotos = new Set();
+
+let currentPhotoIndex = null;
+
+let totalHung = 0;
+
+let finalSequenceStarted = false;
+
+let letterState = "none";
+
+/*
+  none     = todavía no aparece la carta
+  flying   = carta volando
+  waiting  = esperando que gire el teléfono
+  reading  = leyendo carta
+  closed   = regresó al jardín
+*/
 
 
 /* =====================================================
    CREAR FLORES
 ===================================================== */
 
-function createFlower(data,index){
+flowers.forEach((flower,index)=>{
 
-    const flower =
-        document.createElement("div");
+  const flowerEl = document.createElement("div");
 
-    flower.className =
-        "field-flower";
+  flowerEl.className = "field-flower";
 
-    flower.style.setProperty("--left",data.left);
-    flower.style.setProperty("--top",data.top);
-    flower.style.setProperty("--scale",data.scale);
-    flower.style.setProperty("--rotate",data.rotate);
-    flower.style.setProperty("--head-offset",data.headOffset);
+  flowerEl.style.setProperty("--left",flower.left);
+  flowerEl.style.setProperty("--top",flower.top);
+  flowerEl.style.setProperty("--scale",flower.scale);
+  flowerEl.style.setProperty("--rotate",flower.rotate);
+  flowerEl.style.setProperty("--head-offset",flower.headOffset);
 
+  /*
+    profundidad visual
+  */
 
-    if(data.scale >= .75){
+  const scale = flower.scale;
 
-        flower.style.setProperty(
-            "--depth",
-            "400"
-        );
+  let depth = 100;
 
-    }else if(data.scale >= .50){
+  if(scale >= .75) depth = 400;
+  else if(scale >= .55) depth = 250;
 
-        flower.style.setProperty(
-            "--depth",
-            "250"
-        );
+  flowerEl.style.setProperty("--depth",depth);
 
-    }else{
+  const head = document.createElement("div");
 
-        flower.style.setProperty(
-            "--depth",
-            "100"
-        );
+  head.className = "flower-head";
 
-    }
+  for(let i=0;i<8;i++){
 
+    const petal = document.createElement("div");
 
-    const head =
-        document.createElement("div");
+    petal.className = "petal";
 
-    head.className =
-        "flower-head";
+    head.appendChild(petal);
 
+  }
 
-    for(let i=0;i<8;i++){
+  const center = document.createElement("div");
 
-        const petal =
-            document.createElement("div");
+  center.className = "flower-center";
 
-        petal.className =
-            "petal";
+  head.appendChild(center);
 
-        head.appendChild(petal);
+  flowerEl.appendChild(head);
 
-    }
+  field.appendChild(flowerEl);
 
 
-    const center =
-        document.createElement("div");
+  /*
+    zona invisible de interacción
+  */
 
-    center.className =
-        "flower-center";
+  const hit = document.createElement("div");
 
-    head.appendChild(center);
+  hit.className = "global-hit";
 
-    flower.appendChild(head);
+  hit.style.left = flower.left;
+  hit.style.top = flower.top;
 
-    field.appendChild(flower);
+  const hitSize = Math.max(65,110 * flower.scale);
+
+  hit.style.width = hitSize + "px";
+  hit.style.height = hitSize + "px";
+
+  hit.dataset.index = index;
+
+  interactionLayer.appendChild(hit);
 
 
-    if(data.message){
+  hit.addEventListener("click",()=>{
 
-        createGlobalHit(
-            data,
-            index,
-            function(){
+    /*
+      FOTO
+    */
 
-                showMessage(
-                    data.message
-                );
+    if(photoFlowerMap[index] !== undefined){
 
-            }
-        );
+      const photoIndex = photoFlowerMap[index];
 
-    }else if(
-        Object.prototype.hasOwnProperty.call(
-            photoFlowerMap,
-            index
-        )
-    ){
+      if(!foundPhotos.has(photoIndex)){
 
-        const photoIndex =
-            photoFlowerMap[index];
+        openPhoto(photoIndex);
 
-        createGlobalHit(
-            data,
-            index,
-            function(hit){
+        return;
 
-                openPhoto(
-                    photos[photoIndex],
-                    photoIndex,
-                    hit
-                );
-
-            }
-        );
+      }
 
     }
 
-}
 
+    /*
+      MENSAJE
+    */
 
-/* =====================================================
-   ZONA TÁCTIL
-===================================================== */
+    if(flower.message){
 
-function createGlobalHit(
-    data,
-    flowerIndex,
-    action
-){
+      openMessage(flower.message);
 
-    const hit =
-        document.createElement("div");
+    }
 
-    hit.className =
-        "global-hit";
+  });
 
-    hit.dataset.flowerIndex =
-        flowerIndex;
-
-    hit.style.setProperty(
-        "--hit-left",
-        data.left
-    );
-
-    hit.style.setProperty(
-        "--hit-top",
-        data.top
-    );
-
-
-    const scale =
-        Number(data.scale);
-
-    const size =
-        Math.max(
-            58,
-            112 * scale
-        );
-
-    hit.style.setProperty(
-        "--hit-size",
-        size + "px"
-    );
-
-
-    const offset =
-        parseFloat(
-            data.headOffset
-        ) * scale;
-
-    hit.style.setProperty(
-        "--hit-offset",
-        offset + "px"
-    );
-
-
-    hit.addEventListener(
-        "click",
-        function(e){
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            action(hit);
-
-        }
-    );
-
-
-    hit.addEventListener(
-        "touchend",
-        function(e){
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            action(hit);
-
-        },
-        {passive:false}
-    );
-
-
-    interactionLayer.appendChild(hit);
-
-    return hit;
-
-}
-
-
-flowers.forEach(createFlower);
+});
 
 
 /* =====================================================
    INTRO
 ===================================================== */
 
-function startIntro(){
+introSunflower.addEventListener("click",()=>{
 
-    if(introStarted){
-        return;
-    }
+  /*
+    efecto de presión
+  */
 
-    introStarted = true;
+  introSunflower.style.transform = "scale(.88)";
 
-    introFlower.classList.add("pressing");
+  setTimeout(()=>{
 
-    pressText.style.opacity = "0";
+    introSunflower.style.opacity = "0";
 
-
-    setTimeout(function(){
-
-        introFlower.classList.remove("pressing");
-
-        introFlower.classList.add("disappear");
+  },250);
 
 
-        setTimeout(function(){
+  setTimeout(()=>{
 
-            const seed =
-                document.createElement("div");
+    introSunflower.style.display = "none";
 
-            seed.className = "seed";
+    seed.classList.add("drop");
 
-            document.body.appendChild(seed);
-
-        },700);
+  },700);
 
 
-        setTimeout(function(){
+  setTimeout(()=>{
 
-            intro.style.display = "none";
+    intro.style.display = "none";
 
-            showPhrases();
+    startPhrases();
 
-        },2500);
+  },2300);
 
-    },650);
-
-}
-
-
-introFlower.addEventListener(
-    "click",
-    function(e){
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        startIntro();
-
-    }
-);
+});
 
 
 /* =====================================================
    FRASES
 ===================================================== */
 
-function showPhrases(){
+function startPhrases(){
 
-    phrases.style.display = "flex";
+  phrases.style.display = "flex";
 
-    let current = 0;
+  let index = 0;
 
+  function showNext(){
 
-    function nextPhrase(){
+    if(index >= initialPhrases.length){
 
-        if(current > 0){
+      phrases.style.display = "none";
 
-            phraseElements[
-                current - 1
-            ].classList.remove("show");
+      garden.style.display = "block";
 
-        }
-
-
-        if(
-            current >=
-            phraseElements.length
-        ){
-
-            setTimeout(function(){
-
-                phrases.style.display = "none";
-
-                garden.style.display = "block";
-
-            },1200);
-
-            return;
-        }
-
-
-        phraseElements[
-            current
-        ].classList.add("show");
-
-
-        setTimeout(function(){
-
-            phraseElements[
-                current
-            ].classList.remove("show");
-
-            current++;
-
-
-            setTimeout(
-                nextPhrase,
-                700
-            );
-
-        },3000);
+      return;
 
     }
 
+    phraseText.textContent = initialPhrases[index];
 
-    nextPhrase();
+    phraseText.classList.remove("show");
 
-}
+    setTimeout(()=>{
 
+      phraseText.classList.add("show");
 
-/* =====================================================
-   ABRIR FOTO
-===================================================== */
+    },100);
 
-function openPhoto(
-    photoURL,
-    index,
-    hit
-){
 
-    if(foundPhotos.has(index)){
-        return;
-    }
+    setTimeout(()=>{
 
+      phraseText.classList.remove("show");
 
-    foundPhotos.add(index);
+      setTimeout(()=>{
 
-    currentPhoto = photoURL;
+        index++;
 
-    currentPhotoIndex = index;
+        showNext();
 
+      },900);
 
-    if(hit){
+    },3000);
 
-        hit.style.pointerEvents =
-            "none";
+  }
 
-    }
-
-
-    bigPhoto.src = photoURL;
-
-
-    bigPhoto.onerror =
-        function(){
-
-            console.error(
-                "ERROR CARGANDO FOTO:",
-                photoURL
-            );
-
-        };
-
-
-    photoViewer.classList.add("show");
-
-}
-
-
-/* =====================================================
-   CERRAR FOTO
-===================================================== */
-
-function closeCurrentPhoto(){
-
-    if(currentPhoto === null){
-
-        photoViewer.classList.remove("show");
-
-        return;
-    }
-
-
-    const photoName =
-        currentPhoto;
-
-    const index =
-        currentPhotoIndex;
-
-
-    photoViewer.classList.remove("show");
-
-
-    setTimeout(function(){
-
-        sendPhotoToLine(
-            photoName,
-            index
-        );
-
-    },350);
-
-
-    currentPhoto = null;
-
-    currentPhotoIndex = null;
-
-}
-
-
-closePhoto.addEventListener(
-    "click",
-    function(e){
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        closeCurrentPhoto();
-
-    }
-);
-
-
-closePhoto.addEventListener(
-    "touchend",
-    function(e){
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        closeCurrentPhoto();
-
-    },
-    {passive:false}
-);
-
-
-photoViewer.addEventListener(
-    "click",
-    function(e){
-
-        if(e.target === photoViewer){
-
-            closeCurrentPhoto();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   FOTO → TENDEDERO
-===================================================== */
-
-function sendPhotoToLine(
-    photoURL,
-    index
-){
-
-    const existing =
-        Array.from(
-            document.querySelectorAll(
-                ".photo-polaroid"
-            )
-        ).find(
-            function(el){
-
-                return (
-                    el.dataset.photo ===
-                    photoURL
-                );
-
-            }
-        );
-
-
-    if(existing){
-        return;
-    }
-
-
-    const slot =
-        photoSlots[index] ||
-        photoSlots[0];
-
-
-    const polaroid =
-        document.createElement("div");
-
-    polaroid.className =
-        "photo-polaroid";
-
-    polaroid.dataset.photo =
-        photoURL;
-
-    polaroid.style.left =
-        slot.left;
-
-    polaroid.style.setProperty(
-        "--rotation",
-        slot.rotation
-    );
-
-
-    const img =
-        document.createElement("img");
-
-    img.src =
-        photoURL;
-
-    img.alt =
-        "Nuestro recuerdo";
-
-
-    const peg =
-        document.createElement("div");
-
-    peg.className =
-        "peg";
-
-
-    polaroid.appendChild(img);
-    polaroid.appendChild(peg);
-
-    photoLine.appendChild(polaroid);
-
-
-    totalHung++;
-
-
-    if(totalHung === 7){
-
-        startFinalSequence();
-
-    }
+  showNext();
 
 }
 
@@ -1958,62 +1358,129 @@ function sendPhotoToLine(
    MENSAJES
 ===================================================== */
 
-function showMessage(message){
+function openMessage(text){
 
-    messageText.textContent =
-        message;
+  messageText.textContent = text;
 
-    messageBox.classList.add("show");
+  messageBox.style.display = "block";
+
+}
+
+messageClose.addEventListener("click",()=>{
+
+  messageBox.style.display = "none";
+
+});
+
+
+/* =====================================================
+   FOTOS
+===================================================== */
+
+function openPhoto(index){
+
+  if(foundPhotos.has(index)) return;
+
+  currentPhotoIndex = index;
+
+  viewerImage.src = photos[index];
+
+  photoViewer.style.display = "flex";
 
 }
 
 
-function closeMsg(){
+photoClose.addEventListener("click",()=>{
 
-    messageBox.classList.remove("show");
+  closeCurrentPhoto();
+
+});
+
+
+photoViewer.addEventListener("click",(event)=>{
+
+  if(event.target === photoViewer){
+
+    closeCurrentPhoto();
+
+  }
+
+});
+
+
+function closeCurrentPhoto(){
+
+  if(currentPhotoIndex === null) return;
+
+  const index = currentPhotoIndex;
+
+  photoViewer.style.display = "none";
+
+  currentPhotoIndex = null;
+
+  if(!foundPhotos.has(index)){
+
+    foundPhotos.add(index);
+
+    setTimeout(()=>{
+
+      sendPhotoToLine(index);
+
+    },350);
+
+  }
 
 }
 
 
-closeMessage.addEventListener(
-    "click",
-    function(e){
+/* =====================================================
+   MANDAR FOTO AL TENDEDERO
+===================================================== */
 
-        e.preventDefault();
-        e.stopPropagation();
+function sendPhotoToLine(index){
 
-        closeMsg();
+  const slot = photoSlots[totalHung];
 
-    }
-);
+  if(!slot) return;
+
+  const polaroid = document.createElement("div");
+
+  polaroid.className = "polaroid";
+
+  polaroid.style.left = slot.left;
+
+  polaroid.style.setProperty("--rotation",slot.rotation);
+
+  const peg = document.createElement("div");
+
+  peg.className = "peg";
+
+  const img = document.createElement("img");
+
+  img.src = photos[index];
+
+  img.alt = "Recuerdo";
+
+  polaroid.appendChild(peg);
+
+  polaroid.appendChild(img);
+
+  garden.appendChild(polaroid);
+
+  totalHung++;
 
 
-closeMessage.addEventListener(
-    "touchend",
-    function(e){
+  /*
+    cuando estén las 7
+  */
 
-        e.preventDefault();
-        e.stopPropagation();
+  if(totalHung === 7){
 
-        closeMsg();
+    startFinalSequence();
 
-    },
-    {passive:false}
-);
+  }
 
-
-messageBox.addEventListener(
-    "click",
-    function(e){
-
-        if(e.target === messageBox){
-
-            closeMsg();
-
-        }
-
-    }
-);
+}
 
 
 /* =====================================================
@@ -2022,238 +1489,129 @@ messageBox.addEventListener(
 
 function startFinalSequence(){
 
-    if(finalSequenceStarted){
-        return;
-    }
+  if(finalSequenceStarted) return;
 
-    finalSequenceStarted = true;
+  finalSequenceStarted = true;
 
+  setTimeout(()=>{
 
-    setTimeout(function(){
+    garden.classList.add("wind-active");
 
-        garden.classList.add(
-            "wind-active"
-        );
+  },4500);
 
 
-        setTimeout(function(){
+  setTimeout(()=>{
 
-            letterState =
-                "flying";
+    garden.classList.remove("wind-active");
 
-            flyingLetter.classList.add(
-                "show"
-            );
+    flyingLetter.style.display = "block";
 
-        },3200);
+    flyingLetter.classList.add("fly");
 
-    },4500);
+    letterState = "flying";
+
+  },7700);
 
 }
 
 
 /* =====================================================
-   MOSTRAR ROTACIÓN
+   CARTA VOLANDO
 ===================================================== */
+
+flyingLetter.addEventListener("click",()=>{
+
+  openLetter();
+
+});
+
 
 function showRotateScreen(){
 
-    rotateScreen.style.display =
-        "flex";
+  rotateScreen.style.display = "flex";
 
 }
 
-
-/* =====================================================
-   OCULTAR ROTACIÓN
-===================================================== */
 
 function hideRotateScreen(){
 
-    rotateScreen.style.display =
-        "none";
+  rotateScreen.style.display = "none";
 
 }
 
-
-/* =====================================================
-   ABRIR CARTA
-===================================================== */
 
 function openLetter(){
 
-    if(!finalSequenceStarted){
-        return;
-    }
+  if(!finalSequenceStarted) return;
+
+  flyingLetter.style.display = "none";
+
+  flyingLetter.style.pointerEvents = "none";
 
 
-    /*
-       La carta volando solamente
-       se utiliza una vez.
-    */
+  /*
+    horizontal
+  */
 
-    flyingLetter.style.display =
-        "none";
+  if(window.innerHeight <= window.innerWidth){
 
-    flyingLetter.style.pointerEvents =
-        "none";
-
-
-    /*
-       Si está horizontal,
-       tiene que girar.
-    */
-
-    if(
-        window.innerHeight <=
-        window.innerWidth
-    ){
-
-        letterState =
-            "waiting";
-
-        hideLetterReader();
-
-        showRotateScreen();
-
-        return;
-    }
-
-
-    /*
-       Si ya está vertical,
-       abrimos directamente.
-    */
-
-    openLetterReader();
-
-}
-
-
-/* =====================================================
-   ABRIR LECTOR
-===================================================== */
-
-function openLetterReader(){
-
-    letterState =
-        "reading";
-
-    document.body.classList.add(
-        "reading-letter"
-    );
-
-    letterReader.classList.add(
-        "show"
-    );
-
-    hideRotateScreen();
-
-
-    garden.style.display =
-        "block";
-
-    garden.style.visibility =
-        "visible";
-
-}
-
-
-/* =====================================================
-   CERRAR LECTOR
-===================================================== */
-
-function hideLetterReader(){
-
-    letterReader.classList.remove(
-        "show"
-    );
-
-    document.body.classList.remove(
-        "reading-letter"
-    );
-
-}
-
-
-/* =====================================================
-   TERMINAR LECTURA
-===================================================== */
-
-function finishLetterReading(){
-
-    /*
-       Cerramos la carta.
-    */
+    letterState = "waiting";
 
     hideLetterReader();
 
-    hideRotateScreen();
+    showRotateScreen();
+
+    return;
+
+  }
 
 
-    /*
-       MUY IMPORTANTE:
-
-       Ya no existe una carta pendiente.
-       Esto evita que resize/orientationchange
-       vuelva a mostrar "Gira el teléfono".
-    */
-
-    letterState =
-        "closed";
-
-
-    /*
-       El sobre queda disponible.
-    */
-
-    letterEnvelope.classList.add(
-        "show"
-    );
-
-
-    /*
-       Jardín visible.
-    */
-
-    garden.style.display =
-        "block";
-
-    garden.style.visibility =
-        "visible";
+  openLetterReader();
 
 }
 
 
-/* =====================================================
-   TOCAR CARTA VOLANDO
-===================================================== */
+function openLetterReader(){
 
-flyingLetter.addEventListener(
-    "click",
-    function(e){
+  letterState = "reading";
 
-        e.preventDefault();
-        e.stopPropagation();
+  document.body.classList.add("reading-letter");
 
-        openLetter();
+  letterReader.classList.add("show");
 
-    }
-);
+  hideRotateScreen();
+
+  garden.style.display = "block";
+
+  garden.style.visibility = "visible";
+
+}
 
 
-flyingLetter.addEventListener(
-    "touchend",
-    function(e){
+function hideLetterReader(){
 
-        e.preventDefault();
-        e.stopPropagation();
+  letterReader.classList.remove("show");
 
-        openLetter();
+  document.body.classList.remove("reading-letter");
 
-    },
-    {passive:false}
-);
+}
+
+
+function finishLetterReading(){
+
+  hideLetterReader();
+
+  hideRotateScreen();
+
+  letterState = "closed";
+
+  letterEnvelope.classList.add("show");
+
+  garden.style.display = "block";
+
+  garden.style.visibility = "visible";
+
+}
 
 
 /* =====================================================
@@ -2262,223 +1620,124 @@ flyingLetter.addEventListener(
 
 function openLetterFromEnvelope(){
 
-    if(!finalSequenceStarted){
-        return;
-    }
+  if(!finalSequenceStarted) return;
 
 
-    /*
-       Si toca el sobre estando horizontal:
-       mostramos "Gira el teléfono".
-    */
+  if(window.innerHeight <= window.innerWidth){
 
-    if(
-        window.innerHeight <=
-        window.innerWidth
-    ){
+    letterState = "waiting";
 
-        letterState =
-            "waiting";
+    hideLetterReader();
 
-        hideLetterReader();
+    showRotateScreen();
 
-        showRotateScreen();
+    return;
 
-        return;
-    }
+  }
 
 
-    /*
-       Si ya está vertical,
-       abre directamente.
-    */
-
-    openLetterReader();
+  openLetterReader();
 
 }
 
 
-letterEnvelope.addEventListener(
-    "click",
-    function(e){
+letterEnvelope.addEventListener("click",()=>{
 
-        e.preventDefault();
-        e.stopPropagation();
+  openLetterFromEnvelope();
 
-        openLetterFromEnvelope();
-
-    }
-);
-
-
-letterEnvelope.addEventListener(
-    "touchend",
-    function(e){
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        openLetterFromEnvelope();
-
-    },
-    {passive:false}
-);
+});
 
 
 /* =====================================================
-   ORIENTACIÓN
+   CAMBIO DE ORIENTACIÓN
 ===================================================== */
 
 function checkLetterOrientation(){
 
-    const portrait =
-        window.innerHeight >
-        window.innerWidth;
+  const portrait =
+    window.innerHeight > window.innerWidth;
 
 
-    /* ==========================================
-       ESTÁ LEYENDO
-    ========================================== */
+  /*
+    Si está leyendo y vuelve horizontal:
+    cerramos la carta y regresamos al jardín.
+  */
 
-    if(letterState === "reading"){
+  if(letterState === "reading"){
 
-        /*
-           Si gira a horizontal,
-           termina la lectura y vuelve al jardín.
-        */
+    if(!portrait){
 
-        if(!portrait){
+      finishLetterReading();
 
-            finishLetterReading();
-
-        }
-
-        return;
     }
 
+    return;
 
-    /* ==========================================
-       ESTÁ ESPERANDO GIRAR
-    ========================================== */
+  }
 
-    if(letterState === "waiting"){
 
-        /*
-           Ya giró a vertical.
-        */
+  /*
+    Si estaba esperando que girara:
+  */
 
-        if(portrait){
+  if(letterState === "waiting"){
 
-            openLetterReader();
+    if(portrait){
 
-        }else{
+      openLetterReader();
 
-            /*
-               Sigue horizontal:
-               mantenemos "Gira el teléfono".
-            */
+    }else{
 
-            showRotateScreen();
+      showRotateScreen();
 
-        }
-
-        return;
     }
 
+    return;
 
-    /*
-       Si está "closed" o "none",
-       NO hacemos absolutamente nada.
+  }
 
-       Esto es lo que evita que el jardín
-       vuelva accidentalmente a la pantalla
-       de "Gira el teléfono".
-    */
+
+  /*
+    closed o none:
+    no hacer nada.
+  */
 
 }
 
 
-/* =====================================================
-   EVENTOS DE ORIENTACIÓN
-===================================================== */
+window.addEventListener("resize",checkLetterOrientation);
 
 window.addEventListener(
-    "resize",
-    function(){
-
-        checkLetterOrientation();
-
-    }
-);
-
-
-window.addEventListener(
-    "orientationchange",
-    function(){
-
-        setTimeout(
-            function(){
-
-                checkLetterOrientation();
-
-            },
-            300
-        );
-
-    }
+  "orientationchange",
+  ()=>{
+    setTimeout(checkLetterOrientation,300);
+  }
 );
 
 
 /* =====================================================
-   PRE-CARGA DE FOTOS
+   CERRAR CARTA AL TOCAR FUERA
 ===================================================== */
 
-photos.forEach(
-    function(photoURL){
+letterReader.addEventListener("click",(event)=>{
 
-        const image =
-            new Image();
+  if(event.target === letterReader){
 
-        image.src =
-            photoURL;
+    /*
+      Solo se cierra si está en vertical.
+      Al volver horizontal se completa
+      automáticamente el estado.
+    */
 
-        image.onload =
-            function(){
+    if(window.innerHeight > window.innerWidth){
 
-                console.log(
-                    "OK FOTO:",
-                    photoURL
-                );
-
-            };
-
-        image.onerror =
-            function(){
-
-                console.error(
-                    "NO CARGÓ:",
-                    photoURL
-                );
-
-            };
+      finishLetterReading();
 
     }
-);
 
+  }
 
-/* =====================================================
-   GESTOS
-===================================================== */
-
-document.addEventListener(
-    "gesturestart",
-    function(e){
-
-        e.preventDefault();
-
-    },
-    {passive:false}
-);
+});
 
 </script>
 
