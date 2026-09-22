@@ -6,25 +6,30 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      viewport-fit=cover">
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Para ti 🌻">
+
 <meta name="theme-color" content="#f8f1df">
 
 <title>Para ti 🌻</title>
 
+
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
 
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     margin:0;
@@ -43,33 +48,42 @@ body{
 ===================================================== */
 
 #rotateScreen{
+
     position:fixed;
     inset:0;
+
     z-index:30000;
 
     display:none;
 
     align-items:center;
     justify-content:center;
+
     flex-direction:column;
 
     text-align:center;
 
     background:#f8f1df;
+
     color:#624d32;
 }
 
 .rotate-phone{
+
     font-size:70px;
+
     margin-bottom:20px;
 
-    animation:rotatePhone 2s infinite ease-in-out;
+    animation:
+        rotatePhone 2s infinite ease-in-out;
 }
 
 #rotateScreen p{
+
     margin:0;
 
     font-size:25px;
+
     font-style:italic;
 }
 
@@ -86,31 +100,12 @@ body{
 }
 
 
-/* En vertical, durante la parte normal,
-   se mantiene la indicación de rotación. */
-
-@media (orientation:portrait){
-
-    body:not(.reading-letter) #rotateScreen{
-        display:flex;
-    }
-
-    body:not(.reading-letter) #intro,
-    body:not(.reading-letter) #phrases,
-    body:not(.reading-letter) #garden,
-    body:not(.reading-letter) #photoViewer,
-    body:not(.reading-letter) #messageBox{
-        visibility:hidden;
-    }
-
-}
-
-
 /* =====================================================
    INTRO
 ===================================================== */
 
 #intro{
+
     position:fixed;
     inset:0;
 
@@ -129,6 +124,7 @@ body{
 }
 
 #introFlower{
+
     position:relative;
 
     width:125px;
@@ -136,23 +132,47 @@ body{
 
     cursor:pointer;
 
-    animation:floatFlower 3s ease-in-out infinite;
-
-    transition:
-        transform .65s ease,
-        opacity .65s ease;
+    animation:
+        floatFlower 3s ease-in-out infinite;
 }
-
-
-/* Efecto de presión */
 
 #introFlower.pressing{
 
     animation:
         flowerPress .65s ease forwards;
-
 }
 
+#introFlower.pressing::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:125px;
+    height:125px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.75);
+
+    border:2px solid rgba(217,155,37,.55);
+
+    border-radius:50%;
+
+    animation:
+        flowerRipple .65s ease-out forwards;
+
+    pointer-events:none;
+}
+
+#introFlower.disappear{
+
+    animation:
+        flowerDisappear .7s ease forwards !important;
+}
 
 @keyframes flowerPress{
 
@@ -175,35 +195,6 @@ body{
     100%{
         transform:scale(1);
     }
-
-}
-
-
-/* Onda */
-
-#introFlower.pressing::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:125px;
-    height:125px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    border:2px solid rgba(217,155,37,.55);
-
-    border-radius:50%;
-
-    animation:
-        flowerRipple .65s ease-out forwards;
-
-    pointer-events:none;
-
 }
 
 @keyframes flowerRipple{
@@ -223,17 +214,6 @@ body{
             translate(-50%,-50%)
             scale(1.7);
     }
-
-}
-
-
-/* Desaparición */
-
-#introFlower.disappear{
-
-    animation:
-        flowerDisappear .7s ease forwards !important;
-
 }
 
 @keyframes flowerDisappear{
@@ -247,11 +227,11 @@ body{
         opacity:0;
         transform:scale(.08);
     }
-
 }
 
 
 .introPetal{
+
     position:absolute;
 
     width:48px;
@@ -262,7 +242,8 @@ body{
 
     transform-origin:50% 85%;
 
-    border-radius:50% 50% 45% 45%;
+    border-radius:
+        50% 50% 45% 45%;
 
     background:#f4c51d;
 }
@@ -300,6 +281,7 @@ body{
 }
 
 .introCenter{
+
     position:absolute;
 
     width:45px;
@@ -308,7 +290,8 @@ body{
     left:50%;
     top:50%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border-radius:50%;
 
@@ -318,9 +301,11 @@ body{
 }
 
 #pressText{
+
     margin-top:30px;
 
     font-size:23px;
+
     font-style:italic;
 
     color:#624d32;
@@ -340,7 +325,6 @@ body{
     50%{
         transform:translateY(-9px);
     }
-
 }
 
 
@@ -349,6 +333,7 @@ body{
 ===================================================== */
 
 #phrases{
+
     position:fixed;
     inset:0;
 
@@ -367,6 +352,7 @@ body{
 }
 
 .phrase{
+
     position:absolute;
 
     max-width:90%;
@@ -376,6 +362,7 @@ body{
     color:#59452d;
 
     font-size:27px;
+
     line-height:1.45;
 
     font-style:italic;
@@ -391,10 +378,11 @@ body{
 
 /* =====================================================
    JARDÍN
-   BASE ORIGINAL
+   BASE ORIGINAL — NO CAMBIADA
 ===================================================== */
 
 #garden{
+
     position:fixed;
     inset:0;
 
@@ -414,9 +402,12 @@ body{
 }
 
 
-/* SOL */
+/* =====================================================
+   SOL
+===================================================== */
 
 .sun{
+
     position:absolute;
 
     width:105px;
@@ -441,6 +432,7 @@ body{
 ===================================================== */
 
 .clothesline-post{
+
     position:absolute;
 
     top:0;
@@ -466,6 +458,7 @@ body{
 }
 
 .clothesline{
+
     position:absolute;
 
     left:2%;
@@ -483,6 +476,7 @@ body{
 }
 
 .clothesline-sag{
+
     position:absolute;
 
     left:2%;
@@ -492,9 +486,11 @@ body{
 
     height:35px;
 
-    border-bottom:3px solid #765738;
+    border-bottom:
+        3px solid #765738;
 
-    border-radius:0 0 50% 50%;
+    border-radius:
+        0 0 50% 50%;
 
     z-index:4;
 
@@ -507,22 +503,24 @@ body{
 ===================================================== */
 
 .field{
+
     position:absolute;
 
     inset:0;
 
     z-index:10;
+
+    pointer-events:none;
 }
 
 
 /* =====================================================
    GIRASOLES
-   SIN TALLOS
-   SIN HOJAS
-   SIN RAYOS
+   BASE ORIGINAL
 ===================================================== */
 
 .field-flower{
+
     position:absolute;
 
     width:120px;
@@ -544,6 +542,7 @@ body{
 }
 
 .flower-head{
+
     position:absolute;
 
     width:76px;
@@ -560,6 +559,7 @@ body{
 }
 
 .petal{
+
     position:absolute;
 
     width:32px;
@@ -570,44 +570,62 @@ body{
 
     transform-origin:50% 90%;
 
-    border-radius:50% 50% 45% 45%;
+    border-radius:
+        50% 50% 45% 45%;
 
     background:#f5c719;
 }
 
 .petal:nth-child(1){
-    transform:translate(-50%,-90%) rotate(0deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(0deg);
 }
 
 .petal:nth-child(2){
-    transform:translate(-50%,-90%) rotate(45deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(45deg);
 }
 
 .petal:nth-child(3){
-    transform:translate(-50%,-90%) rotate(90deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(90deg);
 }
 
 .petal:nth-child(4){
-    transform:translate(-50%,-90%) rotate(135deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(135deg);
 }
 
 .petal:nth-child(5){
-    transform:translate(-50%,-90%) rotate(180deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(180deg);
 }
 
 .petal:nth-child(6){
-    transform:translate(-50%,-90%) rotate(225deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(225deg);
 }
 
 .petal:nth-child(7){
-    transform:translate(-50%,-90%) rotate(270deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(270deg);
 }
 
 .petal:nth-child(8){
-    transform:translate(-50%,-90%) rotate(315deg);
+    transform:
+        translate(-50%,-90%)
+        rotate(315deg);
 }
 
 .flower-center{
+
     position:absolute;
 
     width:35px;
@@ -616,7 +634,8 @@ body{
     left:50%;
     top:50%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border-radius:50%;
 
@@ -627,29 +646,45 @@ body{
 
 
 /* =====================================================
-   ÁREA PARA TOCAR
+   CAPA DE INTERACCIÓN
+   INVISIBLE
+   NO MODIFICA EL JARDÍN
 ===================================================== */
 
-.flower-hit{
+#interactionLayer{
+
     position:absolute;
 
-    width:100px;
-    height:100px;
+    inset:0;
 
-    left:50%;
-    top:calc(50% + var(--head-offset));
+    z-index:10000;
 
-    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
+
+.global-hit{
+
+    position:absolute;
+
+    left:var(--hit-left);
+    top:var(--hit-top);
+
+    width:var(--hit-size);
+    height:var(--hit-size);
+
+    transform:
+        translate(-50%,-50%)
+        translateY(var(--hit-offset));
 
     border-radius:50%;
 
     background:transparent;
 
-    z-index:999;
+    pointer-events:auto;
 
     cursor:pointer;
 
-    pointer-events:auto;
+    touch-action:manipulation;
 }
 
 
@@ -658,6 +693,7 @@ body{
 ===================================================== */
 
 #photoViewer{
+
     position:fixed;
     inset:0;
 
@@ -670,7 +706,8 @@ body{
 
     padding:25px;
 
-    background:rgba(30,22,12,.84);
+    background:
+        rgba(30,22,12,.84);
 
     backdrop-filter:blur(5px);
 }
@@ -680,6 +717,7 @@ body{
 }
 
 #bigPhoto{
+
     max-width:92vw;
     max-height:82vh;
 
@@ -688,15 +726,18 @@ body{
 
     object-fit:contain;
 
-    border:10px solid #fffdf7;
+    border:
+        10px solid #fffdf7;
 
     box-shadow:
         0 15px 45px rgba(0,0,0,.4);
 
-    animation:photoAppear .5s ease;
+    animation:
+        photoAppear .5s ease;
 }
 
 #closePhoto{
+
     position:absolute;
 
     top:18px;
@@ -716,6 +757,7 @@ body{
     font-family:Arial,sans-serif;
 
     font-size:30px;
+
     line-height:48px;
 
     padding:0;
@@ -736,7 +778,6 @@ body{
         opacity:1;
         transform:scale(1);
     }
-
 }
 
 
@@ -745,6 +786,7 @@ body{
 ===================================================== */
 
 .photo-line{
+
     position:absolute;
 
     left:0;
@@ -760,11 +802,13 @@ body{
 }
 
 .photo-polaroid{
+
     position:absolute;
 
     width:105px;
 
-    padding:7px 7px 25px;
+    padding:
+        7px 7px 25px;
 
     background:#fffdf8;
 
@@ -773,10 +817,12 @@ body{
 
     transform-origin:top center;
 
-    animation:hangPhoto .7s ease forwards;
+    animation:
+        hangPhoto .7s ease forwards;
 }
 
 .photo-polaroid img{
+
     display:block;
 
     width:100%;
@@ -786,6 +832,7 @@ body{
 }
 
 .peg{
+
     position:absolute;
 
     width:14px;
@@ -794,7 +841,8 @@ body{
     left:50%;
     top:-14px;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     background:
         linear-gradient(
@@ -804,7 +852,8 @@ body{
             #b77d43 58% 100%
         );
 
-    border-radius:3px 3px 6px 6px;
+    border-radius:
+        3px 3px 6px 6px;
 
     box-shadow:
         1px 2px 3px rgba(0,0,0,.25);
@@ -813,6 +862,7 @@ body{
 @keyframes hangPhoto{
 
     from{
+
         opacity:0;
 
         transform:
@@ -822,6 +872,7 @@ body{
     }
 
     to{
+
         opacity:1;
 
         transform:
@@ -829,7 +880,6 @@ body{
             rotate(var(--rotation))
             scale(1);
     }
-
 }
 
 
@@ -838,8 +888,8 @@ body{
 ===================================================== */
 
 #messageBox{
-    position:fixed;
 
+    position:fixed;
     inset:0;
 
     z-index:15000;
@@ -851,7 +901,8 @@ body{
 
     padding:25px;
 
-    background:rgba(40,25,10,.42);
+    background:
+        rgba(40,25,10,.42);
 }
 
 #messageBox.show{
@@ -859,9 +910,11 @@ body{
 }
 
 .message-card{
+
     width:min(88vw,500px);
 
-    padding:35px 28px;
+    padding:
+        35px 28px;
 
     border-radius:20px;
 
@@ -872,26 +925,31 @@ body{
 
     text-align:center;
 
-    animation:messageAppear .45s ease;
+    animation:
+        messageAppear .45s ease;
 }
 
 .message-card p{
+
     margin:0;
 
     color:#62482d;
 
     font-size:25px;
+
     line-height:1.5;
 
     font-style:italic;
 }
 
 .message-card button{
+
     margin-top:25px;
 
     border:0;
 
-    padding:11px 25px;
+    padding:
+        11px 25px;
 
     border-radius:30px;
 
@@ -915,7 +973,6 @@ body{
         opacity:1;
         transform:scale(1);
     }
-
 }
 
 
@@ -924,6 +981,7 @@ body{
 ===================================================== */
 
 .seed{
+
     position:fixed;
 
     width:12px;
@@ -932,7 +990,8 @@ body{
     left:50%;
     top:35%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius:50%;
 
@@ -940,7 +999,8 @@ body{
 
     z-index:9500;
 
-    animation:seedFall 1.7s ease-in forwards;
+    animation:
+        seedFall 1.7s ease-in forwards;
 
     pointer-events:none;
 }
@@ -948,6 +1008,7 @@ body{
 @keyframes seedFall{
 
     0%{
+
         opacity:0;
 
         transform:
@@ -960,13 +1021,13 @@ body{
     }
 
     100%{
+
         opacity:0;
 
         transform:
             translate(-50%,60vh)
             rotate(300deg);
     }
-
 }
 
 
@@ -978,7 +1039,6 @@ body{
 
     animation:
         flowerWind 2.7s ease-in-out infinite alternate;
-
 }
 
 @keyframes flowerWind{
@@ -994,14 +1054,12 @@ body{
     100%{
         margin-left:-3px;
     }
-
 }
 
 .wind-active .photo-polaroid{
 
     animation:
         photoWind 2.7s ease-in-out infinite alternate;
-
 }
 
 @keyframes photoWind{
@@ -1017,12 +1075,11 @@ body{
     100%{
         margin-left:-3px;
     }
-
 }
 
 
 /* =====================================================
-   CARTA QUE LLEGA CON EL VIENTO
+   CARTA VOLANDO
 ===================================================== */
 
 #flyingLetter{
@@ -1039,12 +1096,14 @@ body{
 
     background:#fffdf7;
 
-    border:1px solid #eadfc9;
+    border:
+        1px solid #eadfc9;
 
     box-shadow:
         0 10px 25px rgba(0,0,0,.25);
 
-    transform:rotate(-8deg);
+    transform:
+        rotate(-8deg);
 
     cursor:pointer;
 
@@ -1060,7 +1119,6 @@ body{
     animation:
         letterFly 4s cubic-bezier(.2,.8,.2,1)
         forwards;
-
 }
 
 #flyingLetter::before{
@@ -1078,10 +1136,14 @@ body{
     width:0;
     height:0;
 
-    border-left:62px solid transparent;
-    border-right:62px solid transparent;
-    border-top:43px solid #efe5d2;
+    border-left:
+        62px solid transparent;
 
+    border-right:
+        62px solid transparent;
+
+    border-top:
+        43px solid #efe5d2;
 }
 
 #flyingLetter::after{
@@ -1098,7 +1160,6 @@ body{
     justify-content:center;
 
     font-size:38px;
-
 }
 
 @keyframes letterFly{
@@ -1113,7 +1174,6 @@ body{
         transform:
             rotate(-12deg)
             scale(.8);
-
     }
 
     15%{
@@ -1128,7 +1188,6 @@ body{
         transform:
             rotate(8deg)
             scale(1);
-
     }
 
     75%{
@@ -1138,7 +1197,6 @@ body{
 
         transform:
             rotate(-5deg);
-
     }
 
     100%{
@@ -1152,14 +1210,12 @@ body{
             translateX(-50%)
             rotate(3deg)
             scale(1);
-
     }
-
 }
 
 
 /* =====================================================
-   CARTA
+   LECTOR DE CARTA
 ===================================================== */
 
 #letterReader{
@@ -1175,10 +1231,11 @@ body{
     align-items:center;
     justify-content:center;
 
-    padding:4vh 6vw;
+    padding:
+        4vh 6vw;
 
-    background:rgba(35,25,15,.20);
-
+    background:
+        rgba(35,25,15,.20);
 }
 
 #letterReader.show{
@@ -1196,13 +1253,12 @@ body{
     overflow-y:auto;
 
     padding:
-        55px
-        60px
-        65px;
+        55px 60px 65px;
 
     background:#fffdf7;
 
-    border:1px solid #e5d9c3;
+    border:
+        1px solid #e5d9c3;
 
     box-shadow:
         0 20px 60px rgba(0,0,0,.30);
@@ -1218,7 +1274,6 @@ body{
     text-align:left;
 
     scrollbar-width:none;
-
 }
 
 .letter-paper::-webkit-scrollbar{
@@ -1232,7 +1287,6 @@ body{
     font-size:34px;
 
     margin-bottom:35px;
-
 }
 
 .letter-sign{
@@ -1242,35 +1296,26 @@ body{
     text-align:right;
 
     font-size:25px;
-
 }
 
 
 /* =====================================================
-   TRANSICIÓN
-===================================================== */
-
-.fadeOut{
-
-    animation:
-        fadeOut .8s forwards;
-
-}
-
-@keyframes fadeOut{
-
-    to{
-        opacity:0;
-    }
-
-}
-
-
-/* =====================================================
-   CARTA EN VERTICAL
+   PORTRAIT
 ===================================================== */
 
 @media (orientation:portrait){
+
+    body:not(.reading-letter) #rotateScreen{
+        display:flex;
+    }
+
+    body:not(.reading-letter) #intro,
+    body:not(.reading-letter) #phrases,
+    body:not(.reading-letter) #garden,
+    body:not(.reading-letter) #photoViewer,
+    body:not(.reading-letter) #messageBox{
+        visibility:hidden;
+    }
 
     body.reading-letter #rotateScreen{
         display:none !important;
@@ -1284,12 +1329,11 @@ body{
     body.reading-letter #letterReader{
         display:flex;
     }
-
 }
 
 
 /* =====================================================
-   CARTA EN HORIZONTAL
+   HORIZONTAL
 ===================================================== */
 
 @media (orientation:landscape){
@@ -1297,7 +1341,6 @@ body{
     body.reading-letter #letterReader{
         display:none !important;
     }
-
 }
 
 
@@ -1316,12 +1359,11 @@ body{
     }
 
     .photo-polaroid{
+
         width:82px;
 
         padding:
-            5px
-            5px
-            18px;
+            5px 5px 18px;
     }
 
     .photo-polaroid img{
@@ -1335,25 +1377,21 @@ body{
         max-height:90vh;
 
         padding:
-            38px
-            28px
-            45px;
+            38px 28px 45px;
 
         font-size:19px;
 
         line-height:1.7;
-
     }
 
     .letter-title{
         font-size:29px;
     }
-
 }
 
 
 /* =====================================================
-   IPHONE / PWA
+   IPHONE
 ===================================================== */
 
 @supports (-webkit-touch-callout:none){
@@ -1362,7 +1400,6 @@ body{
         padding-bottom:
             env(safe-area-inset-bottom);
     }
-
 }
 
 </style>
@@ -1456,6 +1493,12 @@ body{
 
     <div id="field" class="field"></div>
 
+    <!-- ZONAS INVISIBLES DE INTERACCIÓN -->
+
+    <div id="interactionLayer"></div>
+
+    <!-- CARTA -->
+
     <div id="flyingLetter"></div>
 
 </section>
@@ -1476,8 +1519,7 @@ body{
     <img
         id="bigPhoto"
         src=""
-        alt="Nuestro recuerdo"
-    >
+        alt="Nuestro recuerdo">
 
 </div>
 
@@ -1495,7 +1537,9 @@ body{
         <button
             id="closeMessage"
             type="button">
+
             Cerrar
+
         </button>
 
     </div>
@@ -1572,6 +1616,9 @@ const garden =
 const field =
     document.getElementById("field");
 
+const interactionLayer =
+    document.getElementById("interactionLayer");
+
 const photoViewer =
     document.getElementById("photoViewer");
 
@@ -1613,64 +1660,88 @@ let currentPhoto = null;
 
 let currentPhotoIndex = null;
 
-let currentPhotoHit = null;
-
 let foundPhotos =
     new Set();
 
 let totalHung = 0;
 
-let finalSequenceStarted = false;
+let finalSequenceStarted =
+    false;
 
-let letterPending = false;
+let letterPending =
+    false;
 
 
 /* =====================================================
    FOTOS
-   NOMBRES NUEVOS CONFIRMADOS
 ===================================================== */
+
+const photoBase =
+    "https://raw.githubusercontent.com/LuisG4r/Flores-amarillas/main/";
+
 
 const photos = [
 
-    "foto1.jpeg",
+    photoBase + "foto1.jpeg",
 
-    "foto2.jpeg",
+    photoBase + "foto2.jpeg",
 
-    "foto3.jpeg",
+    photoBase + "foto3.jpeg",
 
-    "foto4.jpeg",
+    photoBase + "foto4.jpeg",
 
-    "foto5.jpeg",
+    photoBase + "foto5.jpeg",
 
-    "foto6.jpeg",
+    photoBase + "foto6.jpeg",
 
-    "foto7.jpeg"
+    photoBase + "foto7.jpeg"
 
 ];
 
 
 const photoSlots = [
 
-    {left:"5%",rotation:"-5deg"},
+    {
+        left:"5%",
+        rotation:"-5deg"
+    },
 
-    {left:"19%",rotation:"4deg"},
+    {
+        left:"19%",
+        rotation:"4deg"
+    },
 
-    {left:"33%",rotation:"-3deg"},
+    {
+        left:"33%",
+        rotation:"-3deg"
+    },
 
-    {left:"47%",rotation:"5deg"},
+    {
+        left:"47%",
+        rotation:"5deg"
+    },
 
-    {left:"61%",rotation:"-4deg"},
+    {
+        left:"61%",
+        rotation:"-4deg"
+    },
 
-    {left:"75%",rotation:"3deg"},
+    {
+        left:"75%",
+        rotation:"3deg"
+    },
 
-    {left:"88%",rotation:"-5deg"}
+    {
+        left:"88%",
+        rotation:"-5deg"
+    }
 
 ];
 
 
 /* =====================================================
-   DISTRIBUCIÓN DEL JARDÍN
-   NO MODIFICADA
+   FLORES
+   EXACTAMENTE LA BASE ORIGINAL
 ===================================================== */
 
 const flowers = [
@@ -1907,7 +1978,7 @@ const flowers = [
 
 
 /* =====================================================
-   FLORES CON FOTOS
+   MAPA DE FOTOS
 ===================================================== */
 
 const photoFlowerMap = {
@@ -1924,10 +1995,13 @@ const photoFlowerMap = {
 
 
 /* =====================================================
-   CREAR FLORES
+   CREAR FLORES VISUALES
 ===================================================== */
 
-function createFlower(data,index){
+function createFlower(
+    data,
+    index
+){
 
     const flower =
         document.createElement("div");
@@ -1990,24 +2064,6 @@ function createFlower(data,index){
     }
 
 
-    /* =================================================
-       ESPECIAL
-    ================================================= */
-
-    if(data.message){
-
-        /*
-          Solo afecta la prioridad de interacción.
-          No cambia la posición visual.
-        */
-
-        flower.classList.add(
-            "special"
-        );
-
-    }
-
-
     const head =
         document.createElement("div");
 
@@ -2015,7 +2071,11 @@ function createFlower(data,index){
         "flower-head";
 
 
-    for(let i=0;i<8;i++){
+    for(
+        let i = 0;
+        i < 8;
+        i++
+    ){
 
         const petal =
             document.createElement("div");
@@ -2040,39 +2100,32 @@ function createFlower(data,index){
         center
     );
 
+
     flower.appendChild(
         head
     );
 
 
-    /* =================================================
-       ZONA TÁCTIL
-    ================================================= */
-
-    const hit =
-        document.createElement("div");
-
-    hit.className =
-        "flower-hit";
-
-    hit.style.setProperty(
-        "--head-offset",
-        data.headOffset
+    field.appendChild(
+        flower
     );
 
 
-    /* =================================================
-       FLORES ESPECIALES
-    ================================================= */
+    /*
+      AQUÍ ESTÁ EL CAMBIO IMPORTANTE:
+
+      La zona táctil se crea FUERA de la flor,
+      directamente en interactionLayer.
+
+      Por lo tanto ninguna flor puede taparla.
+    */
 
     if(data.message){
 
-        hit.addEventListener(
-            "click",
-            function(e){
-
-                e.preventDefault();
-                e.stopPropagation();
+        createGlobalHit(
+            data,
+            index,
+            function(){
 
                 showMessage(
                     data.message
@@ -2082,11 +2135,6 @@ function createFlower(data,index){
         );
 
     }
-
-
-    /* =================================================
-       FLORES CON FOTO
-    ================================================= */
 
     else if(
         Object.prototype.hasOwnProperty.call(
@@ -2098,16 +2146,11 @@ function createFlower(data,index){
         const photoIndex =
             photoFlowerMap[index];
 
-        hit.dataset.found =
-            "false";
 
-
-        hit.addEventListener(
-            "click",
-            function(e){
-
-                e.preventDefault();
-                e.stopPropagation();
+        createGlobalHit(
+            data,
+            index,
+            function(hit){
 
                 openPhoto(
                     photos[photoIndex],
@@ -2120,14 +2163,116 @@ function createFlower(data,index){
 
     }
 
+}
 
-    flower.appendChild(
+
+/* =====================================================
+   ZONA TÁCTIL GLOBAL
+===================================================== */
+
+function createGlobalHit(
+    data,
+    flowerIndex,
+    action
+){
+
+    const hit =
+        document.createElement("div");
+
+
+    hit.className =
+        "global-hit";
+
+
+    hit.dataset.flowerIndex =
+        flowerIndex;
+
+
+    hit.style.setProperty(
+        "--hit-left",
+        data.left
+    );
+
+    hit.style.setProperty(
+        "--hit-top",
+        data.top
+    );
+
+
+    /*
+      Mantiene aproximadamente
+      el tamaño proporcional de la cabeza.
+    */
+
+    const scale =
+        Number(data.scale);
+
+
+    const size =
+        Math.max(
+            58,
+            112 * scale
+        );
+
+
+    hit.style.setProperty(
+        "--hit-size",
+        size + "px"
+    );
+
+
+    /*
+      El desplazamiento de la cabeza
+      sigue la escala de la flor.
+    */
+
+    const offset =
+        parseFloat(
+            data.headOffset
+        ) * scale;
+
+
+    hit.style.setProperty(
+        "--hit-offset",
+        offset + "px"
+    );
+
+
+    hit.addEventListener(
+        "click",
+        function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            action(hit);
+
+        }
+    );
+
+
+    hit.addEventListener(
+        "touchend",
+        function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            action(hit);
+
+        },
+        {
+            passive:false
+        }
+    );
+
+
+    interactionLayer.appendChild(
         hit
     );
 
-    field.appendChild(
-        flower
-    );
+
+    return hit;
 
 }
 
@@ -2148,20 +2293,22 @@ function startIntro(){
         return;
     }
 
-    introStarted = true;
+    introStarted =
+        true;
 
 
     introFlower.classList.add(
         "pressing"
     );
 
+
     pressText.style.opacity =
         "0";
 
 
     /*
-      Primero termina el efecto
-      de presión.
+      Primero termina
+      el efecto de presión.
     */
 
     setTimeout(
@@ -2177,9 +2324,10 @@ function startIntro(){
 
 
             /*
-              La semilla comienza
-              DESPUÉS de que la flor
-              desapareció.
+              IMPORTANTE:
+              la semilla aparece
+              DESPUÉS de desaparecer
+              la flor.
             */
 
             setTimeout(
@@ -2201,10 +2349,6 @@ function startIntro(){
                 700
             );
 
-
-            /*
-              Continúa la secuencia.
-            */
 
             setTimeout(
                 function(){
@@ -2247,7 +2391,8 @@ function showPhrases(){
     phrases.style.display =
         "flex";
 
-    let current = 0;
+    let current =
+        0;
 
 
     function nextPhrase(){
@@ -2282,7 +2427,6 @@ function showPhrases(){
             );
 
             return;
-
         }
 
 
@@ -2303,6 +2447,7 @@ function showPhrases(){
                 );
 
                 current++;
+
 
                 setTimeout(
                     nextPhrase,
@@ -2326,7 +2471,7 @@ function showPhrases(){
 ===================================================== */
 
 function openPhoto(
-    photoName,
+    photoURL,
     index,
     hit
 ){
@@ -2340,25 +2485,24 @@ function openPhoto(
     }
 
 
-    currentPhoto =
-        photoName;
-
-    currentPhotoIndex =
-        index;
-
-    currentPhotoHit =
-        hit;
-
-
     foundPhotos.add(
         index
     );
 
 
-    if(hit){
+    currentPhoto =
+        photoURL;
 
-        hit.dataset.found =
-            "true";
+    currentPhotoIndex =
+        index;
+
+
+    /*
+      Bloqueamos esa flor
+      después de descubrirla.
+    */
+
+    if(hit){
 
         hit.style.pointerEvents =
             "none";
@@ -2367,26 +2511,30 @@ function openPhoto(
 
 
     /*
-      Ruta limpia para GitHub Pages.
+      La foto se abre GRANDE.
     */
 
-    const imagePath =
-        new URL(
-            photoName,
-            document.baseURI
-        ).href;
-
-
     bigPhoto.src =
-        imagePath;
+        photoURL;
 
 
     bigPhoto.onerror =
         function(){
 
             console.error(
-                "No se pudo cargar la foto:",
-                imagePath
+                "ERROR CARGANDO FOTO:",
+                photoURL
+            );
+
+        };
+
+
+    bigPhoto.onload =
+        function(){
+
+            console.log(
+                "FOTO CARGADA:",
+                photoURL
             );
 
         };
@@ -2405,7 +2553,9 @@ function openPhoto(
 
 function closeCurrentPhoto(){
 
-    if(currentPhoto === null){
+    if(
+        currentPhoto === null
+    ){
 
         photoViewer.classList.remove(
             "show"
@@ -2429,8 +2579,8 @@ function closeCurrentPhoto(){
 
 
     /*
-      La foto viaja al tendedero
-      después de cerrar el visor.
+      Después de cerrar:
+      foto → tendedero.
     */
 
     setTimeout(
@@ -2452,9 +2602,6 @@ function closeCurrentPhoto(){
     currentPhotoIndex =
         null;
 
-    currentPhotoHit =
-        null;
-
 }
 
 
@@ -2471,12 +2618,29 @@ closePhoto.addEventListener(
 );
 
 
+closePhoto.addEventListener(
+    "touchend",
+    function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeCurrentPhoto();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
 photoViewer.addEventListener(
     "click",
     function(e){
 
         if(
-            e.target === photoViewer
+            e.target ===
+            photoViewer
         ){
 
             closeCurrentPhoto();
@@ -2492,7 +2656,7 @@ photoViewer.addEventListener(
 ===================================================== */
 
 function sendPhotoToLine(
-    photoName,
+    photoURL,
     index
 ){
 
@@ -2506,7 +2670,7 @@ function sendPhotoToLine(
 
                 return (
                     el.dataset.photo ===
-                    photoName
+                    photoURL
                 );
 
             }
@@ -2528,12 +2692,13 @@ function sendPhotoToLine(
             "div"
         );
 
+
     polaroid.className =
         "photo-polaroid";
 
 
     polaroid.dataset.photo =
-        photoName;
+        photoURL;
 
 
     polaroid.style.left =
@@ -2553,11 +2718,7 @@ function sendPhotoToLine(
 
 
     img.src =
-        new URL(
-            photoName,
-            document.baseURI
-        ).href;
-
+        photoURL;
 
     img.alt =
         "Nuestro recuerdo";
@@ -2567,6 +2728,7 @@ function sendPhotoToLine(
         document.createElement(
             "div"
         );
+
 
     peg.className =
         "peg";
@@ -2590,11 +2752,13 @@ function sendPhotoToLine(
 
 
     /*
-      Cuando las 7 están colgadas:
-      comienza la escena final.
+      Las 7 fotografías
+      ya están colgadas.
     */
 
-    if(totalHung === 7){
+    if(
+        totalHung === 7
+    ){
 
         startFinalSequence();
 
@@ -2604,10 +2768,12 @@ function sendPhotoToLine(
 
 
 /* =====================================================
-   MENSAJES ESPECIALES
+   MENSAJES
 ===================================================== */
 
-function showMessage(message){
+function showMessage(
+    message
+){
 
     messageText.textContent =
         message;
@@ -2641,12 +2807,29 @@ closeMessage.addEventListener(
 );
 
 
+closeMessage.addEventListener(
+    "touchend",
+    function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeMsg();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
 messageBox.addEventListener(
     "click",
     function(e){
 
         if(
-            e.target === messageBox
+            e.target ===
+            messageBox
         ){
 
             closeMsg();
@@ -2667,21 +2850,18 @@ function startFinalSequence(){
         return;
     }
 
+
     finalSequenceStarted =
         true;
 
 
     /*
       Dejamos unos segundos
-      para ver las 7 fotografías.
+      para contemplar las fotos.
     */
 
     setTimeout(
         function(){
-
-            /*
-              Viento suave.
-            */
 
             garden.classList.add(
                 "wind-active"
@@ -2689,7 +2869,8 @@ function startFinalSequence(){
 
 
             /*
-              Después aparece la carta.
+              El viento mueve suavemente
+              las flores y fotografías.
             */
 
             setTimeout(
@@ -2711,13 +2892,17 @@ function startFinalSequence(){
 
 
 /* =====================================================
-   CARTA
+   TOCAR CARTA
 ===================================================== */
 
 function openLetter(){
 
-    if(!finalSequenceStarted){
+    if(
+        !finalSequenceStarted
+    ){
+
         return;
+
     }
 
 
@@ -2747,6 +2932,22 @@ flyingLetter.addEventListener(
 );
 
 
+flyingLetter.addEventListener(
+    "touchend",
+    function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        openLetter();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
 /* =====================================================
    ORIENTACIÓN
 ===================================================== */
@@ -2766,8 +2967,8 @@ function checkLetterOrientation(){
     if(portrait){
 
         /*
-          Vertical:
-          se abre la carta.
+          VERTICAL:
+          se puede leer la carta.
         */
 
         document.body.classList.add(
@@ -2788,8 +2989,8 @@ function checkLetterOrientation(){
     else{
 
         /*
-          Horizontal:
-          mostramos "Gira el teléfono".
+          HORIZONTAL:
+          pide girar el teléfono.
         */
 
         document.body.classList.remove(
@@ -2838,7 +3039,7 @@ window.addEventListener(
                 }
 
             },
-            250
+            300
         );
 
     }
@@ -2846,29 +3047,26 @@ window.addEventListener(
 
 
 /* =====================================================
-   PRE-CARGA DE LAS 7 FOTOS
+   PRE-CARGA DE FOTOS
 ===================================================== */
 
 photos.forEach(
-    function(photoName){
+    function(photoURL){
 
         const image =
             new Image();
 
 
         image.src =
-            new URL(
-                photoName,
-                document.baseURI
-            ).href;
+            photoURL;
 
 
         image.onload =
             function(){
 
                 console.log(
-                    "Foto cargada:",
-                    photoName
+                    "OK FOTO:",
+                    photoURL
                 );
 
             };
@@ -2878,12 +3076,8 @@ photos.forEach(
             function(){
 
                 console.error(
-                    "ERROR FOTO:",
-                    photoName,
-                    new URL(
-                        photoName,
-                        document.baseURI
-                    ).href
+                    "NO CARGÓ:",
+                    photoURL
                 );
 
             };
@@ -2893,7 +3087,7 @@ photos.forEach(
 
 
 /* =====================================================
-   EVITAR ZOOM GESTUAL
+   GESTOS
 ===================================================== */
 
 document.addEventListener(
@@ -2903,7 +3097,9 @@ document.addEventListener(
         e.preventDefault();
 
     },
-    {passive:false}
+    {
+        passive:false
+    }
 );
 
 </script>
