@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
 <title>Para ti 🌻</title>
 
 <style>
@@ -54,13 +53,8 @@ body{
 }
 
 @keyframes rotatePhone{
-    0%,100%{
-        transform:rotate(0deg);
-    }
-
-    45%,65%{
-        transform:rotate(90deg);
-    }
+    0%,100%{transform:rotate(0deg);}
+    45%,65%{transform:rotate(90deg);}
 }
 
 @media (orientation:portrait){
@@ -113,37 +107,14 @@ body{
     background:#f4c51d;
 }
 
-.introPetal:nth-child(1){
-    transform:translate(-50%,-85%) rotate(0deg);
-}
-
-.introPetal:nth-child(2){
-    transform:translate(-50%,-85%) rotate(45deg);
-}
-
-.introPetal:nth-child(3){
-    transform:translate(-50%,-85%) rotate(90deg);
-}
-
-.introPetal:nth-child(4){
-    transform:translate(-50%,-85%) rotate(135deg);
-}
-
-.introPetal:nth-child(5){
-    transform:translate(-50%,-85%) rotate(180deg);
-}
-
-.introPetal:nth-child(6){
-    transform:translate(-50%,-85%) rotate(225deg);
-}
-
-.introPetal:nth-child(7){
-    transform:translate(-50%,-85%) rotate(270deg);
-}
-
-.introPetal:nth-child(8){
-    transform:translate(-50%,-85%) rotate(315deg);
-}
+.introPetal:nth-child(1){transform:translate(-50%,-85%) rotate(0deg);}
+.introPetal:nth-child(2){transform:translate(-50%,-85%) rotate(45deg);}
+.introPetal:nth-child(3){transform:translate(-50%,-85%) rotate(90deg);}
+.introPetal:nth-child(4){transform:translate(-50%,-85%) rotate(135deg);}
+.introPetal:nth-child(5){transform:translate(-50%,-85%) rotate(180deg);}
+.introPetal:nth-child(6){transform:translate(-50%,-85%) rotate(225deg);}
+.introPetal:nth-child(7){transform:translate(-50%,-85%) rotate(270deg);}
+.introPetal:nth-child(8){transform:translate(-50%,-85%) rotate(315deg);}
 
 .introCenter{
     position:absolute;
@@ -166,14 +137,8 @@ body{
 }
 
 @keyframes floatFlower{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-9px);
-    }
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-9px);}
 }
 
 /* =====================================================
@@ -221,8 +186,9 @@ body{
         linear-gradient(
             to bottom,
             #bfe3f2 0%,
-            #d8edf4 53%,
-            #82b95e 54%,
+            #d8edf4 49%,
+            #b4d77b 50%,
+            #82b95e 65%,
             #4f963f 100%
         );
 }
@@ -243,8 +209,7 @@ body{
 
 /* =====================================================
    TENDEDERO
-   IMPORTANTE:
-   LOS POSTES QUEDAN DETRÁS DE LAS FLORES
+   DETRÁS DE LAS FLORES
 ===================================================== */
 
 .clothesline-post{
@@ -290,7 +255,7 @@ body{
 }
 
 /* =====================================================
-   CAMPO DE FLORES
+   CAMPO
 ===================================================== */
 
 .field{
@@ -299,17 +264,18 @@ body{
     z-index:10;
 }
 
-/*
-   IMPORTANTE:
-   NO HAY TALLOS.
-   NO HAY HOJAS.
-*/
+/* =====================================================
+   GIRASOLES
+   SIN TALLOS
+   SIN HOJAS
+   SIN RAYOS
+===================================================== */
 
 .field-flower{
     position:absolute;
 
     width:120px;
-    height:210px;
+    height:120px;
 
     left:var(--left);
     top:var(--top);
@@ -333,9 +299,11 @@ body{
     height:76px;
 
     left:50%;
-    top:calc(50% + var(--head-offset));
+    top:50%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%)
+        translateY(var(--head-offset));
 
     transform-origin:center center;
 }
@@ -356,81 +324,29 @@ body{
     background:#f5c719;
 }
 
-.petal:nth-child(1){
-    transform:translate(-50%,-90%) rotate(0deg);
-}
-
-.petal:nth-child(2){
-    transform:translate(-50%,-90%) rotate(45deg);
-}
-
-.petal:nth-child(3){
-    transform:translate(-50%,-90%) rotate(90deg);
-}
-
-.petal:nth-child(4){
-    transform:translate(-50%,-90%) rotate(135deg);
-}
-
-.petal:nth-child(5){
-    transform:translate(-50%,-90%) rotate(180deg);
-}
-
-.petal:nth-child(6){
-    transform:translate(-50%,-90%) rotate(225deg);
-}
-
-.petal:nth-child(7){
-    transform:translate(-50%,-90%) rotate(270deg);
-}
-
-.petal:nth-child(8){
-    transform:translate(-50%,-90%) rotate(315deg);
-}
+.petal:nth-child(1){transform:translate(-50%,-90%) rotate(0deg);}
+.petal:nth-child(2){transform:translate(-50%,-90%) rotate(45deg);}
+.petal:nth-child(3){transform:translate(-50%,-90%) rotate(90deg);}
+.petal:nth-child(4){transform:translate(-50%,-90%) rotate(135deg);}
+.petal:nth-child(5){transform:translate(-50%,-90%) rotate(180deg);}
+.petal:nth-child(6){transform:translate(-50%,-90%) rotate(225deg);}
+.petal:nth-child(7){transform:translate(-50%,-90%) rotate(270deg);}
+.petal:nth-child(8){transform:translate(-50%,-90%) rotate(315deg);}
 
 .flower-center{
     position:absolute;
-
     width:35px;
     height:35px;
-
     left:50%;
     top:50%;
-
     transform:translate(-50%,-50%);
-
     border-radius:50%;
-
     background:#74481f;
-
     z-index:4;
 }
 
-/* FLORES ESPECIALES */
-
-.field-flower.special::after{
-    content:"";
-
-    position:absolute;
-
-    width:72px;
-    height:72px;
-
-    left:50%;
-    top:calc(50% + var(--head-offset));
-
-    transform:translate(-50%,-50%);
-
-    border-radius:50%;
-
-    box-shadow:
-        0 0 20px 5px rgba(255,215,50,.45);
-
-    pointer-events:none;
-}
-
 /* =====================================================
-   ÁREA INVISIBLE PARA TOCAR LAS FLORES
+   ÁREA PARA TOCAR
 ===================================================== */
 
 .flower-hit{
@@ -462,7 +378,6 @@ body{
 #photoViewer{
     position:fixed;
     inset:0;
-
     z-index:20000;
 
     display:none;
@@ -526,7 +441,6 @@ body{
 }
 
 @keyframes photoAppear{
-
     from{
         opacity:0;
         transform:scale(.75);
@@ -539,7 +453,7 @@ body{
 }
 
 /* =====================================================
-   TENDEDERO DE FOTOS
+   FOTOS COLGADAS
 ===================================================== */
 
 .photo-line{
@@ -609,7 +523,6 @@ body{
 }
 
 @keyframes hangPhoto{
-
     from{
         opacity:0;
         transform:
@@ -634,7 +547,6 @@ body{
 #messageBox{
     position:fixed;
     inset:0;
-
     z-index:15000;
 
     display:none;
@@ -696,7 +608,6 @@ body{
 }
 
 @keyframes messageAppear{
-
     from{
         opacity:0;
         transform:scale(.8);
@@ -736,7 +647,6 @@ body{
 
     0%{
         opacity:0;
-
         transform:
             translate(-50%,-80px)
             rotate(0);
@@ -748,7 +658,6 @@ body{
 
     100%{
         opacity:0;
-
         transform:
             translate(-50%,60vh)
             rotate(300deg);
@@ -756,7 +665,7 @@ body{
 }
 
 /* =====================================================
-   FADE
+   TRANSICIÓN
 ===================================================== */
 
 .fadeOut{
@@ -764,7 +673,6 @@ body{
 }
 
 @keyframes fadeOut{
-
     to{
         opacity:0;
     }
@@ -785,6 +693,7 @@ body{
     <p>Gira el teléfono</p>
 
 </div>
+
 
 <!-- =====================================================
      INTRO
@@ -813,6 +722,7 @@ body{
 
 </section>
 
+
 <!-- =====================================================
      FRASES
 ===================================================== -->
@@ -833,6 +743,7 @@ body{
 
 </section>
 
+
 <!-- =====================================================
      JARDÍN
 ===================================================== -->
@@ -841,9 +752,7 @@ body{
 
     <div class="sun"></div>
 
-    <!--
-        LOS POSTES ESTÁN DETRÁS DE LAS FLORES.
-    -->
+    <!-- Tendedero detrás -->
 
     <div class="clothesline-post left"></div>
     <div class="clothesline-post right"></div>
@@ -851,7 +760,7 @@ body{
     <div class="clothesline-sag"></div>
     <div class="clothesline"></div>
 
-    <!-- Fotos permanentes -->
+    <!-- Fotos -->
 
     <div id="photoLine" class="photo-line"></div>
 
@@ -861,8 +770,9 @@ body{
 
 </section>
 
+
 <!-- =====================================================
-     VISOR DE FOTO
+     VISOR
 ===================================================== -->
 
 <div id="photoViewer">
@@ -879,8 +789,9 @@ body{
 
 </div>
 
+
 <!-- =====================================================
-     MENSAJE
+     MENSAJES
 ===================================================== -->
 
 <div id="messageBox">
@@ -896,6 +807,7 @@ body{
     </div>
 
 </div>
+
 
 <script>
 
@@ -977,299 +889,279 @@ const photos = [
 ];
 
 
-/*
-   Posición de cada fotografía en el tendedero.
-*/
-
 const photoSlots = [
 
-    {
-        left:"5%",
-        rotation:"-5deg"
-    },
-
-    {
-        left:"19%",
-        rotation:"4deg"
-    },
-
-    {
-        left:"33%",
-        rotation:"-3deg"
-    },
-
-    {
-        left:"47%",
-        rotation:"5deg"
-    },
-
-    {
-        left:"61%",
-        rotation:"-4deg"
-    },
-
-    {
-        left:"75%",
-        rotation:"3deg"
-    },
-
-    {
-        left:"88%",
-        rotation:"-5deg"
-    }
+    {left:"5%",rotation:"-5deg"},
+    {left:"19%",rotation:"4deg"},
+    {left:"33%",rotation:"-3deg"},
+    {left:"47%",rotation:"5deg"},
+    {left:"61%",rotation:"-4deg"},
+    {left:"75%",rotation:"3deg"},
+    {left:"88%",rotation:"-5deg"}
 
 ];
 
 
 /* =====================================================
-   FLORES
-   ESTAS POSICIONES NO SE TOCAN
+   DISTRIBUCIÓN DEL JARDÍN
+   TODAS LAS CABEZAS ESTÁN EN EL ÁREA VERDE
 ===================================================== */
 
 const flowers = [
 
+    /* -------------------------
+       FONDO
+    ------------------------- */
+
     {
-        left:"3%",
-        top:"6%",
+        left:"5%",
+        top:"57%",
         scale:.40,
         rotate:"-4deg",
-        headOffset:"8px"
+        headOffset:"0px"
     },
 
     {
-        left:"15%",
-        top:"31%",
-        scale:.45,
+        left:"16%",
+        top:"53%",
+        scale:.43,
         rotate:"2deg",
-        headOffset:"-12px"
+        headOffset:"-4px"
     },
 
     {
         left:"28%",
-        top:"13%",
+        top:"59%",
         scale:.39,
         rotate:"-2deg",
-        headOffset:"15px"
+        headOffset:"3px"
     },
 
     {
-        left:"42%",
-        top:"40%",
-        scale:.46,
+        left:"40%",
+        top:"54%",
+        scale:.45,
         rotate:"3deg",
-        headOffset:"-18px"
+        headOffset:"-3px"
     },
 
     {
-        left:"55%",
-        top:"7%",
+        left:"53%",
+        top:"57%",
         scale:.42,
         rotate:"-3deg",
-        headOffset:"7px",
+        headOffset:"3px",
 
         message:
             "Eres mi vida y por ello quiero estar a tu lado mil y un vidas"
     },
 
     {
-        left:"69%",
-        top:"27%",
-        scale:.45,
+        left:"66%",
+        top:"53%",
+        scale:.44,
         rotate:"2deg",
-        headOffset:"-16px"
+        headOffset:"-4px"
     },
 
     {
-        left:"83%",
-        top:"12%",
+        left:"79%",
+        top:"58%",
         scale:.40,
         rotate:"-2deg",
-        headOffset:"12px"
+        headOffset:"3px"
     },
 
     {
-        left:"96%",
-        top:"38%",
-        scale:.47,
+        left:"93%",
+        top:"54%",
+        scale:.46,
         rotate:"3deg",
-        headOffset:"-20px"
+        headOffset:"-3px"
     },
 
+
+    /* -------------------------
+       MEDIO
+    ------------------------- */
+
     {
-        left:"21%",
-        top:"55%",
-        scale:.41,
+        left:"10%",
+        top:"67%",
+        scale:.55,
         rotate:"-3deg",
-        headOffset:"9px"
+        headOffset:"4px"
     },
 
     {
-        left:"91%",
-        top:"60%",
-        scale:.45,
+        left:"22%",
+        top:"72%",
+        scale:.49,
         rotate:"2deg",
-        headOffset:"-15px"
+        headOffset:"-4px"
     },
 
     {
-        left:"5%",
-        top:"70%",
-        scale:.60,
-        rotate:"-2deg",
-        headOffset:"-8px"
-    },
-
-    {
-        left:"18%",
-        top:"84%",
-        scale:.66,
-        rotate:"2deg",
-        headOffset:"-24px"
-    },
-
-    {
-        left:"33%",
-        top:"62%",
-        scale:.59,
+        left:"34%",
+        top:"65%",
+        scale:.58,
         rotate:"-1deg",
-        headOffset:"7px",
+        headOffset:"3px",
 
         message:
             "Eres mi modelo a seguir y por ello te admiro mucho, amor."
     },
 
     {
-        left:"47%",
-        top:"76%",
-        scale:.69,
-        rotate:"2deg",
-        headOffset:"-28px"
-    },
-
-    {
-        left:"61%",
-        top:"54%",
-        scale:.61,
-        rotate:"-2deg",
-        headOffset:"10px"
-    },
-
-    {
-        left:"75%",
+        left:"46%",
         top:"72%",
-        scale:.67,
+        scale:.52,
+        rotate:"2deg",
+        headOffset:"-4px"
+    },
+
+    {
+        left:"58%",
+        top:"66%",
+        scale:.57,
+        rotate:"-2deg",
+        headOffset:"4px"
+    },
+
+    {
+        left:"70%",
+        top:"73%",
+        scale:.55,
         rotate:"1deg",
-        headOffset:"-22px",
+        headOffset:"-4px",
 
         message:
             "Esta aventura que estamos emprendiendo me alegra de que sea a tu lado"
     },
 
     {
-        left:"87%",
-        top:"51%",
-        scale:.60,
+        left:"83%",
+        top:"66%",
+        scale:.57,
         rotate:"-1deg",
-        headOffset:"6px"
+        headOffset:"3px"
     },
 
     {
-        left:"98%",
+        left:"95%",
+        top:"72%",
+        scale:.55,
+        rotate:"2deg",
+        headOffset:"-4px"
+    },
+
+
+    /* -------------------------
+       FRENTE
+    ------------------------- */
+
+    {
+        left:"4%",
         top:"82%",
-        scale:.69,
-        rotate:"2deg",
-        headOffset:"-26px"
-    },
-
-    {
-        left:"37%",
-        top:"91%",
-        scale:.61,
+        scale:.78,
         rotate:"-2deg",
-        headOffset:"8px"
+        headOffset:"-3px"
     },
 
     {
-        left:"2%",
-        top:"47%",
+        left:"16%",
+        top:"87%",
         scale:.84,
-        rotate:"-2deg",
-        headOffset:"-20px"
-    },
-
-    {
-        left:"12%",
-        top:"64%",
-        scale:.91,
         rotate:"2deg",
-        headOffset:"-35px",
+        headOffset:"-5px",
 
         message:
             "Si pudieras verte desde mis ojos, sé que te asombrarías de la mujer que eres."
     },
 
     {
-        left:"30%",
-        top:"78%",
-        scale:.82,
+        left:"29%",
+        top:"81%",
+        scale:.76,
         rotate:"-1deg",
-        headOffset:"5px"
+        headOffset:"3px"
     },
 
     {
-        left:"44%",
-        top:"58%",
-        scale:.92,
-        rotate:"1deg",
-        headOffset:"-40px"
-    },
-
-    {
-        left:"59%",
-        top:"88%",
-        scale:.85,
-        rotate:"-2deg",
-        headOffset:"-10px"
-    },
-
-    {
-        left:"73%",
-        top:"59%",
-        scale:.92,
-        rotate:"2deg",
-        headOffset:"-30px"
-    },
-
-    {
-        left:"88%",
-        top:"77%",
-        scale:.84,
-        rotate:"-2deg",
-        headOffset:"8px"
-    },
-
-    {
-        left:"98%",
-        top:"67%",
+        left:"42%",
+        top:"89%",
         scale:.88,
+        rotate:"1deg",
+        headOffset:"-5px"
+    },
+
+    {
+        left:"55%",
+        top:"81%",
+        scale:.80,
+        rotate:"-2deg",
+        headOffset:"2px"
+    },
+
+    {
+        left:"68%",
+        top:"88%",
+        scale:.87,
         rotate:"2deg",
-        headOffset:"-25px"
+        headOffset:"-4px"
+    },
+
+    {
+        left:"81%",
+        top:"81%",
+        scale:.79,
+        rotate:"-2deg",
+        headOffset:"3px"
+    },
+
+    {
+        left:"94%",
+        top:"87%",
+        scale:.84,
+        rotate:"2deg",
+        headOffset:"-4px"
+    },
+
+
+    /* -------------------------
+       FLORES EXTRA DEL FRENTE
+    ------------------------- */
+
+    {
+        left:"9%",
+        top:"76%",
+        scale:.63,
+        rotate:"-2deg",
+        headOffset:"2px"
+    },
+
+    {
+        left:"37%",
+        top:"77%",
+        scale:.65,
+        rotate:"2deg",
+        headOffset:"-3px"
+    },
+
+    {
+        left:"61%",
+        top:"76%",
+        scale:.62,
+        rotate:"-2deg",
+        headOffset:"2px"
     }
 
 ];
 
 
 /* =====================================================
-   FLORES QUE GUARDAN FOTOS
+   FLORES CON FOTOS
 ===================================================== */
-
-/*
-   NO usamos las primeras 7 flores porque algunas
-   son flores especiales con mensajes.
-
-   Estas son 7 flores normales:
-   0, 1, 2, 3, 5, 6 y 7.
-*/
 
 const photoFlowerMap = {
 
@@ -1296,11 +1188,6 @@ function createFlower(data,index){
     flower.className =
         "field-flower";
 
-    if(data.message){
-
-        flower.classList.add("special");
-
-    }
 
     flower.style.setProperty(
         "--left",
@@ -1330,20 +1217,20 @@ function createFlower(data,index){
 
     /* Profundidad */
 
-    if(data.scale >= .80){
+    if(data.scale >= .75){
 
         flower.style.setProperty(
             "--depth",
-            400
+            "400"
         );
 
     }
 
-    else if(data.scale >= .55){
+    else if(data.scale >= .50){
 
         flower.style.setProperty(
             "--depth",
-            250
+            "250"
         );
 
     }
@@ -1352,13 +1239,22 @@ function createFlower(data,index){
 
         flower.style.setProperty(
             "--depth",
-            100
+            "100"
         );
 
     }
 
 
-    /* Cabeza de flor */
+    if(data.message){
+
+        flower.classList.add(
+            "special"
+        );
+
+    }
+
+
+    /* Cabeza */
 
     const head =
         document.createElement("div");
@@ -1395,9 +1291,7 @@ function createFlower(data,index){
     flower.appendChild(head);
 
 
-    /* =================================================
-       ZONA DE TOQUE
-    ================================================= */
+    /* Área táctil */
 
     const hit =
         document.createElement("div");
@@ -1411,9 +1305,9 @@ function createFlower(data,index){
     );
 
 
-    /*
-       FLOR CON MENSAJE
-    */
+    /* =================================================
+       ESPECIAL
+    ================================================= */
 
     if(data.message){
 
@@ -1423,10 +1317,13 @@ function createFlower(data,index){
 
                 e.stopPropagation();
 
-                showMessage(data.message);
+                showMessage(
+                    data.message
+                );
 
             }
         );
+
 
         hit.addEventListener(
             "touchend",
@@ -1435,7 +1332,9 @@ function createFlower(data,index){
                 e.preventDefault();
                 e.stopPropagation();
 
-                showMessage(data.message);
+                showMessage(
+                    data.message
+                );
 
             },
             {passive:false}
@@ -1444,9 +1343,9 @@ function createFlower(data,index){
     }
 
 
-    /*
-       FLOR CON FOTO
-    */
+    /* =================================================
+       FOTO
+    ================================================= */
 
     else if(
         Object.prototype.hasOwnProperty.call(
@@ -1460,6 +1359,7 @@ function createFlower(data,index){
 
         hit.dataset.found =
             "false";
+
 
         hit.addEventListener(
             "click",
@@ -1475,6 +1375,7 @@ function createFlower(data,index){
 
             }
         );
+
 
         hit.addEventListener(
             "touchend",
@@ -1498,12 +1399,12 @@ function createFlower(data,index){
 
     flower.appendChild(hit);
 
-    field.appendChild(flower);
+    field.appendChild(
+        flower
+    );
 
 }
 
-
-/* Crear jardín */
 
 flowers.forEach(
     createFlower
@@ -1540,7 +1441,9 @@ function startIntro(){
             seed.className =
                 "seed";
 
-            document.body.appendChild(seed);
+            document.body.appendChild(
+                seed
+            );
 
         },
         450
@@ -1611,12 +1514,17 @@ function showPhrases(){
 
             phraseElements[
                 current - 1
-            ].classList.remove("show");
+            ].classList.remove(
+                "show"
+            );
 
         }
 
 
-        if(current >= phraseElements.length){
+        if(
+            current >=
+            phraseElements.length
+        ){
 
             setTimeout(
                 function(){
@@ -1637,7 +1545,9 @@ function showPhrases(){
 
         phraseElements[
             current
-        ].classList.add("show");
+        ].classList.add(
+            "show"
+        );
 
 
         setTimeout(
@@ -1645,7 +1555,9 @@ function showPhrases(){
 
                 phraseElements[
                     current
-                ].classList.remove("show");
+                ].classList.remove(
+                    "show"
+                );
 
                 current++;
 
@@ -1749,11 +1661,6 @@ function closeCurrentPhoto(){
     );
 
 
-    /*
-       Primero desaparece la foto grande.
-       Después aparece en el tendedero.
-    */
-
     setTimeout(
         function(){
 
@@ -1799,8 +1706,6 @@ closePhoto.addEventListener(
 );
 
 
-/* Cerrar tocando fuera */
-
 photoViewer.addEventListener(
     "click",
     function(e){
@@ -1818,17 +1723,13 @@ photoViewer.addEventListener(
 
 
 /* =====================================================
-   FOTO AL TENDEDERO
+   FOTO → TENDEDERO
 ===================================================== */
 
 function sendPhotoToLine(
     photoName,
     index
 ){
-
-    /*
-       Evitar duplicados.
-    */
 
     const existing =
         document.querySelector(
@@ -1839,6 +1740,7 @@ function sendPhotoToLine(
             ) +
             '"]'
         );
+
 
     if(existing){
         return;
@@ -1851,16 +1753,21 @@ function sendPhotoToLine(
 
 
     const polaroid =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     polaroid.className =
         "photo-polaroid";
 
+
     polaroid.dataset.photo =
         photoName;
 
+
     polaroid.style.left =
         slot.left;
+
 
     polaroid.style.setProperty(
         "--rotation",
@@ -1869,7 +1776,9 @@ function sendPhotoToLine(
 
 
     const img =
-        document.createElement("img");
+        document.createElement(
+            "img"
+        );
 
     img.src =
         photoName;
@@ -1879,15 +1788,22 @@ function sendPhotoToLine(
 
 
     const peg =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     peg.className =
         "peg";
 
 
-    polaroid.appendChild(img);
+    polaroid.appendChild(
+        img
+    );
 
-    polaroid.appendChild(peg);
+    polaroid.appendChild(
+        peg
+    );
+
 
     photoLine.appendChild(
         polaroid
@@ -1897,7 +1813,7 @@ function sendPhotoToLine(
 
 
 /* =====================================================
-   MENSAJES
+   MENSAJES ESPECIALES
 ===================================================== */
 
 function showMessage(message){
@@ -1957,7 +1873,7 @@ messageBox.addEventListener(
 
 
 /* =====================================================
-   EVITAR GESTOS DE ZOOM ACCIDENTALES
+   IPHONE
 ===================================================== */
 
 document.addEventListener(
