@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>Para ti 🌻</title>
 
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
   margin:0;
   width:100%;
   height:100%;
@@ -26,836 +36,1503 @@ body{
   inset:0;
 }
 
-/* =========================
+
+/* =====================================================
    PANTALLA INICIAL
-========================= */
+===================================================== */
 
 #intro{
+
   position:fixed;
   inset:0;
+
   background:#f6efdf;
+
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
+
   z-index:50000;
 }
 
+
 .intro-sunflower{
+
   width:145px;
   height:145px;
+
   position:relative;
+
   cursor:pointer;
-  transition:transform .35s ease,opacity .5s ease;
+
+  transition:
+    transform .35s ease,
+    opacity .5s ease;
 }
+
 
 .intro-sunflower:active{
+
   transform:scale(.92);
+
 }
 
-.intro-sunflower .petal{
+
+/* -----------------------------------------------------
+   PÉTALOS DEL GIRASOL INICIAL
+----------------------------------------------------- */
+
+.intro-sunflower .intro-petal{
+
   position:absolute;
+
   width:52px;
   height:82px;
+
   left:50%;
   top:50%;
+
   margin-left:-26px;
   margin-top:-41px;
+
   background:#f5c62d;
+
   border-radius:50% 50% 45% 45%;
+
   transform-origin:50% 100%;
 }
 
-.intro-sunflower .petal:nth-child(1){transform:rotate(0deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(2){transform:rotate(45deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(3){transform:rotate(90deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(4){transform:rotate(135deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(5){transform:rotate(180deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(6){transform:rotate(225deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(7){transform:rotate(270deg) translateY(-35px);}
-.intro-sunflower .petal:nth-child(8){transform:rotate(315deg) translateY(-35px);}
+
+.intro-sunflower .intro-petal:nth-child(1){
+  transform:rotate(0deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(2){
+  transform:rotate(45deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(3){
+  transform:rotate(90deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(4){
+  transform:rotate(135deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(5){
+  transform:rotate(180deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(6){
+  transform:rotate(225deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(7){
+  transform:rotate(270deg) translateY(-35px);
+}
+
+.intro-sunflower .intro-petal:nth-child(8){
+  transform:rotate(315deg) translateY(-35px);
+}
+
+
+/* -----------------------------------------------------
+   CENTRO DEL GIRASOL INICIAL
+----------------------------------------------------- */
 
 .intro-sunflower .center{
+
   position:absolute;
+
   width:62px;
   height:62px;
+
   left:50%;
   top:50%;
+
   transform:translate(-50%,-50%);
+
   background:#71401e;
+
   border-radius:50%;
-  box-shadow:inset 0 0 0 7px #8d5427;
+
+  box-shadow:
+    inset 0 0 0 7px #8d5427;
 }
+
+
+/* -----------------------------------------------------
+   TEXTO INICIAL
+----------------------------------------------------- */
 
 .intro-text{
+
   margin-top:28px;
+
   color:#795f3b;
+
   font-size:21px;
+
   font-style:italic;
+
 }
 
+
+/* =====================================================
+   SEMILLA
+===================================================== */
+
 .seed{
+
   position:fixed;
+
   left:50%;
   top:-30px;
+
   font-size:23px;
+
   opacity:0;
+
   z-index:49000;
+
   pointer-events:none;
 }
 
+
 .seed.drop{
-  animation:seedDrop 1.6s ease-in forwards;
+
+  animation:
+    seedDrop 1.6s ease-in forwards;
+
 }
+
 
 @keyframes seedDrop{
+
   0%{
+
     top:-30px;
+
     opacity:0;
+
     transform:rotate(0deg);
+
   }
-  15%{opacity:1;}
+
+  15%{
+
+    opacity:1;
+
+  }
+
   100%{
+
     top:68%;
+
     opacity:0;
+
     transform:rotate(360deg);
+
   }
+
 }
 
-/* =========================
+
+/* =====================================================
    FRASES
-========================= */
+===================================================== */
 
 #phrases{
+
   position:fixed;
+
   inset:0;
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:30px;
+
   background:#f6efdf;
+
   z-index:40000;
+
 }
+
 
 .phrase{
+
   max-width:850px;
+
   color:#624a32;
+
   font-size:clamp(25px,4vw,42px);
+
   line-height:1.35;
+
   font-style:italic;
+
   opacity:0;
+
   transition:opacity 1s ease;
+
 }
+
 
 .phrase.show{
+
   opacity:1;
+
 }
 
-/* =========================
+
+/* =====================================================
    JARDÍN
-========================= */
+===================================================== */
 
 #garden{
+
   position:fixed;
+
   inset:0;
+
   display:none;
+
   overflow:hidden;
-  background:linear-gradient(to bottom,
-    #bfe3f2 0%, #d8edf4 49%,
-    #b4d77b 50%, #82b95e 65%, #4f963f 100%);
+
+  background:
+    linear-gradient(
+      to bottom,
+      #bfe3f2 0%,
+      #d8edf4 49%,
+      #b4d77b 50%,
+      #82b95e 65%,
+      #4f963f 100%
+    );
+
 }
 
-/* sol */
+
+/* =====================================================
+   SOL
+===================================================== */
 
 .sun{
+
   position:absolute;
+
   width:105px;
   height:105px;
+
   right:8%;
   top:7%;
+
   background:#ffd84a;
+
   border-radius:50%;
-  box-shadow:0 0 35px rgba(255,220,90,.35);
+
+  box-shadow:
+    0 0 35px rgba(255,220,90,.35);
+
 }
 
-/* tendedero */
+
+/* =====================================================
+   TENDEDERO
+===================================================== */
 
 .clothesline-post{
+
   position:absolute;
+
   top:0;
+
   width:14px;
   height:45%;
+
   background:#8b5e34;
+
   z-index:5;
+
 }
+
 
 .clothesline-post.left{
+
   left:2%;
+
 }
+
 
 .clothesline-post.right{
+
   right:2%;
+
 }
+
 
 .clothesline{
+
   position:absolute;
+
   left:2%;
   right:2%;
+
   top:8%;
+
   height:3px;
+
   background:#765738;
+
   z-index:5;
+
 }
+
 
 .clothesline-sag{
+
   position:absolute;
+
   left:2%;
   right:2%;
+
   top:8%;
+
   height:35px;
+
   border-bottom:3px solid #765738;
+
   border-radius:50%;
+
   z-index:4;
+
 }
 
-/* =========================
-   FLORES
-========================= */
+
+/* =====================================================
+   FLORES DEL JARDÍN
+===================================================== */
 
 .field{
+
   position:absolute;
+
   inset:0;
+
   z-index:10;
+
 }
 
+
 .field-flower{
+
   position:absolute;
+
   width:120px;
   height:120px;
+
   left:var(--left);
   top:var(--top);
+
   transform:
     translate(-50%,-50%)
     scale(var(--scale))
     rotate(var(--rotate));
+
   transform-origin:center center;
+
   z-index:var(--depth);
+
   pointer-events:none;
+
 }
 
+
 .flower-head{
+
   position:absolute;
+
   width:76px;
   height:76px;
+
   left:50%;
   top:50%;
+
   transform:
     translate(-50%,-50%)
     translateY(var(--head-offset));
+
   transform-origin:center center;
+
 }
 
-.petal{
+
+/* -----------------------------------------------------
+   PÉTALOS DEL JARDÍN
+----------------------------------------------------- */
+
+.field-flower .garden-petal{
+
   position:absolute;
+
   width:30px;
   height:43px;
+
   left:50%;
   top:50%;
+
   margin-left:-15px;
   margin-top:-21px;
+
   background:#f7c62c;
+
   border-radius:50% 50% 45% 45%;
+
   transform-origin:50% 100%;
+
 }
 
-.petal:nth-child(1){transform:rotate(0deg) translateY(-25px);}
-.petal:nth-child(2){transform:rotate(45deg) translateY(-25px);}
-.petal:nth-child(3){transform:rotate(90deg) translateY(-25px);}
-.petal:nth-child(4){transform:rotate(135deg) translateY(-25px);}
-.petal:nth-child(5){transform:rotate(180deg) translateY(-25px);}
-.petal:nth-child(6){transform:rotate(225deg) translateY(-25px);}
-.petal:nth-child(7){transform:rotate(270deg) translateY(-25px);}
-.petal:nth-child(8){transform:rotate(315deg) translateY(-25px);}
+
+.field-flower .garden-petal:nth-child(1){
+  transform:rotate(0deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(2){
+  transform:rotate(45deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(3){
+  transform:rotate(90deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(4){
+  transform:rotate(135deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(5){
+  transform:rotate(180deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(6){
+  transform:rotate(225deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(7){
+  transform:rotate(270deg) translateY(-25px);
+}
+
+.field-flower .garden-petal:nth-child(8){
+  transform:rotate(315deg) translateY(-25px);
+}
+
+
+/* -----------------------------------------------------
+   CENTRO FLORES
+----------------------------------------------------- */
 
 .flower-center{
+
   position:absolute;
+
   width:34px;
   height:34px;
+
   left:50%;
   top:50%;
+
   transform:translate(-50%,-50%);
+
   border-radius:50%;
+
   background:#75421f;
-  box-shadow:inset 0 0 0 5px #8c5427;
+
+  box-shadow:
+    inset 0 0 0 5px #8c5427;
+
 }
 
-/* viento */
+
+/* =====================================================
+   VIENTO
+===================================================== */
 
 .wind-active .field-flower{
-  animation:flowerWind 3.2s ease-in-out;
+
+  animation:
+    flowerWind 3.2s ease-in-out;
+
 }
+
 
 .wind-active .polaroid{
-  animation:photoWind 3.2s ease-in-out;
+
+  animation:
+    photoWind 3.2s ease-in-out;
+
 }
 
+
 @keyframes flowerWind{
+
   0%,100%{
+
     margin-left:0;
+
     transform:
       translate(-50%,-50%)
       scale(var(--scale))
       rotate(var(--rotate));
+
   }
+
   35%{
+
     margin-left:5px;
+
     transform:
       translate(-50%,-50%)
       scale(var(--scale))
       rotate(calc(var(--rotate) + 2deg));
+
   }
+
   70%{
+
     margin-left:-4px;
+
     transform:
       translate(-50%,-50%)
       scale(var(--scale))
       rotate(calc(var(--rotate) - 1.5deg));
+
   }
+
 }
+
 
 @keyframes photoWind{
-  0%,100%{transform:rotate(var(--rotation));}
-  35%{transform:rotate(calc(var(--rotation) + 2deg));}
-  70%{transform:rotate(calc(var(--rotation) - 1.5deg));}
+
+  0%,100%{
+
+    transform:
+      rotate(var(--rotation));
+
+  }
+
+  35%{
+
+    transform:
+      rotate(calc(var(--rotation) + 2deg));
+
+  }
+
+  70%{
+
+    transform:
+      rotate(calc(var(--rotation) - 1.5deg));
+
+  }
+
 }
 
-/* =========================
+
+/* =====================================================
    ZONAS INTERACTIVAS
-========================= */
+===================================================== */
 
 #interactionLayer{
+
   position:fixed;
+
   inset:0;
+
   z-index:10000;
+
   pointer-events:none;
+
 }
+
 
 .global-hit{
+
   position:absolute;
+
   transform:translate(-50%,-50%);
+
   border-radius:50%;
+
   pointer-events:auto;
+
   cursor:pointer;
+
   background:transparent;
+
 }
 
-/* =========================
+
+/* =====================================================
    MENSAJES
-========================= */
+===================================================== */
 
 #messageBox{
+
   position:fixed;
+
   left:50%;
   top:50%;
+
   transform:translate(-50%,-50%);
+
   width:min(86vw,620px);
+
   padding:30px;
+
   background:rgba(255,253,247,.96);
+
   border:1px solid #dfcfb4;
+
   border-radius:18px;
-  box-shadow:0 15px 45px rgba(0,0,0,.25);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.25);
+
   text-align:center;
+
   z-index:15000;
+
   display:none;
+
 }
+
 
 #messageBox p{
+
   margin:0;
+
   color:#634b32;
+
   font-size:clamp(20px,3vw,30px);
+
   line-height:1.4;
+
   font-style:italic;
+
 }
+
 
 #messageClose{
+
   margin-top:22px;
+
   border:none;
+
   background:#dcae38;
+
   color:#fff;
+
   padding:10px 22px;
+
   border-radius:20px;
+
   font-size:16px;
+
   cursor:pointer;
+
 }
 
-/* =========================
+
+/* =====================================================
    VISOR DE FOTOS
-========================= */
+===================================================== */
 
 #photoViewer{
+
   position:fixed;
+
   inset:0;
+
   background:rgba(35,25,15,.82);
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   z-index:20000;
+
   padding:25px;
+
 }
+
 
 .photo-viewer-inner{
+
   position:relative;
+
   max-width:92vw;
   max-height:90vh;
+
   background:#fffdf7;
+
   padding:12px 12px 30px;
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.4);
+
   transform:rotate(-1deg);
+
 }
+
 
 #viewerImage{
+
   display:block;
+
   max-width:88vw;
+
   max-height:78vh;
+
   object-fit:contain;
+
 }
+
 
 #photoClose{
+
   position:absolute;
+
   right:-13px;
   top:-15px;
+
   width:35px;
   height:35px;
+
   border:none;
+
   border-radius:50%;
+
   background:#fff;
-  box-shadow:0 4px 12px rgba(0,0,0,.3);
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.3);
+
   font-size:20px;
+
   cursor:pointer;
+
 }
 
-/* =========================
+
+/* =====================================================
    POLAROIDS
-========================= */
+===================================================== */
 
 .polaroid{
+
   position:absolute;
+
   top:8%;
+
   width:105px;
+
   padding:7px 7px 22px;
+
   background:#fffdf7;
-  box-shadow:0 5px 16px rgba(0,0,0,.25);
+
+  box-shadow:
+    0 5px 16px rgba(0,0,0,.25);
+
   z-index:7000;
-  transform:rotate(var(--rotation));
-  animation:polaroidAppear .7s ease-out;
+
+  transform:
+    rotate(var(--rotation));
+
+  animation:
+    polaroidAppear .7s ease-out;
+
 }
+
 
 .polaroid img{
+
   display:block;
+
   width:100%;
+
   aspect-ratio:1/1;
+
   object-fit:cover;
+
 }
+
 
 .peg{
+
   position:absolute;
+
   top:-10px;
   left:50%;
+
   transform:translateX(-50%);
+
   width:18px;
   height:30px;
+
   background:#9a6b3c;
+
   border-radius:3px;
-  box-shadow:0 2px 4px rgba(0,0,0,.3);
+
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.3);
+
 }
+
 
 @keyframes polaroidAppear{
+
   from{
+
     opacity:0;
-    transform:translateY(-40px) rotate(var(--rotation));
+
+    transform:
+      translateY(-40px)
+      rotate(var(--rotation));
+
   }
+
   to{
+
     opacity:1;
-    transform:translateY(0) rotate(var(--rotation));
+
+    transform:
+      translateY(0)
+      rotate(var(--rotation));
+
   }
+
 }
 
-/* =========================
+
+/* =====================================================
    CARTA VOLANDO
-========================= */
+===================================================== */
 
 #flyingLetter{
+
   position:fixed;
+
   left:-180px;
   top:20%;
+
   width:135px;
   height:95px;
+
   background:#fffdf7;
+
   border:1px solid #d8c7a8;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.25);
+
   z-index:22000;
+
   display:none;
+
   cursor:pointer;
+
   transform:rotate(-8deg);
+
 }
+
 
 #flyingLetter::before{
+
   content:"";
+
   position:absolute;
+
   left:0;
   top:0;
+
   width:0;
   height:0;
+
   border-left:67px solid transparent;
   border-right:67px solid transparent;
+
   border-top:48px solid #eee1ca;
+
 }
+
 
 #flyingLetter.fly{
+
   display:block;
-  animation:letterFly 2.8s ease-in-out forwards;
+
+  animation:
+    letterFly 2.8s ease-in-out forwards;
+
 }
+
 
 @keyframes letterFly{
+
   0%{
+
     left:-180px;
     top:75%;
-    transform:rotate(-15deg) scale(.7);
+
+    transform:
+      rotate(-15deg)
+      scale(.7);
+
   }
+
   100%{
+
     left:50%;
     top:22%;
-    transform:translateX(-50%) rotate(4deg) scale(1);
+
+    transform:
+      translateX(-50%)
+      rotate(4deg)
+      scale(1);
+
   }
+
 }
 
-/* =========================
+
+/* =====================================================
    GIRAR TELÉFONO
-========================= */
+===================================================== */
 
 #rotateScreen{
+
   position:fixed;
+
   inset:0;
+
   background:#f6efdf;
-  z-index:30000;
+
+  z-index:60000;
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:30px;
+
 }
+
 
 .rotate-content{
+
   color:#654d34;
+
   font-size:28px;
+
   font-style:italic;
+
   line-height:1.4;
+
 }
+
 
 .rotate-icon{
+
   font-size:60px;
+
   margin-bottom:20px;
+
 }
 
-/* =========================
+
+/* =====================================================
    CARTA
-========================= */
+===================================================== */
 
 #letterReader{
+
   position:fixed;
+
   inset:0;
+
   z-index:28000;
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   background:rgba(35,25,15,.38);
+
   padding:25px;
+
 }
+
 
 #letterReader.show{
+
   display:flex;
+
 }
+
 
 .letter-paper{
+
   width:min(720px,92vw);
+
   max-height:90vh;
+
   overflow-y:auto;
+
   padding:45px 42px;
+
   background:#fffdf5;
+
   color:#5d4933;
+
   border:1px solid #dfcfb1;
-  box-shadow:0 20px 70px rgba(0,0,0,.3);
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.3);
+
   border-radius:3px;
+
   line-height:1.7;
+
   font-size:19px;
+
 }
+
 
 .letter-title{
+
   text-align:center;
+
   font-size:32px;
+
   font-style:italic;
+
   margin-bottom:28px;
+
   color:#674c2e;
+
 }
+
 
 .letter-paper p{
+
   margin:0 0 20px;
+
 }
+
 
 .letter-paper .letter-sign{
+
   text-align:center;
+
   font-size:22px;
+
   font-style:italic;
+
   margin-top:30px;
+
 }
 
-/* =========================
+
+/* =====================================================
    SOBRE
-========================= */
+===================================================== */
 
 #letterEnvelope{
+
   position:fixed;
+
   left:2%;
   bottom:3%;
+
   width:78px;
   height:56px;
+
   z-index:26000;
+
   display:none;
+
   background:#fffdf7;
+
   border:1px solid #ddcdb1;
+
   border-radius:5px;
-  box-shadow:0 5px 14px rgba(0,0,0,.22);
+
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.22);
+
   cursor:pointer;
+
   opacity:.82;
+
   transform:rotate(-4deg);
-  transition:transform .25s ease, opacity .25s ease;
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+
   pointer-events:auto;
+
 }
+
 
 #letterEnvelope.show{
+
   display:block;
+
 }
+
 
 #letterEnvelope:hover{
+
   opacity:1;
-  transform:rotate(-4deg) scale(1.05);
+
+  transform:
+    rotate(-4deg)
+    scale(1.05);
+
 }
+
 
 #letterEnvelope::before{
+
   content:"";
+
   position:absolute;
+
   left:0;
   top:0;
+
   width:0;
   height:0;
+
   border-left:38px solid transparent;
   border-right:38px solid transparent;
+
   border-top:27px solid #efe3ce;
+
   z-index:2;
+
   pointer-events:none;
+
 }
+
 
 #letterEnvelope::after{
+
   content:"💌";
+
   position:absolute;
+
   inset:0;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   padding-top:8px;
+
   font-size:24px;
+
   z-index:3;
+
   pointer-events:none;
+
 }
 
-/* =========================
+
+/* =====================================================
    RESPONSIVE
-========================= */
+===================================================== */
 
 @media(max-width:700px){
 
   .sun{
+
     width:75px;
     height:75px;
+
   }
+
 
   .intro-sunflower{
+
     width:120px;
     height:120px;
+
   }
 
-  .intro-sunflower .petal{
+
+  .intro-sunflower .intro-petal{
+
     width:43px;
     height:68px;
+
     margin-left:-21px;
     margin-top:-34px;
+
   }
+
 
   .intro-sunflower .center{
+
     width:52px;
     height:52px;
+
   }
+
 
   .intro-text{
+
     font-size:18px;
+
   }
+
 
   .polaroid{
+
     width:72px;
+
     padding:5px 5px 15px;
+
   }
+
 
   .peg{
+
     width:14px;
     height:24px;
+
   }
+
 
   #letterEnvelope{
+
     width:70px;
     height:50px;
+
     left:2%;
     bottom:3%;
+
   }
 
+
   #letterEnvelope::before{
+
     border-left-width:34px;
     border-right-width:34px;
     border-top-width:24px;
+
   }
+
 
   #letterEnvelope::after{
+
     font-size:21px;
+
   }
+
 
   .letter-paper{
+
     width:92vw;
+
     max-height:90vh;
+
     padding:30px 25px;
+
     font-size:17px;
+
     line-height:1.65;
+
   }
+
 
   .letter-title{
+
     font-size:28px;
+
   }
 
+
   .letter-paper .letter-sign{
+
     font-size:20px;
+
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      INTRO
-========================= -->
+===================================================== -->
 
 <div id="intro">
 
-  <div class="intro-sunflower" id="introSunflower">
+  <div
+    class="intro-sunflower"
+    id="introSunflower"
+  >
 
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
+    <div class="intro-petal"></div>
 
     <div class="center"></div>
 
   </div>
 
+
   <div class="intro-text">
+
     Presiona aquí 🌻
+
   </div>
 
 </div>
 
-<div class="seed" id="seed">🌻</div>
 
+<!-- SEMILLA -->
 
-<!-- =========================
-     FRASES
-========================= -->
-
-<div id="phrases">
-  <div class="phrase" id="phraseText"></div>
+<div
+  class="seed"
+  id="seed"
+>
+  🌻
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
+     FRASES
+===================================================== -->
+
+<div id="phrases">
+
+  <div
+    class="phrase"
+    id="phraseText"
+  ></div>
+
+</div>
+
+
+<!-- =====================================================
      JARDÍN
-========================= -->
+===================================================== -->
 
 <div id="garden">
 
   <div class="sun"></div>
 
   <div class="clothesline-post left"></div>
+
   <div class="clothesline-post right"></div>
+
   <div class="clothesline"></div>
+
   <div class="clothesline-sag"></div>
 
-  <div class="field" id="field"></div>
+  <div
+    class="field"
+    id="field"
+  ></div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      CAPA INTERACTIVA
-========================= -->
+===================================================== -->
 
 <div id="interactionLayer"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      MENSAJE
-========================= -->
+===================================================== -->
 
 <div id="messageBox">
+
   <p id="messageText"></p>
-  <button id="messageClose">Cerrar ❤️</button>
+
+  <button id="messageClose">
+    Cerrar ❤️
+  </button>
+
 </div>
 
 
-<!-- =========================
-     VISOR DE FOTO
-========================= -->
+<!-- =====================================================
+     VISOR DE FOTOS
+===================================================== -->
 
 <div id="photoViewer">
 
   <div class="photo-viewer-inner">
 
-    <button id="photoClose">×</button>
+    <button id="photoClose">
+      ×
+    </button>
 
-    <img id="viewerImage" src="" alt="Foto">
+    <img
+      id="viewerImage"
+      src=""
+      alt="Foto"
+    >
 
   </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      CARTA VOLANDO
-========================= -->
+===================================================== -->
 
 <div id="flyingLetter"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      GIRAR TELÉFONO
-========================= -->
+===================================================== -->
 
 <div id="rotateScreen">
 
   <div class="rotate-content">
 
-    <div class="rotate-icon">📱↻</div>
+    <div class="rotate-icon">
+      📱↻
+    </div>
 
     Gira el teléfono
 
@@ -864,85 +1541,160 @@ body{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      CARTA
-========================= -->
+===================================================== -->
 
 <div id="letterReader">
 
   <div class="letter-paper">
 
+
     <div class="letter-title">
+
       Para ti 🌻
+
     </div>
 
+
     <p>
+
       Sé que te he prometido muchas cosas y que no todas las he podido cumplir,
-      pero quiero que sepas algo: <strong>cada día despierto con un solo objetivo,
-      que es seguir trabajando para cumplir cada una de mis promesas.</strong> ❤️
+      pero quiero que sepas algo:
+      <strong>
+        cada día despierto con un solo objetivo,
+        que es seguir trabajando para cumplir cada una de mis promesas.
+      </strong>
+      ❤️
+
     </p>
 
+
     <p>
+
       Y ahora mismo estoy cumpliendo una de ellas:
-      <strong>querer estar a tu lado por el resto de mi vida.</strong> 🥹
+      <strong>
+        querer estar a tu lado por el resto de mi vida.
+      </strong>
+      🥹
+
     </p>
 
-    <p>
-      Vamos poco a poco, paso a paso, pero estoy feliz de que sea contigo.
-      Porque eres mi motor para seguir creciendo, para seguir mejorando
-      y para seguir dando todo de mí. ❤️‍🩹
-    </p>
 
     <p>
-      Esta vez no pude regalarte tus flores amarillas como hubiera querido 🌻,
-      pero quería darte, al menos, un pequeño detalle.
-      Sé que no es lo mismo y sé que tú prefieres las flores como tal,
-      pero te prometo que lo que queda de este año voy a seguir esforzándome
-      para llegar a donde quiero y poder cumplir mis promesas.
+
+      Vamos poco a poco, paso a paso,
+      pero estoy feliz de que sea contigo.
+      Porque eres mi motor para seguir creciendo,
+      para seguir mejorando
+      y para seguir dando todo de mí.
+      ❤️‍🩹
+
     </p>
 
+
     <p>
+
+      Esta vez no pude regalarte tus flores amarillas
+      como hubiera querido 🌻,
+      pero quería darte, al menos,
+      un pequeño detalle.
+
+      Sé que no es lo mismo
+      y sé que tú prefieres las flores como tal,
+      pero te prometo que lo que queda de este año
+      voy a seguir esforzándome para llegar a donde quiero
+      y poder cumplir mis promesas.
+
+    </p>
+
+
+    <p>
+
       Y no pienso dejar de crecer.
-      Quiero seguir convirtiéndome en una mejor persona para ti,
-      para mí y para nuestro futuro, para algún día poder darte
-      <strong>todo lo que te he prometido y todavía un poquito más.</strong> ❤️
+
+      Quiero seguir convirtiéndome
+      en una mejor persona para ti,
+      para mí y para nuestro futuro,
+      para algún día poder darte
+      <strong>
+        todo lo que te he prometido
+        y todavía un poquito más.
+      </strong>
+      ❤️
+
     </p>
 
+
     <p>
+
       Porque eres y siempre serás
-      <strong>el amor de mi vida, mi lugar seguro, mi mejor amiga,
-      mi novia, mi futura esposa, mi meta, mi inspiración,
-      mi modelo a seguir</strong> y, lo más importante,
-      la persona con quien quiero compartir mi vida. 🫶🏻
+      <strong>
+        el amor de mi vida,
+        mi lugar seguro,
+        mi mejor amiga,
+        mi novia,
+        mi futura esposa,
+        mi meta,
+        mi inspiración,
+        mi modelo a seguir
+      </strong>
+
+      y, lo más importante,
+      la persona con quien quiero compartir mi vida.
+      🫶🏻
+
     </p>
+
 
     <p>
-      Quiero vivir muchas cosas contigo, cumplir nuestros sueños,
-      superar los momentos difíciles, celebrar los buenos
-      y seguir construyendo nuestra historia poquito a poquito. ❤️
+
+      Quiero vivir muchas cosas contigo,
+      cumplir nuestros sueños,
+      superar los momentos difíciles,
+      celebrar los buenos
+      y seguir construyendo nuestra historia
+      poquito a poquito.
+      ❤️
+
     </p>
 
-    <p class="letter-sign">
-      <strong>Te amo muchísimo, popo. ❤️</strong>
-    </p>
 
     <p class="letter-sign">
-      Y espero que cada vez que vuelvas a ver estas flores recuerdes
-      que, detrás de ellas, hay alguien que te ama muchísimo
-      y que todos los días está intentando ser mejor para poder construir
-      contigo todo lo que soñamos. 🌻🥹
+
+      <strong>
+        Te amo muchísimo, popo. ❤️
+      </strong>
+
     </p>
+
+
+    <p class="letter-sign">
+
+      Y espero que cada vez que vuelvas a ver estas flores
+      recuerdes que, detrás de ellas,
+      hay alguien que te ama muchísimo
+      y que todos los días está intentando ser mejor
+      para poder construir contigo
+      todo lo que soñamos.
+      🌻🥹
+
+    </p>
+
 
   </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      SOBRE
-========================= -->
+===================================================== -->
 
-<div id="letterEnvelope" title="Abrir carta"></div>
+<div
+  id="letterEnvelope"
+  title="Abrir carta"
+></div>
 
 
 <script>
@@ -951,29 +1703,64 @@ body{
    ELEMENTOS
 ===================================================== */
 
-const intro = document.getElementById("intro");
-const introSunflower = document.getElementById("introSunflower");
-const seed = document.getElementById("seed");
+const intro =
+  document.getElementById("intro");
 
-const phrases = document.getElementById("phrases");
-const phraseText = document.getElementById("phraseText");
+const introSunflower =
+  document.getElementById("introSunflower");
 
-const garden = document.getElementById("garden");
-const field = document.getElementById("field");
-const interactionLayer = document.getElementById("interactionLayer");
+const seed =
+  document.getElementById("seed");
 
-const messageBox = document.getElementById("messageBox");
-const messageText = document.getElementById("messageText");
-const messageClose = document.getElementById("messageClose");
 
-const photoViewer = document.getElementById("photoViewer");
-const viewerImage = document.getElementById("viewerImage");
-const photoClose = document.getElementById("photoClose");
+const phrases =
+  document.getElementById("phrases");
 
-const flyingLetter = document.getElementById("flyingLetter");
-const rotateScreen = document.getElementById("rotateScreen");
-const letterReader = document.getElementById("letterReader");
-const letterEnvelope = document.getElementById("letterEnvelope");
+const phraseText =
+  document.getElementById("phraseText");
+
+
+const garden =
+  document.getElementById("garden");
+
+const field =
+  document.getElementById("field");
+
+const interactionLayer =
+  document.getElementById("interactionLayer");
+
+
+const messageBox =
+  document.getElementById("messageBox");
+
+const messageText =
+  document.getElementById("messageText");
+
+const messageClose =
+  document.getElementById("messageClose");
+
+
+const photoViewer =
+  document.getElementById("photoViewer");
+
+const viewerImage =
+  document.getElementById("viewerImage");
+
+const photoClose =
+  document.getElementById("photoClose");
+
+
+const flyingLetter =
+  document.getElementById("flyingLetter");
+
+const rotateScreen =
+  document.getElementById("rotateScreen");
+
+const letterReader =
+  document.getElementById("letterReader");
+
+const letterEnvelope =
+  document.getElementById("letterEnvelope");
 
 
 /* =====================================================
@@ -981,9 +1768,13 @@ const letterEnvelope = document.getElementById("letterEnvelope");
 ===================================================== */
 
 const initialPhrases = [
+
   "A veces no puedo darte todo lo que quisiera...",
+
   "Pero siempre voy a encontrar una manera de recordarte lo mucho que te quiero.",
+
   "Y esta vez, hice un pequeño lugar solamente para ti. 🌻"
+
 ];
 
 
@@ -993,13 +1784,37 @@ const initialPhrases = [
 
 const flowers = [
 
-  {left:"5%", top:"57%", scale:.40, rotate:"-4deg", headOffset:"0px"},
+  {
+    left:"5%",
+    top:"57%",
+    scale:.40,
+    rotate:"-4deg",
+    headOffset:"0px"
+  },
 
-  {left:"16%", top:"53%", scale:.43, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"16%",
+    top:"53%",
+    scale:.43,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
-  {left:"28%", top:"59%", scale:.39, rotate:"-2deg", headOffset:"3px"},
+  {
+    left:"28%",
+    top:"59%",
+    scale:.39,
+    rotate:"-2deg",
+    headOffset:"3px"
+  },
 
-  {left:"40%", top:"54%", scale:.45, rotate:"3deg", headOffset:"-3px"},
+  {
+    left:"40%",
+    top:"54%",
+    scale:.45,
+    rotate:"3deg",
+    headOffset:"-3px"
+  },
 
   {
     left:"53%",
@@ -1010,15 +1825,45 @@ const flowers = [
     message:"Eres mi vida y por ello quiero estar a tu lado mil y un vidas"
   },
 
-  {left:"66%", top:"53%", scale:.44, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"66%",
+    top:"53%",
+    scale:.44,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
-  {left:"79%", top:"58%", scale:.40, rotate:"-2deg", headOffset:"3px"},
+  {
+    left:"79%",
+    top:"58%",
+    scale:.40,
+    rotate:"-2deg",
+    headOffset:"3px"
+  },
 
-  {left:"93%", top:"54%", scale:.46, rotate:"3deg", headOffset:"-3px"},
+  {
+    left:"93%",
+    top:"54%",
+    scale:.46,
+    rotate:"3deg",
+    headOffset:"-3px"
+  },
 
-  {left:"10%", top:"67%", scale:.55, rotate:"-3deg", headOffset:"4px"},
+  {
+    left:"10%",
+    top:"67%",
+    scale:.55,
+    rotate:"-3deg",
+    headOffset:"4px"
+  },
 
-  {left:"22%", top:"72%", scale:.49, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"22%",
+    top:"72%",
+    scale:.49,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
   {
     left:"34%",
@@ -1029,9 +1874,21 @@ const flowers = [
     message:"Eres mi modelo a seguir y por ello te admiro mucho, amor."
   },
 
-  {left:"46%", top:"72%", scale:.52, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"46%",
+    top:"72%",
+    scale:.52,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
-  {left:"58%", top:"66%", scale:.57, rotate:"-2deg", headOffset:"4px"},
+  {
+    left:"58%",
+    top:"66%",
+    scale:.57,
+    rotate:"-2deg",
+    headOffset:"4px"
+  },
 
   {
     left:"70%",
@@ -1042,11 +1899,29 @@ const flowers = [
     message:"Esta aventura que estamos emprendiendo me alegra de que sea a tu lado"
   },
 
-  {left:"83%", top:"66%", scale:.57, rotate:"-1deg", headOffset:"3px"},
+  {
+    left:"83%",
+    top:"66%",
+    scale:.57,
+    rotate:"-1deg",
+    headOffset:"3px"
+  },
 
-  {left:"95%", top:"72%", scale:.55, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"95%",
+    top:"72%",
+    scale:.55,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
-  {left:"4%", top:"82%", scale:.78, rotate:"-2deg", headOffset:"-3px"},
+  {
+    left:"4%",
+    top:"82%",
+    scale:.78,
+    rotate:"-2deg",
+    headOffset:"-3px"
+  },
 
   {
     left:"16%",
@@ -1057,23 +1932,77 @@ const flowers = [
     message:"Si pudieras verte desde mis ojos, sé que te asombrarías de la mujer que eres."
   },
 
-  {left:"29%", top:"81%", scale:.76, rotate:"-1deg", headOffset:"3px"},
+  {
+    left:"29%",
+    top:"81%",
+    scale:.76,
+    rotate:"-1deg",
+    headOffset:"3px"
+  },
 
-  {left:"42%", top:"89%", scale:.88, rotate:"1deg", headOffset:"-5px"},
+  {
+    left:"42%",
+    top:"89%",
+    scale:.88,
+    rotate:"1deg",
+    headOffset:"-5px"
+  },
 
-  {left:"55%", top:"81%", scale:.80, rotate:"-2deg", headOffset:"2px"},
+  {
+    left:"55%",
+    top:"81%",
+    scale:.80,
+    rotate:"-2deg",
+    headOffset:"2px"
+  },
 
-  {left:"68%", top:"88%", scale:.87, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"68%",
+    top:"88%",
+    scale:.87,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
-  {left:"81%", top:"81%", scale:.79, rotate:"-2deg", headOffset:"3px"},
+  {
+    left:"81%",
+    top:"81%",
+    scale:.79,
+    rotate:"-2deg",
+    headOffset:"3px"
+  },
 
-  {left:"94%", top:"87%", scale:.84, rotate:"2deg", headOffset:"-4px"},
+  {
+    left:"94%",
+    top:"87%",
+    scale:.84,
+    rotate:"2deg",
+    headOffset:"-4px"
+  },
 
-  {left:"9%", top:"76%", scale:.63, rotate:"-2deg", headOffset:"2px"},
+  {
+    left:"9%",
+    top:"76%",
+    scale:.63,
+    rotate:"-2deg",
+    headOffset:"2px"
+  },
 
-  {left:"37%", top:"77%", scale:.65, rotate:"2deg", headOffset:"-3px"},
+  {
+    left:"37%",
+    top:"77%",
+    scale:.65,
+    rotate:"2deg",
+    headOffset:"-3px"
+  },
 
-  {left:"61%", top:"76%", scale:.62, rotate:"-2deg", headOffset:"2px"}
+  {
+    left:"61%",
+    top:"76%",
+    scale:.62,
+    rotate:"-2deg",
+    headOffset:"2px"
+  }
 
 ];
 
@@ -1084,6 +2013,7 @@ const flowers = [
 
 const photoBase =
 "https://raw.githubusercontent.com/LuisG4r/Flores-amarillas/main/";
+
 
 const photos = [
 
@@ -1097,15 +2027,43 @@ const photos = [
 
 ];
 
+
 const photoSlots = [
 
-  {left:"5%", rotation:"-5deg"},
-  {left:"19%", rotation:"4deg"},
-  {left:"33%", rotation:"-3deg"},
-  {left:"47%", rotation:"5deg"},
-  {left:"61%", rotation:"-4deg"},
-  {left:"75%", rotation:"3deg"},
-  {left:"88%", rotation:"-5deg"}
+  {
+    left:"5%",
+    rotation:"-5deg"
+  },
+
+  {
+    left:"19%",
+    rotation:"4deg"
+  },
+
+  {
+    left:"33%",
+    rotation:"-3deg"
+  },
+
+  {
+    left:"47%",
+    rotation:"5deg"
+  },
+
+  {
+    left:"61%",
+    rotation:"-4deg"
+  },
+
+  {
+    left:"75%",
+    rotation:"3deg"
+  },
+
+  {
+    left:"88%",
+    rotation:"-5deg"
+  }
 
 ];
 
@@ -1131,23 +2089,32 @@ const photoFlowerMap = {
    ESTADOS
 ===================================================== */
 
-let foundPhotos = new Set();
+let foundPhotos =
+  new Set();
 
-let currentPhotoIndex = null;
 
-let totalHung = 0;
+let currentPhotoIndex =
+  null;
 
-let finalSequenceStarted = false;
 
-let letterState = "none";
+let totalHung =
+  0;
+
+
+let finalSequenceStarted =
+  false;
+
 
 /*
-  none     = todavía no aparece la carta
-  flying   = carta volando
-  waiting  = esperando que gire el teléfono
-  reading  = leyendo carta
-  closed   = regresó al jardín
+  none
+  flying
+  waiting
+  reading
+  closed
 */
+
+let letterState =
+  "none";
 
 
 /* =====================================================
@@ -1156,148 +2123,375 @@ let letterState = "none";
 
 flowers.forEach((flower,index)=>{
 
-  const flowerEl = document.createElement("div");
 
-  flowerEl.className = "field-flower";
+  const flowerEl =
+    document.createElement("div");
 
-  flowerEl.style.setProperty("--left",flower.left);
-  flowerEl.style.setProperty("--top",flower.top);
-  flowerEl.style.setProperty("--scale",flower.scale);
-  flowerEl.style.setProperty("--rotate",flower.rotate);
-  flowerEl.style.setProperty("--head-offset",flower.headOffset);
+
+  flowerEl.className =
+    "field-flower";
+
+
+  flowerEl.style.setProperty(
+    "--left",
+    flower.left
+  );
+
+
+  flowerEl.style.setProperty(
+    "--top",
+    flower.top
+  );
+
+
+  flowerEl.style.setProperty(
+    "--scale",
+    flower.scale
+  );
+
+
+  flowerEl.style.setProperty(
+    "--rotate",
+    flower.rotate
+  );
+
+
+  flowerEl.style.setProperty(
+    "--head-offset",
+    flower.headOffset
+  );
+
+
+  const scale =
+    flower.scale;
+
+
+  let depth =
+    100;
+
+
+  if(scale >= .75){
+
+    depth = 400;
+
+  }
+
+  else if(scale >= .55){
+
+    depth = 250;
+
+  }
+
+
+  flowerEl.style.setProperty(
+    "--depth",
+    depth
+  );
+
+
+  const head =
+    document.createElement("div");
+
+
+  head.className =
+    "flower-head";
+
 
   /*
-    profundidad visual
+    IMPORTANTE:
+    Los pétalos del jardín usan
+    garden-petal y no intro-petal.
   */
-
-  const scale = flower.scale;
-
-  let depth = 100;
-
-  if(scale >= .75) depth = 400;
-  else if(scale >= .55) depth = 250;
-
-  flowerEl.style.setProperty("--depth",depth);
-
-  const head = document.createElement("div");
-
-  head.className = "flower-head";
 
   for(let i=0;i<8;i++){
 
-    const petal = document.createElement("div");
+    const petal =
+      document.createElement("div");
 
-    petal.className = "petal";
+
+    petal.className =
+      "garden-petal";
+
 
     head.appendChild(petal);
 
   }
 
-  const center = document.createElement("div");
 
-  center.className = "flower-center";
+  const center =
+    document.createElement("div");
+
+
+  center.className =
+    "flower-center";
+
 
   head.appendChild(center);
 
+
   flowerEl.appendChild(head);
+
 
   field.appendChild(flowerEl);
 
 
-  /*
-    zona invisible de interacción
-  */
+  /* ---------------------------------------------------
+     ZONA INVISIBLE
+  --------------------------------------------------- */
 
-  const hit = document.createElement("div");
+  const hit =
+    document.createElement("div");
 
-  hit.className = "global-hit";
 
-  hit.style.left = flower.left;
-  hit.style.top = flower.top;
+  hit.className =
+    "global-hit";
 
-  const hitSize = Math.max(65,110 * flower.scale);
 
-  hit.style.width = hitSize + "px";
-  hit.style.height = hitSize + "px";
+  hit.style.left =
+    flower.left;
 
-  hit.dataset.index = index;
+
+  hit.style.top =
+    flower.top;
+
+
+  const hitSize =
+    Math.max(
+      65,
+      110 * flower.scale
+    );
+
+
+  hit.style.width =
+    hitSize + "px";
+
+
+  hit.style.height =
+    hitSize + "px";
+
+
+  hit.dataset.index =
+    index;
+
 
   interactionLayer.appendChild(hit);
 
 
-  hit.addEventListener("click",()=>{
+  hit.addEventListener(
+    "click",
+    ()=>{
 
-    /*
-      FOTO
-    */
 
-    if(photoFlowerMap[index] !== undefined){
+      /*
+        FOTO
+      */
 
-      const photoIndex = photoFlowerMap[index];
+      if(
+        photoFlowerMap[index] !== undefined
+      ){
 
-      if(!foundPhotos.has(photoIndex)){
+        const photoIndex =
+          photoFlowerMap[index];
 
-        openPhoto(photoIndex);
 
-        return;
+        if(
+          !foundPhotos.has(photoIndex)
+        ){
+
+          openPhoto(photoIndex);
+
+          return;
+
+        }
+
+      }
+
+
+      /*
+        MENSAJE
+      */
+
+      if(flower.message){
+
+        openMessage(
+          flower.message
+        );
 
       }
 
     }
+  );
+
+});
 
 
-    /*
-      MENSAJE
-    */
+/* =====================================================
+   ORIENTACIÓN INICIAL
+===================================================== */
 
-    if(flower.message){
+function checkInitialOrientation(){
 
-      openMessage(flower.message);
+  const portrait =
+    window.innerHeight >
+    window.innerWidth;
+
+
+  /*
+    VERTICAL:
+    mostrar "Gira el teléfono".
+  */
+
+  if(portrait){
+
+    rotateScreen.style.display =
+      "flex";
+
+  }
+
+  /*
+    HORIZONTAL:
+    quitar el aviso.
+  */
+
+  else{
+
+    rotateScreen.style.display =
+      "none";
+
+  }
+
+}
+
+
+/*
+  Al cargar la página.
+*/
+
+window.addEventListener(
+  "load",
+  ()=>{
+
+    setTimeout(
+      checkInitialOrientation,
+      100
+    );
+
+  }
+);
+
+
+/*
+  Si el usuario gira el teléfono
+  antes de comenzar.
+*/
+
+window.addEventListener(
+  "resize",
+  ()=>{
+
+    if(letterState === "none"){
+
+      checkInitialOrientation();
 
     }
 
-  });
+  }
+);
 
-});
+
+window.addEventListener(
+  "orientationchange",
+  ()=>{
+
+    setTimeout(
+      ()=>{
+
+        if(letterState === "none"){
+
+          checkInitialOrientation();
+
+        }
+
+      },
+      300
+    );
+
+  }
+);
 
 
 /* =====================================================
    INTRO
 ===================================================== */
 
-introSunflower.addEventListener("click",()=>{
-
-  /*
-    efecto de presión
-  */
-
-  introSunflower.style.transform = "scale(.88)";
-
-  setTimeout(()=>{
-
-    introSunflower.style.opacity = "0";
-
-  },250);
+introSunflower.addEventListener(
+  "click",
+  ()=>{
 
 
-  setTimeout(()=>{
+    /*
+      efecto de presión
+    */
 
-    introSunflower.style.display = "none";
-
-    seed.classList.add("drop");
-
-  },700);
+    introSunflower.style.transform =
+      "scale(.88)";
 
 
-  setTimeout(()=>{
+    /*
+      desaparece
+    */
 
-    intro.style.display = "none";
+    setTimeout(
+      ()=>{
 
-    startPhrases();
+        introSunflower.style.opacity =
+          "0";
 
-  },2300);
+      },
+      250
+    );
 
-});
+
+    /*
+      DESPUÉS de desaparecer:
+      cae la semilla.
+    */
+
+    setTimeout(
+      ()=>{
+
+        introSunflower.style.display =
+          "none";
+
+
+        seed.classList.add(
+          "drop"
+        );
+
+      },
+      700
+    );
+
+
+    /*
+      Después continúa la secuencia.
+    */
+
+    setTimeout(
+      ()=>{
+
+        intro.style.display =
+          "none";
+
+
+        startPhrases();
+
+      },
+      2300
+    );
+
+  }
+);
 
 
 /* =====================================================
@@ -1306,48 +2500,81 @@ introSunflower.addEventListener("click",()=>{
 
 function startPhrases(){
 
-  phrases.style.display = "flex";
+  phrases.style.display =
+    "flex";
 
-  let index = 0;
+
+  let index =
+    0;
+
 
   function showNext(){
 
-    if(index >= initialPhrases.length){
 
-      phrases.style.display = "none";
+    if(
+      index >=
+      initialPhrases.length
+    ){
 
-      garden.style.display = "block";
+      phrases.style.display =
+        "none";
+
+
+      garden.style.display =
+        "block";
+
 
       return;
 
     }
 
-    phraseText.textContent = initialPhrases[index];
 
-    phraseText.classList.remove("show");
-
-    setTimeout(()=>{
-
-      phraseText.classList.add("show");
-
-    },100);
+    phraseText.textContent =
+      initialPhrases[index];
 
 
-    setTimeout(()=>{
+    phraseText.classList.remove(
+      "show"
+    );
 
-      phraseText.classList.remove("show");
 
-      setTimeout(()=>{
+    setTimeout(
+      ()=>{
 
-        index++;
+        phraseText.classList.add(
+          "show"
+        );
 
-        showNext();
+      },
+      100
+    );
 
-      },900);
 
-    },3000);
+    setTimeout(
+      ()=>{
+
+        phraseText.classList.remove(
+          "show"
+        );
+
+
+        setTimeout(
+          ()=>{
+
+            index++;
+
+            showNext();
+
+          },
+          900
+        );
+
+      },
+      3000
+    );
 
   }
+
 
   showNext();
 
@@ -1360,17 +2587,25 @@ function startPhrases(){
 
 function openMessage(text){
 
-  messageText.textContent = text;
+  messageText.textContent =
+    text;
 
-  messageBox.style.display = "block";
+
+  messageBox.style.display =
+    "block";
 
 }
 
-messageClose.addEventListener("click",()=>{
 
-  messageBox.style.display = "none";
+messageClose.addEventListener(
+  "click",
+  ()=>{
 
-});
+    messageBox.style.display =
+      "none";
+
+  }
+);
 
 
 /* =====================================================
@@ -1379,54 +2614,94 @@ messageClose.addEventListener("click",()=>{
 
 function openPhoto(index){
 
-  if(foundPhotos.has(index)) return;
+  if(
+    foundPhotos.has(index)
+  ){
 
-  currentPhotoIndex = index;
+    return;
 
-  viewerImage.src = photos[index];
+  }
 
-  photoViewer.style.display = "flex";
+
+  currentPhotoIndex =
+    index;
+
+
+  viewerImage.src =
+    photos[index];
+
+
+  photoViewer.style.display =
+    "flex";
 
 }
 
 
-photoClose.addEventListener("click",()=>{
-
-  closeCurrentPhoto();
-
-});
-
-
-photoViewer.addEventListener("click",(event)=>{
-
-  if(event.target === photoViewer){
+photoClose.addEventListener(
+  "click",
+  ()=>{
 
     closeCurrentPhoto();
 
   }
+);
 
-});
+
+photoViewer.addEventListener(
+  "click",
+  (event)=>{
+
+    if(
+      event.target ===
+      photoViewer
+    ){
+
+      closeCurrentPhoto();
+
+    }
+
+  }
+);
 
 
 function closeCurrentPhoto(){
 
-  if(currentPhotoIndex === null) return;
+  if(
+    currentPhotoIndex === null
+  ){
 
-  const index = currentPhotoIndex;
+    return;
 
-  photoViewer.style.display = "none";
+  }
 
-  currentPhotoIndex = null;
 
-  if(!foundPhotos.has(index)){
+  const index =
+    currentPhotoIndex;
+
+
+  photoViewer.style.display =
+    "none";
+
+
+  currentPhotoIndex =
+    null;
+
+
+  if(
+    !foundPhotos.has(index)
+  ){
 
     foundPhotos.add(index);
 
-    setTimeout(()=>{
 
-      sendPhotoToLine(index);
+    setTimeout(
+      ()=>{
 
-    },350);
+        sendPhotoToLine(index);
+
+      },
+      350
+    );
 
   }
 
@@ -1434,47 +2709,85 @@ function closeCurrentPhoto(){
 
 
 /* =====================================================
-   MANDAR FOTO AL TENDEDERO
+   FOTO AL TENDEDERO
 ===================================================== */
 
 function sendPhotoToLine(index){
 
-  const slot = photoSlots[totalHung];
+  const slot =
+    photoSlots[totalHung];
 
-  if(!slot) return;
 
-  const polaroid = document.createElement("div");
+  if(!slot){
 
-  polaroid.className = "polaroid";
+    return;
 
-  polaroid.style.left = slot.left;
+  }
 
-  polaroid.style.setProperty("--rotation",slot.rotation);
 
-  const peg = document.createElement("div");
+  const polaroid =
+    document.createElement("div");
 
-  peg.className = "peg";
 
-  const img = document.createElement("img");
+  polaroid.className =
+    "polaroid";
 
-  img.src = photos[index];
 
-  img.alt = "Recuerdo";
+  polaroid.style.left =
+    slot.left;
 
-  polaroid.appendChild(peg);
 
-  polaroid.appendChild(img);
+  polaroid.style.setProperty(
+    "--rotation",
+    slot.rotation
+  );
 
-  garden.appendChild(polaroid);
+
+  const peg =
+    document.createElement("div");
+
+
+  peg.className =
+    "peg";
+
+
+  const img =
+    document.createElement("img");
+
+
+  img.src =
+    photos[index];
+
+
+  img.alt =
+    "Recuerdo";
+
+
+  polaroid.appendChild(
+    peg
+  );
+
+
+  polaroid.appendChild(
+    img
+  );
+
+
+  garden.appendChild(
+    polaroid
+  );
+
 
   totalHung++;
 
 
   /*
-    cuando estén las 7
+    Cuando estén las 7.
   */
 
-  if(totalHung === 7){
+  if(
+    totalHung === 7
+  ){
 
     startFinalSequence();
 
@@ -1489,28 +2802,66 @@ function sendPhotoToLine(index){
 
 function startFinalSequence(){
 
-  if(finalSequenceStarted) return;
+  if(
+    finalSequenceStarted
+  ){
 
-  finalSequenceStarted = true;
+    return;
 
-  setTimeout(()=>{
-
-    garden.classList.add("wind-active");
-
-  },4500);
+  }
 
 
-  setTimeout(()=>{
+  finalSequenceStarted =
+    true;
 
-    garden.classList.remove("wind-active");
 
-    flyingLetter.style.display = "block";
+  /*
+    Esperar unos segundos.
+  */
 
-    flyingLetter.classList.add("fly");
+  setTimeout(
+    ()=>{
 
-    letterState = "flying";
+      garden.classList.add(
+        "wind-active"
+      );
 
-  },7700);
+    },
+    4500
+  );
+
+
+  /*
+    Después aparece la carta.
+  */
+
+  setTimeout(
+    ()=>{
+
+      garden.classList.remove(
+        "wind-active"
+      );
+
+
+      flyingLetter.style.display =
+        "block";
+
+
+      flyingLetter.style.pointerEvents =
+        "auto";
+
+
+      flyingLetter.classList.add(
+        "fly"
+      );
+
+
+      letterState =
+        "flying";
+
+    },
+    7700
+  );
 
 }
 
@@ -1519,97 +2870,176 @@ function startFinalSequence(){
    CARTA VOLANDO
 ===================================================== */
 
-flyingLetter.addEventListener("click",()=>{
+flyingLetter.addEventListener(
+  "click",
+  ()=>{
 
-  openLetter();
+    openLetter();
 
-});
+  }
+);
 
+
+/* =====================================================
+   ORIENTACIÓN DE LA CARTA
+===================================================== */
 
 function showRotateScreen(){
 
-  rotateScreen.style.display = "flex";
+  rotateScreen.style.display =
+    "flex";
 
 }
 
 
 function hideRotateScreen(){
 
-  rotateScreen.style.display = "none";
+  rotateScreen.style.display =
+    "none";
 
 }
 
 
+/* =====================================================
+   ABRIR CARTA
+===================================================== */
+
 function openLetter(){
 
-  if(!finalSequenceStarted) return;
-
-  flyingLetter.style.display = "none";
-
-  flyingLetter.style.pointerEvents = "none";
-
-
-  /*
-    horizontal
-  */
-
-  if(window.innerHeight <= window.innerWidth){
-
-    letterState = "waiting";
-
-    hideLetterReader();
-
-    showRotateScreen();
+  if(
+    !finalSequenceStarted
+  ){
 
     return;
 
   }
 
 
+  flyingLetter.style.display =
+    "none";
+
+
+  flyingLetter.style.pointerEvents =
+    "none";
+
+
+  /*
+    HORIZONTAL:
+    pedir vertical.
+  */
+
+  if(
+    window.innerHeight <=
+    window.innerWidth
+  ){
+
+    letterState =
+      "waiting";
+
+
+    hideLetterReader();
+
+
+    showRotateScreen();
+
+
+    return;
+
+  }
+
+
+  /*
+    VERTICAL:
+    abrir carta.
+  */
+
   openLetterReader();
 
 }
 
 
+/* =====================================================
+   ABRIR LECTOR
+===================================================== */
+
 function openLetterReader(){
 
-  letterState = "reading";
+  letterState =
+    "reading";
 
-  document.body.classList.add("reading-letter");
-
-  letterReader.classList.add("show");
 
   hideRotateScreen();
 
-  garden.style.display = "block";
 
-  garden.style.visibility = "visible";
+  garden.style.display =
+    "block";
+
+
+  garden.style.visibility =
+    "visible";
+
+
+  document.body.classList.add(
+    "reading-letter"
+  );
+
+
+  letterReader.classList.add(
+    "show"
+  );
 
 }
 
+
+/* =====================================================
+   OCULTAR CARTA
+===================================================== */
 
 function hideLetterReader(){
 
-  letterReader.classList.remove("show");
+  letterReader.classList.remove(
+    "show"
+  );
 
-  document.body.classList.remove("reading-letter");
+
+  document.body.classList.remove(
+    "reading-letter"
+  );
 
 }
 
+
+/* =====================================================
+   TERMINAR LECTURA
+===================================================== */
 
 function finishLetterReading(){
 
   hideLetterReader();
 
+
   hideRotateScreen();
 
-  letterState = "closed";
 
-  letterEnvelope.classList.add("show");
+  letterState =
+    "closed";
 
-  garden.style.display = "block";
 
-  garden.style.visibility = "visible";
+  garden.style.display =
+    "block";
+
+
+  garden.style.visibility =
+    "visible";
+
+
+  /*
+    Aparece el sobre.
+  */
+
+  letterEnvelope.classList.add(
+    "show"
+  );
 
 }
 
@@ -1620,32 +3050,58 @@ function finishLetterReading(){
 
 function openLetterFromEnvelope(){
 
-  if(!finalSequenceStarted) return;
-
-
-  if(window.innerHeight <= window.innerWidth){
-
-    letterState = "waiting";
-
-    hideLetterReader();
-
-    showRotateScreen();
+  if(
+    !finalSequenceStarted
+  ){
 
     return;
 
   }
 
 
+  /*
+    Si está horizontal:
+    pedir vertical.
+  */
+
+  if(
+    window.innerHeight <=
+    window.innerWidth
+  ){
+
+    letterState =
+      "waiting";
+
+
+    hideLetterReader();
+
+
+    showRotateScreen();
+
+
+    return;
+
+  }
+
+
+  /*
+    Si ya está vertical:
+    abrir.
+  */
+
   openLetterReader();
 
 }
 
 
-letterEnvelope.addEventListener("click",()=>{
+letterEnvelope.addEventListener(
+  "click",
+  ()=>{
 
-  openLetterFromEnvelope();
+    openLetterFromEnvelope();
 
-});
+  }
+);
 
 
 /* =====================================================
@@ -1655,38 +3111,26 @@ letterEnvelope.addEventListener("click",()=>{
 function checkLetterOrientation(){
 
   const portrait =
-    window.innerHeight > window.innerWidth;
+    window.innerHeight >
+    window.innerWidth;
 
 
   /*
-    Si está leyendo y vuelve horizontal:
-    cerramos la carta y regresamos al jardín.
+    CARTA ESPERANDO VERTICAL
   */
 
-  if(letterState === "reading"){
-
-    if(!portrait){
-
-      finishLetterReading();
-
-    }
-
-    return;
-
-  }
-
-
-  /*
-    Si estaba esperando que girara:
-  */
-
-  if(letterState === "waiting"){
+  if(
+    letterState ===
+    "waiting"
+  ){
 
     if(portrait){
 
       openLetterReader();
 
-    }else{
+    }
+
+    else{
 
       showRotateScreen();
 
@@ -1698,46 +3142,114 @@ function checkLetterOrientation(){
 
 
   /*
-    closed o none:
-    no hacer nada.
+    CARTA ABIERTA Y VUELVE HORIZONTAL
   */
 
-}
+  if(
+    letterState ===
+    "reading"
+  ){
 
-
-window.addEventListener("resize",checkLetterOrientation);
-
-window.addEventListener(
-  "orientationchange",
-  ()=>{
-    setTimeout(checkLetterOrientation,300);
-  }
-);
-
-
-/* =====================================================
-   CERRAR CARTA AL TOCAR FUERA
-===================================================== */
-
-letterReader.addEventListener("click",(event)=>{
-
-  if(event.target === letterReader){
-
-    /*
-      Solo se cierra si está en vertical.
-      Al volver horizontal se completa
-      automáticamente el estado.
-    */
-
-    if(window.innerHeight > window.innerWidth){
+    if(!portrait){
 
       finishLetterReading();
 
     }
 
+    return;
+
   }
 
-});
+}
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener(
+  "resize",
+  ()=>{
+
+    setTimeout(
+      checkLetterOrientation,
+      100
+    );
+
+  }
+);
+
+
+/* =====================================================
+   ORIENTATION CHANGE
+===================================================== */
+
+window.addEventListener(
+  "orientationchange",
+  ()=>{
+
+    setTimeout(
+      checkLetterOrientation,
+      300
+    );
+
+  }
+);
+
+
+/* =====================================================
+   VISIBILITY CHANGE
+===================================================== */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    if(!document.hidden){
+
+      setTimeout(
+        checkLetterOrientation,
+        200
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   CERRAR CARTA TOCANDO FUERA
+===================================================== */
+
+letterReader.addEventListener(
+  "click",
+  (event)=>{
+
+    if(
+      event.target ===
+      letterReader
+    ){
+
+      /*
+        Solo puede cerrarse
+        tocando fuera estando
+        en vertical.
+      */
+
+      if(
+        window.innerHeight >
+        window.innerWidth
+      ){
+
+        finishLetterReading();
+
+      }
+
+    }
+
+  }
+);
 
 </script>
 
