@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Para ti 🌻">
+<meta name="theme-color" content="#f8f1df">
+
 <title>Para ti 🌻</title>
 
+
 <style>
+
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
@@ -21,7 +33,9 @@ html,body{
 body{
     font-family:Georgia,"Times New Roman",serif;
     background:#f8f1df;
+    touch-action:manipulation;
 }
+
 
 /* =====================================================
    ROTACIÓN
@@ -30,12 +44,16 @@ body{
 #rotateScreen{
     position:fixed;
     inset:0;
-    z-index:10000;
+    z-index:30000;
+
     display:none;
+
     align-items:center;
     justify-content:center;
     flex-direction:column;
+
     text-align:center;
+
     background:#f8f1df;
     color:#624d32;
 }
@@ -43,34 +61,55 @@ body{
 .rotate-phone{
     font-size:70px;
     margin-bottom:20px;
+
     animation:rotatePhone 2s infinite ease-in-out;
 }
 
 #rotateScreen p{
     margin:0;
+
     font-size:25px;
     font-style:italic;
 }
 
 @keyframes rotatePhone{
-    0%,100%{transform:rotate(0deg);}
-    45%,65%{transform:rotate(90deg);}
+
+    0%,100%{
+        transform:rotate(0deg);
+    }
+
+    45%,65%{
+        transform:rotate(90deg);
+    }
+
 }
+
+
+/*
+   IMPORTANTE:
+   En la versión anterior el jardín se ocultaba
+   completamente al poner el teléfono vertical.
+
+   Ahora solamente se muestra la pantalla de rotación
+   cuando corresponde a la escena inicial.
+*/
 
 @media (orientation:portrait){
 
-    #rotateScreen{
+    body:not(.reading-letter) #rotateScreen{
         display:flex;
     }
 
-    #intro,
-    #phrases,
-    #garden,
-    #photoViewer,
-    #messageBox{
+    body:not(.reading-letter) #intro,
+    body:not(.reading-letter) #phrases,
+    body:not(.reading-letter) #garden,
+    body:not(.reading-letter) #photoViewer,
+    body:not(.reading-letter) #messageBox{
         visibility:hidden;
     }
+
 }
+
 
 /* =====================================================
    INTRO
@@ -79,67 +118,245 @@ body{
 #intro{
     position:fixed;
     inset:0;
+
     z-index:9000;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     flex-direction:column;
+
     background:#f8f1df;
+
     touch-action:manipulation;
 }
 
 #introFlower{
     position:relative;
+
     width:125px;
     height:125px;
+
     cursor:pointer;
+
     animation:floatFlower 3s ease-in-out infinite;
+
+    transition:
+        transform .65s ease,
+        opacity .65s ease;
 }
+
+
+/*
+   NUEVO:
+   efecto al presionar la flor.
+*/
+
+#introFlower.pressing{
+
+    animation:
+        flowerPress .65s ease forwards;
+
+}
+
+
+@keyframes flowerPress{
+
+    0%{
+        transform:scale(1);
+    }
+
+    25%{
+        transform:scale(.86);
+    }
+
+    48%{
+        transform:scale(1.08);
+    }
+
+    70%{
+        transform:scale(.97);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+
+/*
+   NUEVO:
+   pequeño efecto de onda alrededor de la flor.
+*/
+
+#introFlower.pressing::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:125px;
+    height:125px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border:2px solid rgba(217,155,37,.55);
+
+    border-radius:50%;
+
+    animation:
+        flowerRipple .65s ease-out forwards;
+
+    pointer-events:none;
+
+}
+
+
+@keyframes flowerRipple{
+
+    0%{
+        opacity:.8;
+        transform:
+            translate(-50%,-50%)
+            scale(.75);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            scale(1.7);
+    }
+
+}
+
+
+/*
+   NUEVO:
+   desaparece después del efecto.
+*/
+
+#introFlower.disappear{
+
+    animation:
+        flowerDisappear .7s ease forwards !important;
+
+}
+
+
+@keyframes flowerDisappear{
+
+    0%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(.08);
+    }
+
+}
+
 
 .introPetal{
     position:absolute;
+
     width:48px;
     height:75px;
+
     left:50%;
     top:50%;
+
     transform-origin:50% 85%;
+
     border-radius:50% 50% 45% 45%;
+
     background:#f4c51d;
 }
 
-.introPetal:nth-child(1){transform:translate(-50%,-85%) rotate(0deg);}
-.introPetal:nth-child(2){transform:translate(-50%,-85%) rotate(45deg);}
-.introPetal:nth-child(3){transform:translate(-50%,-85%) rotate(90deg);}
-.introPetal:nth-child(4){transform:translate(-50%,-85%) rotate(135deg);}
-.introPetal:nth-child(5){transform:translate(-50%,-85%) rotate(180deg);}
-.introPetal:nth-child(6){transform:translate(-50%,-85%) rotate(225deg);}
-.introPetal:nth-child(7){transform:translate(-50%,-85%) rotate(270deg);}
-.introPetal:nth-child(8){transform:translate(-50%,-85%) rotate(315deg);}
+.introPetal:nth-child(1){
+    transform:translate(-50%,-85%) rotate(0deg);
+}
+
+.introPetal:nth-child(2){
+    transform:translate(-50%,-85%) rotate(45deg);
+}
+
+.introPetal:nth-child(3){
+    transform:translate(-50%,-85%) rotate(90deg);
+}
+
+.introPetal:nth-child(4){
+    transform:translate(-50%,-85%) rotate(135deg);
+}
+
+.introPetal:nth-child(5){
+    transform:translate(-50%,-85%) rotate(180deg);
+}
+
+.introPetal:nth-child(6){
+    transform:translate(-50%,-85%) rotate(225deg);
+}
+
+.introPetal:nth-child(7){
+    transform:translate(-50%,-85%) rotate(270deg);
+}
+
+.introPetal:nth-child(8){
+    transform:translate(-50%,-85%) rotate(315deg);
+}
 
 .introCenter{
     position:absolute;
+
     width:45px;
     height:45px;
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
+
     border-radius:50%;
+
     background:#75491e;
+
     z-index:3;
 }
 
 #pressText{
     margin-top:30px;
+
     font-size:23px;
     font-style:italic;
+
     color:#624d32;
+
     pointer-events:none;
+
+    transition:
+        opacity .5s ease;
 }
 
 @keyframes floatFlower{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-9px);}
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+
 }
+
 
 /* =====================================================
    FRASES
@@ -148,38 +365,55 @@ body{
 #phrases{
     position:fixed;
     inset:0;
+
     z-index:8000;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:30px;
+
     text-align:center;
+
     background:#f8f1df;
 }
 
 .phrase{
     position:absolute;
+
     max-width:90%;
+
     opacity:0;
+
     color:#59452d;
+
     font-size:27px;
     line-height:1.45;
+
     font-style:italic;
-    transition:opacity 1.3s ease;
+
+    transition:
+        opacity 1.3s ease;
 }
 
 .phrase.show{
     opacity:1;
 }
 
+
 /* =====================================================
    JARDÍN
+   BASE ORIGINAL — NO MODIFICADO
 ===================================================== */
 
 #garden{
     position:fixed;
     inset:0;
+
     display:none;
+
     overflow:hidden;
 
     background:
@@ -193,19 +427,28 @@ body{
         );
 }
 
+
 /* SOL */
 
 .sun{
     position:absolute;
+
     width:105px;
     height:105px;
+
     right:8%;
     top:7%;
+
     border-radius:50%;
+
     background:#ffd45c;
-    box-shadow:0 0 45px rgba(255,211,80,.55);
+
+    box-shadow:
+        0 0 45px rgba(255,211,80,.55);
+
     z-index:2;
 }
+
 
 /* =====================================================
    TENDEDERO
@@ -214,12 +457,18 @@ body{
 
 .clothesline-post{
     position:absolute;
+
     top:0;
+
     width:14px;
     height:45%;
+
     border-radius:8px;
+
     background:#8b5e34;
+
     z-index:5;
+
     pointer-events:none;
 }
 
@@ -233,26 +482,40 @@ body{
 
 .clothesline{
     position:absolute;
+
     left:2%;
     right:2%;
+
     top:8%;
+
     height:3px;
+
     background:#765738;
+
     z-index:5;
+
     pointer-events:none;
 }
 
 .clothesline-sag{
     position:absolute;
+
     left:2%;
     right:2%;
+
     top:8%;
+
     height:35px;
+
     border-bottom:3px solid #765738;
+
     border-radius:0 0 50% 50%;
+
     z-index:4;
+
     pointer-events:none;
 }
+
 
 /* =====================================================
    CAMPO
@@ -260,9 +523,12 @@ body{
 
 .field{
     position:absolute;
+
     inset:0;
+
     z-index:10;
 }
+
 
 /* =====================================================
    GIRASOLES
@@ -282,6 +548,11 @@ body{
 
     transform:
         translate(-50%,-50%)
+        translate3d(
+            var(--wind-x,0px),
+            var(--wind-y,0px),
+            0
+        )
         scale(var(--scale))
         rotate(var(--rotate));
 
@@ -290,6 +561,9 @@ body{
     z-index:var(--depth);
 
     pointer-events:none;
+
+    transition:
+        transform .8s ease;
 }
 
 .flower-head{
@@ -324,26 +598,56 @@ body{
     background:#f5c719;
 }
 
-.petal:nth-child(1){transform:translate(-50%,-90%) rotate(0deg);}
-.petal:nth-child(2){transform:translate(-50%,-90%) rotate(45deg);}
-.petal:nth-child(3){transform:translate(-50%,-90%) rotate(90deg);}
-.petal:nth-child(4){transform:translate(-50%,-90%) rotate(135deg);}
-.petal:nth-child(5){transform:translate(-50%,-90%) rotate(180deg);}
-.petal:nth-child(6){transform:translate(-50%,-90%) rotate(225deg);}
-.petal:nth-child(7){transform:translate(-50%,-90%) rotate(270deg);}
-.petal:nth-child(8){transform:translate(-50%,-90%) rotate(315deg);}
+.petal:nth-child(1){
+    transform:translate(-50%,-90%) rotate(0deg);
+}
+
+.petal:nth-child(2){
+    transform:translate(-50%,-90%) rotate(45deg);
+}
+
+.petal:nth-child(3){
+    transform:translate(-50%,-90%) rotate(90deg);
+}
+
+.petal:nth-child(4){
+    transform:translate(-50%,-90%) rotate(135deg);
+}
+
+.petal:nth-child(5){
+    transform:translate(-50%,-90%) rotate(180deg);
+}
+
+.petal:nth-child(6){
+    transform:translate(-50%,-90%) rotate(225deg);
+}
+
+.petal:nth-child(7){
+    transform:translate(-50%,-90%) rotate(270deg);
+}
+
+.petal:nth-child(8){
+    transform:translate(-50%,-90%) rotate(315deg);
+}
 
 .flower-center{
     position:absolute;
+
     width:35px;
     height:35px;
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
+
     border-radius:50%;
+
     background:#74481f;
+
     z-index:4;
 }
+
 
 /* =====================================================
    ÁREA PARA TOCAR
@@ -371,6 +675,7 @@ body{
     pointer-events:auto;
 }
 
+
 /* =====================================================
    VISOR DE FOTOS
 ===================================================== */
@@ -378,6 +683,7 @@ body{
 #photoViewer{
     position:fixed;
     inset:0;
+
     z-index:20000;
 
     display:none;
@@ -423,6 +729,7 @@ body{
     height:48px;
 
     border:0;
+
     border-radius:50%;
 
     background:#fffdf7;
@@ -430,6 +737,7 @@ body{
     color:#4b3824;
 
     font-family:Arial,sans-serif;
+
     font-size:30px;
     line-height:48px;
 
@@ -441,6 +749,7 @@ body{
 }
 
 @keyframes photoAppear{
+
     from{
         opacity:0;
         transform:scale(.75);
@@ -450,7 +759,9 @@ body{
         opacity:1;
         transform:scale(1);
     }
+
 }
+
 
 /* =====================================================
    FOTOS COLGADAS
@@ -486,6 +797,10 @@ body{
     transform-origin:top center;
 
     animation:hangPhoto .7s ease forwards;
+
+    transition:
+        margin-left .7s ease,
+        transform .7s ease;
 }
 
 .photo-polaroid img{
@@ -523,8 +838,10 @@ body{
 }
 
 @keyframes hangPhoto{
+
     from{
         opacity:0;
+
         transform:
             translateY(-30px)
             rotate(0deg)
@@ -533,12 +850,15 @@ body{
 
     to{
         opacity:1;
+
         transform:
             translateY(0)
             rotate(var(--rotation))
             scale(1);
     }
+
 }
+
 
 /* =====================================================
    MENSAJES
@@ -546,7 +866,9 @@ body{
 
 #messageBox{
     position:fixed;
+
     inset:0;
+
     z-index:15000;
 
     display:none;
@@ -601,13 +923,16 @@ body{
     border-radius:30px;
 
     background:#d99b25;
+
     color:white;
 
     font-family:inherit;
+
     font-size:17px;
 }
 
 @keyframes messageAppear{
+
     from{
         opacity:0;
         transform:scale(.8);
@@ -617,10 +942,13 @@ body{
         opacity:1;
         transform:scale(1);
     }
+
 }
+
 
 /* =====================================================
    SEMILLA
+   AHORA CAE DESPUÉS DE QUE DESAPARECE LA FLOR
 ===================================================== */
 
 .seed{
@@ -641,12 +969,15 @@ body{
     z-index:9500;
 
     animation:seedFall 1.7s ease-in forwards;
+
+    pointer-events:none;
 }
 
 @keyframes seedFall{
 
     0%{
         opacity:0;
+
         transform:
             translate(-50%,-80px)
             rotate(0);
@@ -658,29 +989,423 @@ body{
 
     100%{
         opacity:0;
+
         transform:
             translate(-50%,60vh)
             rotate(300deg);
     }
+
 }
+
+
+/* =====================================================
+   VIENTO
+===================================================== */
+
+.wind-active .field-flower{
+
+    animation:
+        flowerWind 2.7s ease-in-out infinite alternate;
+
+}
+
+
+@keyframes flowerWind{
+
+    0%{
+        margin-left:0;
+    }
+
+    50%{
+        margin-left:3px;
+    }
+
+    100%{
+        margin-left:-3px;
+    }
+
+}
+
+
+.wind-active .photo-polaroid{
+
+    animation:
+        photoWind 2.7s ease-in-out infinite alternate;
+
+}
+
+
+@keyframes photoWind{
+
+    0%{
+        margin-left:0;
+    }
+
+    50%{
+        margin-left:4px;
+    }
+
+    100%{
+        margin-left:-3px;
+    }
+
+}
+
+
+/* =====================================================
+   CARTA QUE LLEGA CON EL VIENTO
+===================================================== */
+
+#flyingLetter{
+
+    position:fixed;
+
+    width:125px;
+    height:90px;
+
+    left:-160px;
+    top:32%;
+
+    z-index:25000;
+
+    background:#fffdf7;
+
+    border:1px solid #eadfc9;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.25);
+
+    transform:rotate(-8deg);
+
+    cursor:pointer;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+#flyingLetter.show{
+
+    pointer-events:auto;
+
+    animation:
+        letterFly 4s cubic-bezier(.2,.8,.2,1)
+        forwards;
+
+}
+
+#flyingLetter::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    top:0;
+
+    margin:auto;
+
+    width:0;
+    height:0;
+
+    border-left:62px solid transparent;
+    border-right:62px solid transparent;
+    border-top:43px solid #efe5d2;
+
+}
+
+#flyingLetter::after{
+
+    content:"💌";
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:38px;
+
+}
+
+@keyframes letterFly{
+
+    0%{
+
+        opacity:0;
+
+        left:-160px;
+        top:40%;
+
+        transform:
+            rotate(-12deg)
+            scale(.8);
+
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    55%{
+
+        left:45%;
+        top:23%;
+
+        transform:
+            rotate(8deg)
+            scale(1);
+
+    }
+
+    75%{
+
+        left:62%;
+        top:34%;
+
+        transform:
+            rotate(-5deg);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        left:50%;
+        top:30%;
+
+        transform:
+            translateX(-50%)
+            rotate(3deg)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   CARTA ABIERTA
+===================================================== */
+
+#letterReader{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:29000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:4vh 6vw;
+
+    background:rgba(35,25,15,.20);
+
+}
+
+#letterReader.show{
+
+    display:flex;
+
+}
+
+.letter-paper{
+
+    position:relative;
+
+    width:min(760px,86vw);
+
+    max-height:88vh;
+
+    overflow-y:auto;
+
+    padding:
+        55px
+        60px
+        65px;
+
+    background:#fffdf7;
+
+    border:1px solid #e5d9c3;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.30);
+
+    color:#624833;
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    font-style:italic;
+
+    text-align:left;
+
+    scrollbar-width:none;
+
+}
+
+.letter-paper::-webkit-scrollbar{
+    display:none;
+}
+
+.letter-title{
+
+    text-align:center;
+
+    font-size:34px;
+
+    margin-bottom:35px;
+
+}
+
+.letter-sign{
+
+    margin-top:40px;
+
+    text-align:right;
+
+    font-size:25px;
+
+}
+
 
 /* =====================================================
    TRANSICIÓN
 ===================================================== */
 
 .fadeOut{
-    animation:fadeOut .8s forwards;
+
+    animation:
+        fadeOut .8s forwards;
+
 }
 
 @keyframes fadeOut{
+
     to{
         opacity:0;
     }
+
 }
+
+
+/* =====================================================
+   CARTA EN CELULAR VERTICAL
+===================================================== */
+
+@media (orientation:portrait){
+
+    body.reading-letter #rotateScreen{
+        display:none;
+    }
+
+    body.reading-letter #garden{
+        visibility:visible;
+
+        display:block;
+    }
+
+    body.reading-letter #letterReader{
+        display:flex;
+    }
+
+}
+
+
+/* =====================================================
+   CARTA EN HORIZONTAL
+===================================================== */
+
+@media (orientation:landscape){
+
+    #letterReader{
+        display:none !important;
+    }
+
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media(max-width:700px){
+
+    .phrase{
+        font-size:23px;
+    }
+
+    .message-card p{
+        font-size:22px;
+    }
+
+    .photo-polaroid{
+        width:82px;
+
+        padding:
+            5px
+            5px
+            18px;
+    }
+
+    .photo-polaroid img{
+        height:70px;
+    }
+
+    .letter-paper{
+
+        width:90vw;
+
+        max-height:90vh;
+
+        padding:
+            38px
+            28px
+            45px;
+
+        font-size:19px;
+
+        line-height:1.7;
+
+    }
+
+    .letter-title{
+        font-size:29px;
+    }
+
+}
+
+
+/* =====================================================
+   PWA / INSTALACIÓN
+===================================================== */
+
+@supports (-webkit-touch-callout:none){
+
+    body{
+        padding-bottom:
+            env(safe-area-inset-bottom);
+    }
+
+}
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      ROTACIÓN
@@ -688,9 +1413,13 @@ body{
 
 <div id="rotateScreen">
 
-    <div class="rotate-phone">📱</div>
+    <div class="rotate-phone">
+        📱
+    </div>
 
-    <p>Gira el teléfono</p>
+    <p>
+        Gira el teléfono
+    </p>
 
 </div>
 
@@ -752,21 +1481,19 @@ body{
 
     <div class="sun"></div>
 
-    <!-- Tendedero detrás -->
-
     <div class="clothesline-post left"></div>
     <div class="clothesline-post right"></div>
 
     <div class="clothesline-sag"></div>
     <div class="clothesline"></div>
 
-    <!-- Fotos -->
-
     <div id="photoLine" class="photo-line"></div>
 
-    <!-- Flores -->
-
     <div id="field" class="field"></div>
+
+    <!-- CARTA QUE LLEGA CON EL VIENTO -->
+
+    <div id="flyingLetter"></div>
 
 </section>
 
@@ -777,7 +1504,9 @@ body{
 
 <div id="photoViewer">
 
-    <button id="closePhoto" type="button">
+    <button
+        id="closePhoto"
+        type="button">
         ×
     </button>
 
@@ -800,9 +1529,53 @@ body{
 
         <p id="messageText"></p>
 
-        <button id="closeMessage" type="button">
+        <button
+            id="closeMessage"
+            type="button">
             Cerrar
         </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CARTA
+===================================================== -->
+
+<div id="letterReader">
+
+    <div class="letter-paper">
+
+        <div class="letter-title">
+            Para ti 🌻
+        </div>
+
+        <p>
+            Quiero que sepas que cada pequeño detalle de este lugar
+            fue pensado para ti.
+        </p>
+
+        <p>
+            Tal vez por ahora estas palabras solamente sean un pequeño
+            espacio reservado para todo lo que algún día quiero decirte.
+        </p>
+
+        <p>
+            Pero mientras tanto, quiero que recuerdes algo:
+            me hace muy feliz poder compartir esta aventura contigo.
+        </p>
+
+        <p>
+            Y si alguna vez vuelves a entrar aquí, espero que encuentres
+            un pedacito de todo lo bonito que siento por ti.
+        </p>
+
+        <p class="letter-sign">
+            Con cariño,<br>
+            Daniel ❤️
+        </p>
 
     </div>
 
@@ -820,6 +1593,9 @@ const intro =
 
 const introFlower =
     document.getElementById("introFlower");
+
+const pressText =
+    document.getElementById("pressText");
 
 const phrases =
     document.getElementById("phrases");
@@ -854,6 +1630,12 @@ const messageText =
 const closeMessage =
     document.getElementById("closeMessage");
 
+const flyingLetter =
+    document.getElementById("flyingLetter");
+
+const letterReader =
+    document.getElementById("letterReader");
+
 
 /* =====================================================
    ESTADO
@@ -864,6 +1646,13 @@ let introStarted = false;
 let currentPhoto = null;
 
 let currentPhotoIndex = null;
+
+let foundPhotos =
+    new Set();
+
+let totalHung = 0;
+
+let finalSequenceStarted = false;
 
 
 /* =====================================================
@@ -892,11 +1681,17 @@ const photos = [
 const photoSlots = [
 
     {left:"5%",rotation:"-5deg"},
+
     {left:"19%",rotation:"4deg"},
+
     {left:"33%",rotation:"-3deg"},
+
     {left:"47%",rotation:"5deg"},
+
     {left:"61%",rotation:"-4deg"},
+
     {left:"75%",rotation:"3deg"},
+
     {left:"88%",rotation:"-5deg"}
 
 ];
@@ -904,14 +1699,10 @@ const photoSlots = [
 
 /* =====================================================
    DISTRIBUCIÓN DEL JARDÍN
-   TODAS LAS CABEZAS ESTÁN EN EL ÁREA VERDE
+   EXACTAMENTE LA BASE QUE ME MANDASTE
 ===================================================== */
 
 const flowers = [
-
-    /* -------------------------
-       FONDO
-    ------------------------- */
 
     {
         left:"5%",
@@ -953,7 +1744,7 @@ const flowers = [
         headOffset:"3px",
 
         message:
-            "Eres mi vida y por ello quiero estar a tu lado mil y un vidas"
+        "Eres mi vida y por ello quiero estar a tu lado mil y un vidas"
     },
 
     {
@@ -980,11 +1771,6 @@ const flowers = [
         headOffset:"-3px"
     },
 
-
-    /* -------------------------
-       MEDIO
-    ------------------------- */
-
     {
         left:"10%",
         top:"67%",
@@ -1009,7 +1795,7 @@ const flowers = [
         headOffset:"3px",
 
         message:
-            "Eres mi modelo a seguir y por ello te admiro mucho, amor."
+        "Eres mi modelo a seguir y por ello te admiro mucho, amor."
     },
 
     {
@@ -1036,7 +1822,7 @@ const flowers = [
         headOffset:"-4px",
 
         message:
-            "Esta aventura que estamos emprendiendo me alegra de que sea a tu lado"
+        "Esta aventura que estamos emprendiendo me alegra de que sea a tu lado"
     },
 
     {
@@ -1055,11 +1841,6 @@ const flowers = [
         headOffset:"-4px"
     },
 
-
-    /* -------------------------
-       FRENTE
-    ------------------------- */
-
     {
         left:"4%",
         top:"82%",
@@ -1076,7 +1857,7 @@ const flowers = [
         headOffset:"-5px",
 
         message:
-            "Si pudieras verte desde mis ojos, sé que te asombrarías de la mujer que eres."
+        "Si pudieras verte desde mis ojos, sé que te asombrarías de la mujer que eres."
     },
 
     {
@@ -1127,11 +1908,6 @@ const flowers = [
         headOffset:"-4px"
     },
 
-
-    /* -------------------------
-       FLORES EXTRA DEL FRENTE
-    ------------------------- */
-
     {
         left:"9%",
         top:"76%",
@@ -1161,6 +1937,7 @@ const flowers = [
 
 /* =====================================================
    FLORES CON FOTOS
+   EXACTAMENTE LA BASE
 ===================================================== */
 
 const photoFlowerMap = {
@@ -1215,8 +1992,6 @@ function createFlower(data,index){
     );
 
 
-    /* Profundidad */
-
     if(data.scale >= .75){
 
         flower.style.setProperty(
@@ -1254,16 +2029,12 @@ function createFlower(data,index){
     }
 
 
-    /* Cabeza */
-
     const head =
         document.createElement("div");
 
     head.className =
         "flower-head";
 
-
-    /* Pétalos */
 
     for(let i=0;i<8;i++){
 
@@ -1273,12 +2044,12 @@ function createFlower(data,index){
         petal.className =
             "petal";
 
-        head.appendChild(petal);
+        head.appendChild(
+            petal
+        );
 
     }
 
-
-    /* Centro */
 
     const center =
         document.createElement("div");
@@ -1286,12 +2057,14 @@ function createFlower(data,index){
     center.className =
         "flower-center";
 
-    head.appendChild(center);
+    head.appendChild(
+        center
+    );
 
-    flower.appendChild(head);
+    flower.appendChild(
+        head
+    );
 
-
-    /* Área táctil */
 
     const hit =
         document.createElement("div");
@@ -1306,7 +2079,7 @@ function createFlower(data,index){
 
 
     /* =================================================
-       ESPECIAL
+       MENSAJE
     ================================================= */
 
     if(data.message){
@@ -1397,7 +2170,9 @@ function createFlower(data,index){
     }
 
 
-    flower.appendChild(hit);
+    flower.appendChild(
+        hit
+    );
 
     field.appendChild(
         flower
@@ -1413,6 +2188,7 @@ flowers.forEach(
 
 /* =====================================================
    INTRO
+   FLOR → EFECTO → DESAPARECE → SEMILLA
 ===================================================== */
 
 function startIntro(){
@@ -1423,66 +2199,87 @@ function startIntro(){
 
     introStarted = true;
 
+
+    /* primero el efecto */
+
     introFlower.classList.add(
-        "fadeOut"
+        "pressing"
     );
 
-    document
-        .getElementById("pressText")
-        .classList.add("fadeOut");
+    pressText.style.opacity =
+        "0";
 
+
+    /*
+      Esperamos a que termine
+      el efecto de presión.
+    */
 
     setTimeout(
         function(){
 
-            const seed =
-                document.createElement("div");
+            introFlower.classList.remove(
+                "pressing"
+            );
 
-            seed.className =
-                "seed";
+            introFlower.classList.add(
+                "disappear"
+            );
 
-            document.body.appendChild(
-                seed
+
+            /*
+              LA SEMILLA NO APARECE
+              HASTA DESPUÉS DE QUE
+              LA FLOR DESAPARECIÓ.
+            */
+
+            setTimeout(
+                function(){
+
+                    const seed =
+                        document.createElement(
+                            "div"
+                        );
+
+                    seed.className =
+                        "seed";
+
+                    document.body.appendChild(
+                        seed
+                    );
+
+                },
+                700
+            );
+
+
+            /*
+              Después de la secuencia
+              inicial comienzan las frases.
+            */
+
+            setTimeout(
+                function(){
+
+                    intro.style.display =
+                        "none";
+
+                    showPhrases();
+
+                },
+                2500
             );
 
         },
-        450
-    );
-
-
-    setTimeout(
-        function(){
-
-            intro.style.display =
-                "none";
-
-            showPhrases();
-
-        },
-        1100
+        650
     );
 
 }
 
 
-intro.addEventListener(
-    "click",
-    startIntro
-);
-
-
-intro.addEventListener(
-    "touchend",
-    function(e){
-
-        e.preventDefault();
-
-        startIntro();
-
-    },
-    {passive:false}
-);
-
+/*
+   Solo una interacción.
+*/
 
 introFlower.addEventListener(
     "click",
@@ -1493,6 +2290,20 @@ introFlower.addEventListener(
         startIntro();
 
     }
+);
+
+
+introFlower.addEventListener(
+    "touchend",
+    function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        startIntro();
+
+    },
+    {passive:false}
 );
 
 
@@ -1540,6 +2351,7 @@ function showPhrases(){
             );
 
             return;
+
         }
 
 
@@ -1589,10 +2401,11 @@ function openPhoto(
 ){
 
     if(
-        hit &&
-        hit.dataset.found === "true"
+        foundPhotos.has(index)
     ){
+
         return;
+
     }
 
 
@@ -1603,6 +2416,11 @@ function openPhoto(
         index;
 
 
+    foundPhotos.add(
+        index
+    );
+
+
     if(hit){
 
         hit.dataset.found =
@@ -1611,8 +2429,14 @@ function openPhoto(
     }
 
 
+    /*
+      ./ ayuda a que GitHub Pages
+      busque el archivo en la misma
+      carpeta que index.html.
+    */
+
     bigPhoto.src =
-        photoName;
+        "./" + photoName;
 
 
     bigPhoto.onerror =
@@ -1620,7 +2444,7 @@ function openPhoto(
 
             console.error(
                 "No se pudo cargar:",
-                photoName
+                "./" + photoName
             );
 
         };
@@ -1646,6 +2470,7 @@ function closeCurrentPhoto(){
         );
 
         return;
+
     }
 
 
@@ -1661,6 +2486,11 @@ function closeCurrentPhoto(){
     );
 
 
+    /*
+      Primero desaparece la foto grande.
+      Después viaja al tendedero.
+    */
+
     setTimeout(
         function(){
 
@@ -1674,8 +2504,11 @@ function closeCurrentPhoto(){
     );
 
 
-    currentPhoto = null;
-    currentPhotoIndex = null;
+    currentPhoto =
+        null;
+
+    currentPhotoIndex =
+        null;
 
 }
 
@@ -1731,14 +2564,19 @@ function sendPhotoToLine(
     index
 ){
 
+    /*
+      Evita que una misma foto
+      se coloque dos veces.
+    */
+
     const existing =
-        document.querySelector(
-            '.photo-polaroid[data-photo="' +
-            photoName.replace(
-                /"/g,
-                '\\"'
-            ) +
-            '"]'
+        Array.from(
+            document.querySelectorAll(
+                ".photo-polaroid"
+            )
+        ).find(
+            el =>
+            el.dataset.photo === photoName
         );
 
 
@@ -1781,7 +2619,7 @@ function sendPhotoToLine(
         );
 
     img.src =
-        photoName;
+        "./" + photoName;
 
     img.alt =
         "Nuestro recuerdo";
@@ -1809,62 +2647,258 @@ function sendPhotoToLine(
         polaroid
     );
 
+
+    totalHung++;
+
+
+    /*
+      SOLO cuando las 7 fotografías
+      están colgadas empieza el final.
+    */
+
+    if(totalHung === 7){
+
+        startFinalSequence();
+
+    }
+
 }
 
 
 /* =====================================================
-   MENSAJES ESPECIALES
+   SECUENCIA FINAL
 ===================================================== */
 
-function showMessage(message){
+function startFinalSequence(){
 
-    messageText.textContent =
-        message;
+    if(finalSequenceStarted){
+        return;
+    }
 
-    messageBox.classList.add(
-        "show"
+    finalSequenceStarted =
+        true;
+
+
+    /*
+      Esperamos unos segundos
+      para que pueda contemplar
+      las 7 fotografías.
+    */
+
+    setTimeout(
+        function(){
+
+            /*
+              Comienza viento suave.
+            */
+
+            garden.classList.add(
+                "wind-active"
+            );
+
+
+            /*
+              Después entra la carta.
+            */
+
+            setTimeout(
+                function(){
+
+                    flyingLetter.classList.add(
+                        "show"
+                    );
+
+                },
+                3200
+            );
+
+        },
+        4500
     );
 
 }
 
 
-function closeMsg(){
+/* =====================================================
+   TOCAR CARTA
+===================================================== */
 
-    messageBox.classList.remove(
-        "show"
-    );
-
-}
-
-
-closeMessage.addEventListener(
+flyingLetter.addEventListener(
     "click",
-    closeMsg
+    function(){
+
+        openLetter();
+
+    }
 );
 
 
-closeMessage.addEventListener(
+flyingLetter.addEventListener(
     "touchend",
     function(e){
 
         e.preventDefault();
 
-        closeMsg();
+        openLetter();
 
     },
     {passive:false}
 );
 
 
-messageBox.addEventListener(
-    "click",
-    function(e){
+/* =====================================================
+   ABRIR CARTA
+===================================================== */
+
+function openLetter(){
+
+    flyingLetter.style.pointerEvents =
+        "none";
+
+
+    /*
+      Dejamos el jardín intacto.
+
+      Solamente mostramos la indicación
+      para girar el teléfono.
+    */
+
+    document.body.classList.add(
+        "letter-pending"
+    );
+
+    checkLetterOrientation();
+
+}
+
+
+/* =====================================================
+   ORIENTACIÓN DE LA CARTA
+===================================================== */
+
+function checkLetterOrientation(){
+
+    if(!finalSequenceStarted){
+        return;
+    }
+
+
+    const portrait =
+        window.innerHeight >
+        window.innerWidth;
+
+
+    if(portrait){
+
+        /*
+          Estamos vertical:
+          mostramos directamente la carta.
+        */
+
+        document.body.classList.add(
+            "reading-letter"
+        );
+
+        document.body.classList.remove(
+            "letter-pending"
+        );
+
+        letterReader.classList.add(
+            "show"
+        );
+
+    }
+
+    else{
+
+        /*
+          Horizontal:
+          mostramos "Gira el teléfono".
+        */
+
+        document.body.classList.remove(
+            "reading-letter"
+        );
+
+        letterReader.classList.remove(
+            "show"
+        );
+
+        document
+            .getElementById("rotateScreen")
+            .style.display =
+            "flex";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "resize",
+    function(){
 
         if(
-            e.target === messageBox
+            finalSequenceStarted
         ){
 
-            closeMsg();
+            checkLetterOrientation();
+
+        }
+
+    }
+);
+
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            function(){
+
+                if(
+                    finalSequenceStarted
+                ){
+
+                    checkLetterOrientation();
+
+                }
+
+            },
+            250
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CUANDO VUELVE A HORIZONTAL
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    function(){
+
+        if(
+            finalSequenceStarted &&
+            window.innerWidth >
+            window.innerHeight
+        ){
+
+            document.body.classList.remove(
+                "reading-letter"
+            );
+
+            letterReader.classList.remove(
+                "show"
+            );
+
+            document
+                .getElementById("rotateScreen")
+                .style.display =
+                "none";
 
         }
 
@@ -1873,7 +2907,24 @@ messageBox.addEventListener(
 
 
 /* =====================================================
-   IPHONE
+   PRE-CARGAR FOTOS
+===================================================== */
+
+photos.forEach(
+    function(photoName){
+
+        const image =
+            new Image();
+
+        image.src =
+            "./" + photoName;
+
+    }
+);
+
+
+/* =====================================================
+   EVITAR ZOOM GESTUAL
 ===================================================== */
 
 document.addEventListener(
